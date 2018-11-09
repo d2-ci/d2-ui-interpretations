@@ -36,7 +36,10 @@ var Interpretations = function (_React$Component) {
     _createClass(Interpretations, [{
         key: 'getChildContext',
         value: function getChildContext() {
-            return { d2: this.props.d2 };
+            return {
+                d2: this.props.d2,
+                locale: this.props.d2.currentUser.userSettings.settings.keyUiLocale || 'en'
+            };
         }
     }, {
         key: 'componentDidMount',
@@ -47,16 +50,11 @@ var Interpretations = function (_React$Component) {
     }, {
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(nextProps) {
-            var fields = ["type", "id", "lastUpdated"];
+            var fields = ['type', 'id', 'lastUpdated'];
             var modelFieldsChanged = !isEqual(pick(fields, this.props), pick(fields, nextProps));
             if (modelFieldsChanged) {
                 this.loadModel(nextProps);
             }
-        }
-    }, {
-        key: 'getLocale',
-        value: function getLocale(d2) {
-            return d2.currentUser.userSettings.settings.keyUiLocale || "en";
         }
     }, {
         key: 'loadModel',
@@ -86,17 +84,13 @@ var Interpretations = function (_React$Component) {
                 onCurrentInterpretationChange = _props.onCurrentInterpretationChange;
             var model = this.state.model;
 
-            var locale = this.getLocale(d2);
 
             if (!model) return React.createElement(CircularProgress, null);
 
             return React.createElement(
                 'div',
                 null,
-                React.createElement(DetailsCard, {
-                    model: model,
-                    onChange: this.onChange
-                }),
+                React.createElement(DetailsCard, { model: model, onChange: this.onChange }),
                 React.createElement(InterpretationsCard, {
                     model: model,
                     onChange: this.onChange,
@@ -121,7 +115,8 @@ Interpretations.propTypes = {
 };
 
 Interpretations.childContextTypes = {
-    d2: PropTypes.object
+    d2: PropTypes.object,
+    locale: PropTypes.string
 };
 
 export default Interpretations;
