@@ -200,7 +200,7 @@ var Interpretation = function (_React$Component) {
                         React.createElement(
                             'span',
                             { style: styles.date },
-                            formatDate(interpretation.created)
+                            formatDate(interpretation.created, this.context.locale)
                         )
                     ),
                     React.createElement(
@@ -299,7 +299,8 @@ Interpretation.defaultProps = {
 };
 
 Interpretation.contextTypes = {
-    d2: PropTypes.object.isRequired
+    d2: PropTypes.object.isRequired,
+    locale: PropTypes.string
 };
 
 export default Interpretation;

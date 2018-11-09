@@ -143,8 +143,14 @@ var DetailsCard = function (_React$Component) {
                     null,
                     React.createElement(ListItem, { text: getDescription(model) }),
                     React.createElement(ListItem, { label: i18n.t('Owner'), text: owner }),
-                    React.createElement(ListItem, { label: i18n.t('Created'), text: formatDate(model.created) }),
-                    React.createElement(ListItem, { label: i18n.t('Last updated'), text: formatDate(model.lastUpdated) }),
+                    React.createElement(ListItem, {
+                        label: i18n.t('Created'),
+                        text: formatDate(model.created, this.context.locale)
+                    }),
+                    React.createElement(ListItem, {
+                        label: i18n.t('Last updated'),
+                        text: formatDate(model.lastUpdated, this.context.locale)
+                    }),
                     React.createElement(ListItem, { label: i18n.t('Views'), text: model.favoriteViews }),
                     React.createElement(ListItem, { label: i18n.t('Sharing'), text: getSharingText(model) })
                 )
@@ -154,6 +160,11 @@ var DetailsCard = function (_React$Component) {
 
     return DetailsCard;
 }(React.Component);
+
+DetailsCard.contextTypes = {
+    d2: PropTypes.object,
+    locale: PropTypes.string
+};
 
 DetailsCard.propTypes = {
     model: PropTypes.object.isRequired,
