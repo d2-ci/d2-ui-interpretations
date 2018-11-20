@@ -34,7 +34,7 @@ var getInterpretationsList = function getInterpretationsList(props) {
         null,
         React.createElement(
             'div',
-            { style: { fontStyle: "italic", marginLeft: 15 } },
+            { style: { fontStyle: 'italic', marginLeft: 15 } },
             interpretations.length === 0 && React.createElement(
                 'span',
                 null,
@@ -57,7 +57,8 @@ var getInterpretationsList = function getInterpretationsList(props) {
                     model: model,
                     interpretation: interpretation,
                     onChange: onChange,
-                    extended: false
+                    extended: false,
+                    onSelect: setCurrentInterpretation
                 })
             );
         })
@@ -67,17 +68,19 @@ var getInterpretationsList = function getInterpretationsList(props) {
 var getInterpretationDetails = function getInterpretationDetails(props) {
     var d2 = props.d2,
         model = props.model,
+        setCurrentInterpretation = props.setCurrentInterpretation,
         interpretation = props.interpretation,
         onChange = props.onChange;
 
-    var comments = orderBy(["created"], ["desc"], interpretation.comments);
+    var comments = orderBy(['created'], ['desc'], interpretation.comments);
 
     return React.createElement(Interpretation, {
         d2: d2,
         model: model,
         interpretation: interpretation,
         onChange: onChange,
-        extended: true
+        extended: true,
+        onSelect: setCurrentInterpretation
     });
 };
 
@@ -145,7 +148,7 @@ var InterpretationsCard = function (_React$Component) {
             if (currentInterpretation && this.props.onCurrentInterpretationChange) {
                 this.props.onCurrentInterpretationChange(currentInterpretation);
             }
-            if (this.props.currentInterpretationId == "new") {
+            if (this.props.currentInterpretationId == 'new') {
                 this.openNewInterpretationDialog();
             }
         }
@@ -199,7 +202,7 @@ var InterpretationsCard = function (_React$Component) {
             var interpretationToEdit = this.state.interpretationToEdit;
             var d2 = this.context.d2;
 
-            var sortedInterpretations = orderBy(["created"], ["desc"], model.interpretations);
+            var sortedInterpretations = orderBy(['created'], ['desc'], model.interpretations);
             var currentInterpretation = this.getCurrentInterpretation();
             var actions = getInterpretationButtons({
                 d2: d2,
@@ -211,10 +214,7 @@ var InterpretationsCard = function (_React$Component) {
 
             return React.createElement(
                 CollapsibleCard,
-                {
-                    title: i18n.t('Interpretations'),
-                    actions: actions
-                },
+                { title: i18n.t('Interpretations'), actions: actions },
                 interpretationToEdit && React.createElement(InterpretationDialog, {
                     model: model,
                     interpretation: interpretationToEdit,
@@ -225,6 +225,7 @@ var InterpretationsCard = function (_React$Component) {
                     d2: d2,
                     model: model,
                     interpretation: currentInterpretation,
+                    setCurrentInterpretation: this.setCurrentInterpretation,
                     onChange: this.notifyChange
                 }) : getInterpretationsList({
                     d2: d2,

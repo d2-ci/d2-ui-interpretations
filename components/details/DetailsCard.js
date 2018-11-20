@@ -34,7 +34,7 @@ var ListItem = function ListItem(_ref2) {
         { style: styles.detailsCardItem },
         label && React.createElement(
             'label',
-            { style: { fontWeight: "bold", marginRight: 5 } },
+            { style: { fontWeight: 'bold', marginRight: 5 } },
             label,
             ':'
         ),
@@ -63,21 +63,21 @@ var getDescription = function getDescription(model) {
 };
 
 var accessMapping = {
-    "--------": i18n.t("None"),
-    "r-------": i18n.t("Read"),
-    "rw------": i18n.t("Read/Write")
+    '--------': i18n.t('None'),
+    'r-------': i18n.t('Read'),
+    'rw------': i18n.t('Read/Write')
 };
 
 var getSharingText = function getSharingText(model) {
-    var publicAccessValue = accessMapping[model.publicAccess] || i18n.t("Unknown");
-    var publicAccess = i18n.t('Public') + ": " + publicAccessValue;
+    var publicAccessValue = accessMapping[model.publicAccess] || i18n.t('Unknown');
+    var publicAccess = i18n.t('Public') + ': ' + publicAccessValue;
 
     var userGroupsCount = (model.userGroupAccesses || []).length;
     var userGroupsInfo = userGroupsCount > 2 ? userGroupsCount + ' ' + i18n.t('user groups') : (model.userGroupAccesses || []).map(function (userGroup) {
         return userGroup.displayName;
-    }).join(", ");
+    }).join(', ');
 
-    return publicAccess + (userGroupsInfo ? ' + ' + userGroupsInfo : "");
+    return publicAccess + (userGroupsInfo ? ' + ' + userGroupsInfo : '');
 };
 
 var DetailsCard = function (_React$Component) {
@@ -112,7 +112,7 @@ var DetailsCard = function (_React$Component) {
         value: function renderSubscriptionButton(model) {
             var tOpts = { object: translateModelName(model.modelName) };
 
-            var _ref4 = model.subscribed ? [SubscriberIconEnabled, i18n.t("Unsubscribe from this {{object}} and stop receiving notifications", tOpts)] : [SubscriberIconDisabled, i18n.t("Subscribe to this {{object}} and start receiving notifications", tOpts)],
+            var _ref4 = model.subscribed ? [SubscriberIconEnabled, i18n.t('Unsubscribe from this {{object}} and stop receiving notifications', tOpts)] : [SubscriberIconDisabled, i18n.t('Subscribe to this {{object}} and start receiving notifications', tOpts)],
                 _ref5 = _slicedToArray(_ref4, 2),
                 SubscriberIcon = _ref5[0],
                 subscriptionTooltip = _ref5[1];
@@ -143,8 +143,14 @@ var DetailsCard = function (_React$Component) {
                     null,
                     React.createElement(ListItem, { text: getDescription(model) }),
                     React.createElement(ListItem, { label: i18n.t('Owner'), text: owner }),
-                    React.createElement(ListItem, { label: i18n.t('Created'), text: formatDate(model.created) }),
-                    React.createElement(ListItem, { label: i18n.t('Last updated'), text: formatDate(model.lastUpdated) }),
+                    React.createElement(ListItem, {
+                        label: i18n.t('Created'),
+                        text: formatDate(model.created, this.context.locale)
+                    }),
+                    React.createElement(ListItem, {
+                        label: i18n.t('Last updated'),
+                        text: formatDate(model.lastUpdated, this.context.locale)
+                    }),
                     React.createElement(ListItem, { label: i18n.t('Views'), text: model.favoriteViews }),
                     React.createElement(ListItem, { label: i18n.t('Sharing'), text: getSharingText(model) })
                 )
@@ -154,6 +160,11 @@ var DetailsCard = function (_React$Component) {
 
     return DetailsCard;
 }(React.Component);
+
+DetailsCard.contextTypes = {
+    d2: PropTypes.object,
+    locale: PropTypes.string
+};
 
 DetailsCard.propTypes = {
     model: PropTypes.object.isRequired,

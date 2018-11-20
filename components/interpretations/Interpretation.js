@@ -44,6 +44,8 @@ var Interpretation = function (_React$Component) {
         _this.closeInterpretationDialog = _this.closeInterpretationDialog.bind(_this);
         _this.deleteInterpretation = _this.deleteInterpretation.bind(_this);
         _this.openInterpretationDialog = _this.openInterpretationDialog.bind(_this);
+        _this.view = _this.view.bind(_this);
+        _this.exitView = _this.exitView.bind(_this);
         _this.like = _this.like.bind(_this);
         _this.reply = _this.reply.bind(_this);
         _this.unlike = _this.unlike.bind(_this);
@@ -67,6 +69,16 @@ var Interpretation = function (_React$Component) {
             interpretation.like(value).then(function () {
                 return _this2.notifyChange(interpretation);
             });
+        }
+    }, {
+        key: 'view',
+        value: function view() {
+            this.props.onSelect(this.props.interpretation.id);
+        }
+    }, {
+        key: 'exitView',
+        value: function exitView() {
+            this.props.onSelect(null);
         }
     }, {
         key: 'like',
@@ -158,7 +170,7 @@ var Interpretation = function (_React$Component) {
             var likedBy = interpretation.likedBy || [];
             var likedByTooltip = likedBy.map(function (user) {
                 return user.displayName;
-            }).sort().join("\n");
+            }).sort().join('\n');
             var currentUserLikesInterpretation = some(function (user) {
                 return user.id === d2.currentUser.id;
             }, likedBy);
@@ -176,7 +188,7 @@ var Interpretation = function (_React$Component) {
                     onRequestClose: this.closeSharingDialog,
                     d2: d2,
                     id: interpretation.id,
-                    type: "interpretation"
+                    type: 'interpretation'
                 }),
                 React.createElement(
                     'div',
@@ -188,7 +200,7 @@ var Interpretation = function (_React$Component) {
                         React.createElement(
                             'span',
                             { style: styles.date },
-                            formatDate(interpretation.created)
+                            formatDate(interpretation.created, this.context.locale)
                         )
                     ),
                     React.createElement(
@@ -196,16 +208,20 @@ var Interpretation = function (_React$Component) {
                         { style: styles.interpretationTextWrapper },
                         React.createElement(
                             'div',
-                            { style: extended ? styles.interpretationText : styles.interpretationTextLimited },
+                            {
+                                style: extended ? styles.interpretationText : styles.interpretationTextLimited
+                            },
                             interpretation.text
                         )
                     ),
                     React.createElement(
                         'div',
                         null,
-                        showActions && React.createElement(
+                        showActions ? React.createElement(
                             'div',
                             { className: 'actions', style: styles.actions },
+                            React.createElement(Link, { label: i18n.t('Exit view'), onClick: this.exitView }),
+                            React.createElement(ActionSeparator, null),
                             currentUserLikesInterpretation ? React.createElement(Link, { label: i18n.t('Unlike'), onClick: this.unlike }) : React.createElement(Link, { label: i18n.t('Like'), onClick: this.like }),
                             React.createElement(ActionSeparator, null),
                             React.createElement(Link, { label: i18n.t('Reply'), onClick: this.reply }),
@@ -213,12 +229,25 @@ var Interpretation = function (_React$Component) {
                                 'span',
                                 { className: 'owner-actions' },
                                 React.createElement(ActionSeparator, null),
-                                React.createElement(Link, { label: i18n.t('Edit'), onClick: this.openInterpretationDialog }),
+                                React.createElement(Link, {
+                                    label: i18n.t('Edit'),
+                                    onClick: this.openInterpretationDialog
+                                }),
                                 React.createElement(ActionSeparator, null),
-                                React.createElement(Link, { label: i18n.t('Share'), onClick: this.openSharingDialog }),
+                                React.createElement(Link, {
+                                    label: i18n.t('Share'),
+                                    onClick: this.openSharingDialog
+                                }),
                                 React.createElement(ActionSeparator, null),
-                                React.createElement(Link, { label: i18n.t('Delete'), onClick: this.deleteInterpretation })
+                                React.createElement(Link, {
+                                    label: i18n.t('Delete'),
+                                    onClick: this.deleteInterpretation
+                                })
                             )
+                        ) : React.createElement(
+                            'div',
+                            { className: 'actions', style: styles.actions },
+                            React.createElement(Link, { label: i18n.t('View'), onClick: this.view })
                         ),
                         React.createElement(
                             'div',
@@ -229,7 +258,11 @@ var Interpretation = function (_React$Component) {
                                 React.createElement(ThumbUpIcon, { style: styles.likeIcon }),
                                 React.createElement(
                                     'span',
-                                    { style: { color: "#22A" }, className: 'liked-by', title: likedByTooltip },
+                                    {
+                                        style: { color: '#22A' },
+                                        className: 'liked-by',
+                                        title: likedByTooltip
+                                    },
                                     interpretation.likes,
                                     ' ',
                                     i18n.t('people like this')
@@ -257,6 +290,7 @@ var Interpretation = function (_React$Component) {
 Interpretation.propTypes = {
     interpretation: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    onSelect: PropTypes.func,
     extended: PropTypes.bool.isRequired
 };
 
@@ -265,7 +299,8 @@ Interpretation.defaultProps = {
 };
 
 Interpretation.contextTypes = {
-    d2: PropTypes.object.isRequired
+    d2: PropTypes.object.isRequired,
+    locale: PropTypes.string
 };
 
 export default Interpretation;
