@@ -1,27 +1,18 @@
-import _defineProperty from 'babel-runtime/helpers/defineProperty';
-
-var _avatarWrapper;
-
 export default {
-    action: {
-        height: 24,
-        padding: 5,
-        width: 24
-    },
-
     body: {
         padding: 0
     },
 
     commentArea: {
-        border: '1px solid #ccc',
-        fontFamily: 'Roboto,Arial,sans-serif',
+        border: "1px solid #ccc",
+        boxSizing: "border-box",
+        fontFamily: "Roboto,Arial,sans-serif",
         fontSize: 12,
         height: 50,
-        overflow: 'auto',
-        padding: '4px 0px 0px 6px',
-        resize: 'none',
-        width: '95%'
+        overflow: "auto",
+        padding: "4px 0px 0px 6px",
+        resize: "none",
+        width: "100%"
     },
 
     commentAuthor: {
@@ -29,9 +20,9 @@ export default {
     },
 
     commentText: {
-        marginBottom: 2,
-        whiteSpace: 'pre-line',
-        lineHeight: '1.5em'
+        width: "100%",
+        whiteSpace: "pre-line",
+        lineHeight: "1.5em"
     },
 
     container: {
@@ -39,8 +30,8 @@ export default {
     },
 
     date: {
-        color: '#9e9999',
-        fontWeight: 'normal',
+        color: "#9e9999",
+        fontWeight: "normal",
         marginLeft: 4
     },
 
@@ -49,7 +40,7 @@ export default {
     },
 
     greyBackground: {
-        backgroundColor: '#efefef',
+        backgroundColor: "#efefef",
         marginTop: 2,
         paddingBottom: 4,
         paddingTop: 4
@@ -57,39 +48,39 @@ export default {
 
     headerText: {
         paddingRight: 0,
-        position: 'relative',
-        top: '50%',
-        transform: 'translateY(-50%)',
+        position: "relative",
+        top: "50%",
+        transform: "translateY(-50%)",
         width: 210
     },
 
     interpretation: {
-        cursor: 'pointer',
-        padding: 0
+        cursor: "pointer",
+        padding: 0,
+        paddingBottom: 12
     },
 
     interpretationCommentArea: {
         fontSize: 12,
-        margin: '2px 0 5px 0px'
+        margin: "2px 0 5px 0px"
     },
 
     interpretationDescSection: {
-        fontSize: 12,
-        padding: '12px 12px 10px 12px'
+        fontSize: 12
     },
 
     interpretationLink: {
-        color: '#3162C5',
-        cursor: 'pointer'
+        color: "#3162C5",
+        cursor: "pointer"
     },
 
     interpretationName: {
-        display: 'inline-block'
+        display: "inline-block"
     },
 
     interpretationText: {
-        whiteSpace: 'pre-line',
-        lineHeight: '1.5em'
+        whiteSpace: "pre-line",
+        lineHeight: "1.5em"
     },
 
     interpretationTextWrapper: {
@@ -99,18 +90,18 @@ export default {
     },
 
     interpretationTextLimited: {
-        display: 'block',
-        textOverflow: 'ellipsis',
-        wordWrap: 'break-word',
-        overflow: 'hidden',
-        maxHeight: '3.0em',
-        lineHeight: '1.5em',
-        whiteSpace: 'pre-line'
+        display: "block",
+        textOverflow: "ellipsis",
+        wordWrap: "break-word",
+        overflow: "hidden",
+        maxHeight: "3.0em",
+        lineHeight: "1.5em",
+        whiteSpace: "pre-line"
     },
 
     interpretationsCard: {
-        clear: 'both',
-        margin: '8px 4px 8px 4px',
+        clear: "both",
+        margin: "8px 4px 8px 4px",
         paddingBottom: 6,
         zIndex: 1010
     },
@@ -124,19 +115,19 @@ export default {
     },
 
     interpretationsCardToolbar: {
-        backgroundColor: '#eee',
+        backgroundColor: "#eee",
         height: 32,
         paddingLeft: 7
     },
 
     likeArea: {
-        backgroundColor: '#efefef',
+        backgroundColor: "#efefef",
         marginTop: 2,
-        padding: '4px 4px 4px 5px',
+        padding: "4px 4px 4px 5px",
         paddingBottom: 4,
         paddingTop: 4,
-        display: 'flex',
-        alignItems: 'center'
+        display: "flex",
+        alignItems: "center"
     },
 
     icon: {
@@ -149,7 +140,7 @@ export default {
     likeIcon: {
         height: 16,
         marginRight: 5,
-        verticalAlign: 'top',
+        verticalAlign: "top",
         width: 16
     },
 
@@ -159,44 +150,45 @@ export default {
     },
 
     tipText: {
-        color: '#9e9999',
-        fontWeight: 'normal'
+        color: "#9e9999",
+        fontWeight: "normal"
     },
 
     userLink: {
-        color: '#3d4245',
-        fontWeight: 'bold',
-        textDecoration: 'none'
+        color: "#3d4245",
+        fontWeight: "bold",
+        textDecoration: "none"
     },
 
     showMoreComments: {
-        fontSize: '11px',
-        textTransform: 'uppercase',
-        paddingLeft: '16px',
-        paddingRight: '16px',
-        fontWeight: '500'
+        fontSize: "11px",
+        textTransform: "uppercase",
+        paddingLeft: "16px",
+        paddingRight: "16px",
+        fontWeight: "500"
     },
 
-    avatarWrapper: (_avatarWrapper = {
-        display: 'flex',
+    avatarWrapper: {
+        display: "flex",
         marginTop: 10,
-        backgroundColor: '#efefef'
-    }, _defineProperty(_avatarWrapper, 'marginTop', 2), _defineProperty(_avatarWrapper, 'paddingBottom', 4), _defineProperty(_avatarWrapper, 'paddingTop', 4), _avatarWrapper),
+        backgroundColor: "#efefef",
+        margin: "4px 0",
+        padding: 8
+    },
 
     avatarBox: {
         width: 32,
-        marginLeft: 5,
-        marginRight: 5
+        marginRight: 8
     },
 
     avatarBoxContent: {
-        width: '90%'
+        flex: 1
     },
 
     avatar: {
-        color: 'black',
+        color: "black",
         fontSize: 15,
-        fontWeight: 'bold',
+        fontWeight: "bold",
         width: 32,
         height: 32
     }

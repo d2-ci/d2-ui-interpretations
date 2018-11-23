@@ -1,10 +1,10 @@
+import _defineProperty from 'babel-runtime/helpers/defineProperty';
 import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _createClass from 'babel-runtime/helpers/createClass';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-import _defineProperty from 'babel-runtime/helpers/defineProperty';
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
@@ -25,14 +25,14 @@ var styles = function styles(theme) {
             position: 'relative'
         },
         actions: {
-            position: 'absolute',
-            top: 0,
-            right: 48,
-            padding: 0,
-            display: 'block'
+            marginTop: 0,
+            marginRight: -4,
+            '& button': {
+                padding: theme.spacing.unit * 0.5
+            }
         },
         header: {
-            padding: '0 24px 0 12px'
+            padding: '4px 12px 4px 12px'
         },
         title: {
             fontSize: 15,
@@ -46,15 +46,12 @@ var styles = function styles(theme) {
         collapse: {
             clear: 'both'
         },
-        expand: _defineProperty({
+        expand: {
             transform: 'rotate(0deg)',
             transition: theme.transitions.create('transform', {
                 duration: theme.transitions.duration.shortest
-            }),
-            marginLeft: 'auto'
-        }, theme.breakpoints.up('sm'), {
-            marginRight: -8
-        }),
+            })
+        },
         expandOpen: {
             transform: 'rotate(180deg)'
         }
@@ -95,26 +92,26 @@ var CollapsibleCard = function (_React$Component) {
 
             return React.createElement(
                 Card,
-                { className: classes.card, raised: true },
+                { className: classes.card },
                 React.createElement(CardHeader, {
                     title: title,
-                    classes: { root: classes.header, title: classes.title },
+                    classes: { root: classes.header, title: classes.title, action: classes.actions },
                     action: React.createElement(
-                        IconButton,
-                        {
-                            className: classnames(classes.expand, _defineProperty({}, classes.expandOpen, expanded)),
-                            onClick: this.handleExpandClick,
-                            'aria-expanded': expanded,
-                            disableRipple: true
-                        },
-                        React.createElement(ExpandMoreIcon, null)
+                        Fragment,
+                        null,
+                        expanded ? actions : null,
+                        React.createElement(
+                            IconButton,
+                            {
+                                className: classnames(classes.expand, _defineProperty({}, classes.expandOpen, expanded)),
+                                onClick: this.handleExpandClick,
+                                'aria-expanded': expanded,
+                                disableRipple: true
+                            },
+                            React.createElement(ExpandMoreIcon, null)
+                        )
                     )
                 }),
-                React.createElement(
-                    CardActions,
-                    { className: classes.actions, disableActionSpacing: true },
-                    expanded ? actions : null
-                ),
                 React.createElement(
                     Collapse,
                     { 'in': expanded, timeout: 'auto', unmountOnExit: true, className: classes.collapse },
