@@ -1,22 +1,23 @@
-import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
-import React from 'react';
-import PropTypes from 'prop-types';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import AddIcon from '@material-ui/icons/Add';
-import i18n from '@dhis2/d2-i18n';
-import orderBy from 'lodash/fp/orderBy';
+import _Object$getPrototypeOf from "babel-runtime/core-js/object/get-prototype-of";
+import _classCallCheck from "babel-runtime/helpers/classCallCheck";
+import _createClass from "babel-runtime/helpers/createClass";
+import _possibleConstructorReturn from "babel-runtime/helpers/possibleConstructorReturn";
+import _inherits from "babel-runtime/helpers/inherits";
+import _extends from "babel-runtime/helpers/extends";
+import React from "react";
+import PropTypes from "prop-types";
+import Divider from "@material-ui/core/Divider";
+import IconButton from "@material-ui/core/IconButton";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import AddIcon from "@material-ui/icons/Add";
+import i18n from "@dhis2/d2-i18n";
+import orderBy from "lodash/fp/orderBy";
 
-import CollapsibleCard from '../CollapsibleCard';
-import InterpretationDialog from './InterpretationDialog';
-import Interpretation from './Interpretation';
-import InterpretationModel from '../../models/interpretation';
-import styles from './InterpretationsStyles.js';
+import CollapsibleCard from "../CollapsibleCard";
+import InterpretationDialog from "./InterpretationDialog";
+import Interpretation from "./Interpretation";
+import InterpretationModel from "../../models/interpretation";
+import styles from "./InterpretationsStyles.js";
 
 var getInterpretationsList = function getInterpretationsList(props) {
     var d2 = props.d2,
@@ -26,43 +27,40 @@ var getInterpretationsList = function getInterpretationsList(props) {
         onChange = props.onChange;
 
     var getUserUrl = function getUserUrl(user) {
-        return baseurl + '/dhis-web-messaging/profile.action?id=' + user.id;
+        return baseurl + "/dhis-web-messaging/profile.action?id=" + user.id;
     };
 
-    return React.createElement(
-        'div',
-        null,
+    return interpretations.length === 0 ? React.createElement(
+        "div",
+        { style: { fontStyle: "italic" } },
         React.createElement(
-            'div',
-            { style: { fontStyle: 'italic', marginLeft: 15 } },
-            interpretations.length === 0 && React.createElement(
-                'span',
-                null,
-                i18n.t('No interpretations')
-            )
-        ),
-        interpretations.map(function (interpretation) {
-            return React.createElement(
-                'div',
-                {
-                    key: interpretation.id,
-                    style: styles.interpretation,
-                    className: 'interpretation-box',
-                    onClick: function onClick() {
-                        return setCurrentInterpretation(interpretation.id);
-                    }
-                },
-                React.createElement(Interpretation, {
-                    d2: d2,
-                    model: model,
-                    interpretation: interpretation,
-                    onChange: onChange,
-                    extended: false,
-                    onSelect: setCurrentInterpretation
-                })
-            );
-        })
-    );
+            "span",
+            null,
+            i18n.t("No interpretations")
+        )
+    ) : interpretations.map(function (interpretation, i) {
+        return React.createElement(
+            "div",
+            {
+                key: interpretation.id,
+                style: i === interpretations.length - 1 ? _extends({}, styles.interpretation, {
+                    paddingBottom: 0
+                }) : styles.interpretation,
+                className: "interpretation-box",
+                onClick: function onClick() {
+                    return setCurrentInterpretation(interpretation.id);
+                }
+            },
+            React.createElement(Interpretation, {
+                d2: d2,
+                model: model,
+                interpretation: interpretation,
+                onChange: onChange,
+                extended: false,
+                onSelect: setCurrentInterpretation
+            })
+        );
+    });
 };
 
 var getInterpretationDetails = function getInterpretationDetails(props) {
@@ -72,7 +70,7 @@ var getInterpretationDetails = function getInterpretationDetails(props) {
         interpretation = props.interpretation,
         onChange = props.onChange;
 
-    var comments = orderBy(['created'], ['desc'], interpretation.comments);
+    var comments = orderBy(["created"], ["desc"], interpretation.comments);
 
     return React.createElement(Interpretation, {
         d2: d2,
@@ -95,19 +93,17 @@ var getInterpretationButtons = function getInterpretationButtons(props) {
     return currentInterpretation ? React.createElement(
         IconButton,
         {
-            style: styles.action,
             onClick: function onClick() {
                 return setCurrentInterpretation(null);
             },
-            title: i18n.t('Clear interpretation')
+            title: i18n.t("Clear interpretation")
         },
         React.createElement(ChevronLeftIcon, null)
     ) : React.createElement(
         IconButton,
         {
-            style: styles.action,
             onClick: openNewInterpretationDialog,
-            title: i18n.t('Write new interpretation')
+            title: i18n.t("Write new interpretation")
         },
         React.createElement(AddIcon, null)
     );
@@ -135,41 +131,43 @@ var InterpretationsCard = function (_React$Component) {
     }
 
     _createClass(InterpretationsCard, [{
-        key: 'componentWillReceiveProps',
+        key: "componentWillReceiveProps",
         value: function componentWillReceiveProps(nextProps) {
             if (this.isControlledComponent) {
-                this.setState({ currentInterpretationId: nextProps.currentInterpretationId });
+                this.setState({
+                    currentInterpretationId: nextProps.currentInterpretationId
+                });
             }
         }
     }, {
-        key: 'componentDidMount',
+        key: "componentDidMount",
         value: function componentDidMount() {
             var currentInterpretation = this.getCurrentInterpretation();
             if (currentInterpretation && this.props.onCurrentInterpretationChange) {
                 this.props.onCurrentInterpretationChange(currentInterpretation);
             }
-            if (this.props.currentInterpretationId == 'new') {
+            if (this.props.currentInterpretationId == "new") {
                 this.openNewInterpretationDialog();
             }
         }
     }, {
-        key: 'notifyChange',
+        key: "notifyChange",
         value: function notifyChange(interpretation) {
             this.props.onChange();
         }
     }, {
-        key: 'openNewInterpretationDialog',
+        key: "openNewInterpretationDialog",
         value: function openNewInterpretationDialog() {
             var newInterpretation = new InterpretationModel(this.props.model, {});
             this.setState({ interpretationToEdit: newInterpretation });
         }
     }, {
-        key: 'closeInterpretationDialog',
+        key: "closeInterpretationDialog",
         value: function closeInterpretationDialog() {
             this.setState({ interpretationToEdit: null });
         }
     }, {
-        key: 'setCurrentInterpretation',
+        key: "setCurrentInterpretation",
         value: function setCurrentInterpretation(interpretationId) {
             var _props = this.props,
                 model = _props.model,
@@ -186,7 +184,7 @@ var InterpretationsCard = function (_React$Component) {
             }
         }
     }, {
-        key: 'getCurrentInterpretation',
+        key: "getCurrentInterpretation",
         value: function getCurrentInterpretation() {
             var model = this.props.model;
             var currentInterpretationId = this.state.currentInterpretationId;
@@ -196,13 +194,13 @@ var InterpretationsCard = function (_React$Component) {
             }) : null;
         }
     }, {
-        key: 'render',
+        key: "render",
         value: function render() {
             var model = this.props.model;
             var interpretationToEdit = this.state.interpretationToEdit;
             var d2 = this.context.d2;
 
-            var sortedInterpretations = orderBy(['created'], ['desc'], model.interpretations);
+            var sortedInterpretations = orderBy(["created"], ["desc"], model.interpretations);
             var currentInterpretation = this.getCurrentInterpretation();
             var actions = getInterpretationButtons({
                 d2: d2,
@@ -214,26 +212,33 @@ var InterpretationsCard = function (_React$Component) {
 
             return React.createElement(
                 CollapsibleCard,
-                { title: i18n.t('Interpretations'), actions: actions },
+                {
+                    title: i18n.t("Interpretations"),
+                    actions: actions
+                },
                 interpretationToEdit && React.createElement(InterpretationDialog, {
                     model: model,
                     interpretation: interpretationToEdit,
                     onSave: this.notifyChange,
                     onClose: this.closeInterpretationDialog
                 }),
-                currentInterpretation ? getInterpretationDetails({
-                    d2: d2,
-                    model: model,
-                    interpretation: currentInterpretation,
-                    setCurrentInterpretation: this.setCurrentInterpretation,
-                    onChange: this.notifyChange
-                }) : getInterpretationsList({
-                    d2: d2,
-                    model: model,
-                    interpretations: sortedInterpretations,
-                    setCurrentInterpretation: this.setCurrentInterpretation,
-                    onChange: this.notifyChange
-                })
+                React.createElement(
+                    "div",
+                    { style: { margin: 12 } },
+                    currentInterpretation ? getInterpretationDetails({
+                        d2: d2,
+                        model: model,
+                        interpretation: currentInterpretation,
+                        setCurrentInterpretation: this.setCurrentInterpretation,
+                        onChange: this.notifyChange
+                    }) : getInterpretationsList({
+                        d2: d2,
+                        model: model,
+                        interpretations: sortedInterpretations,
+                        setCurrentInterpretation: this.setCurrentInterpretation,
+                        onChange: this.notifyChange
+                    })
+                )
             );
         }
     }]);
