@@ -3,7 +3,7 @@ import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _createClass from 'babel-runtime/helpers/createClass';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link, ActionSeparator } from './misc';
 import i18n from '@dhis2/d2-i18n';
@@ -72,7 +72,7 @@ var CommentTextarea = function (_React$Component) {
             var postText = onCancel ? i18n.t('OK') : i18n.t('Post comment');
 
             return React.createElement(
-                'div',
+                Fragment,
                 null,
                 React.createElement(
                     MentionsWrapper,
