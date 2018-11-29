@@ -69,7 +69,7 @@ var CommentTextarea = function (_React$Component) {
             var d2 = this.context.d2;
             var text = this.state.text;
 
-            var postText = onCancel ? i18n.t('OK') : i18n.t('Post comment');
+            var postText = onCancel ? i18n.t('OK') : i18n.t('Post reply');
 
             return React.createElement(
                 Fragment,
