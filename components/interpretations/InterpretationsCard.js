@@ -6,7 +6,6 @@ import _inherits from "babel-runtime/helpers/inherits";
 import _extends from "babel-runtime/helpers/extends";
 import React from "react";
 import PropTypes from "prop-types";
-import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import AddIcon from "@material-ui/icons/Add";
@@ -26,9 +25,6 @@ var getInterpretationsList = function getInterpretationsList(props) {
         setCurrentInterpretation = props.setCurrentInterpretation,
         onChange = props.onChange;
 
-    var getUserUrl = function getUserUrl(user) {
-        return baseurl + "/dhis-web-messaging/profile.action?id=" + user.id;
-    };
 
     return interpretations.length === 0 ? React.createElement(
         "div",
@@ -70,7 +66,6 @@ var getInterpretationDetails = function getInterpretationDetails(props) {
         interpretation = props.interpretation,
         onChange = props.onChange;
 
-    var comments = orderBy(["created"], ["desc"], interpretation.comments);
 
     return React.createElement(Interpretation, {
         d2: d2,
@@ -83,9 +78,7 @@ var getInterpretationDetails = function getInterpretationDetails(props) {
 };
 
 var getInterpretationButtons = function getInterpretationButtons(props) {
-    var d2 = props.d2,
-        model = props.model,
-        currentInterpretation = props.currentInterpretation,
+    var currentInterpretation = props.currentInterpretation,
         setCurrentInterpretation = props.setCurrentInterpretation,
         openNewInterpretationDialog = props.openNewInterpretationDialog;
 
@@ -152,7 +145,7 @@ var InterpretationsCard = function (_React$Component) {
         }
     }, {
         key: "notifyChange",
-        value: function notifyChange(interpretation) {
+        value: function notifyChange() {
             this.props.onChange();
         }
     }, {

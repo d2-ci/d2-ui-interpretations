@@ -6,8 +6,6 @@ import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructo
 import _inherits from 'babel-runtime/helpers/inherits';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { compact } from 'lodash/fp';
-import defer from 'lodash/fp/defer';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -64,9 +62,7 @@ var InterpretationDialog = function (_Component) {
     _createClass(InterpretationDialog, [{
         key: '_saveInterpretation',
         value: function _saveInterpretation() {
-            var _props = this.props,
-                interpretation = _props.interpretation,
-                onSave = _props.onSave;
+            var interpretation = this.props.interpretation;
             var value = this.state.value;
 
             interpretation.text = value;
@@ -76,9 +72,9 @@ var InterpretationDialog = function (_Component) {
         key: 'render',
         value: function render() {
             var d2 = this.context.d2;
-            var _props2 = this.props,
-                interpretation = _props2.interpretation,
-                classes = _props2.classes;
+            var _props = this.props,
+                interpretation = _props.interpretation,
+                classes = _props.classes;
             var _state = this.state,
                 value = _state.value,
                 sharingDialogIsOpen = _state.sharingDialogIsOpen,

@@ -63,9 +63,7 @@ var CommentTextarea = function (_React$Component) {
         value: function render() {
             var _this3 = this;
 
-            var _props = this.props,
-                comment = _props.comment,
-                onCancel = _props.onCancel;
+            var onCancel = this.props.onCancel;
             var d2 = this.context.d2;
             var text = this.state.text;
 

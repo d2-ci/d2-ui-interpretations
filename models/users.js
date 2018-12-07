@@ -2,7 +2,7 @@ import _regeneratorRuntime from 'babel-runtime/regenerator';
 import _slicedToArray from 'babel-runtime/helpers/slicedToArray';
 import _asyncToGenerator from 'babel-runtime/helpers/asyncToGenerator';
 import { apiFetch } from '../util/api';
-import { keyBy, filter, map, flatMap, flow, groupBy, without } from 'lodash/fp';
+import { keyBy, map, flatMap, flow, groupBy, without } from 'lodash/fp';
 import { orderBy, concat, toPairs, at, differenceBy, compact } from 'lodash/fp';
 
 export var getMentions = function () {

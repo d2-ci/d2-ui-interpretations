@@ -11,7 +11,7 @@ import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 import some from 'lodash/fp/some';
 import InterpretationComments from './InterpretationComments';
 import InterpretationDialog from './InterpretationDialog';
-import { Link, ActionSeparator, WithAvatar, getUserLink } from './misc';
+import { Link, ActionSeparator, getUserLink } from './misc';
 import { userCanManage } from '../../util/auth';
 import styles from './InterpretationsStyles.js';
 import CommentModel from '../../models/comment';
@@ -104,7 +104,7 @@ var Interpretation = function (_React$Component) {
             var interpretation = this.props.interpretation;
 
 
-            if (confirm(i18n.t('Are you sure you want to remove this interpretation?'))) {
+            if (window.confirm(i18n.t('Are you sure you want to remove this interpretation?'))) {
                 interpretation.delete().then(function () {
                     return _this3.notifyChange(null);
                 });

@@ -79,7 +79,6 @@ var Interpretations = function (_React$Component) {
         key: 'render',
         value: function render() {
             var _props = this.props,
-                d2 = _props.d2,
                 currentInterpretationId = _props.currentInterpretationId,
                 onCurrentInterpretationChange = _props.onCurrentInterpretationChange;
             var model = this.state.model;

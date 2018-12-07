@@ -2,7 +2,6 @@ import _Object$assign from 'babel-runtime/core-js/object/assign';
 import _slicedToArray from 'babel-runtime/helpers/slicedToArray';
 import _Promise from 'babel-runtime/core-js/promise';
 import Interpretation from './interpretation';
-import pick from 'lodash/fp/pick';
 import { apiFetch } from '../util/api';
 
 var interpretationsFields = ['id', 'user[id,displayName,userCredentials[username]]', 'created', 'likes', 'likedBy[id,displayName]', 'text', 'comments[id,text,created,user[id,displayName,userCredentials[username]]]'];
@@ -38,7 +37,7 @@ export var setSubscription = function setSubscription(model, newSubscriptionValu
     if (!model || !model.href) {
         return _Promise.reject(new Error('Attribute href not found in model'));
     } else {
-        var path = model.href + "/" + "subscriber";
+        var path = model.href + '/subscriber';
         var method = newSubscriptionValue ? "POST" : "DELETE";
         return apiFetch(path, method);
     }

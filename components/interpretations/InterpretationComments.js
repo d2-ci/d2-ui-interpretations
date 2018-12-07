@@ -9,7 +9,6 @@ import CommentTextarea from './CommentTextarea';
 import { userCanManage } from '../../util/auth';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
-import CommentModel from '../../models/comment';
 import i18n from '@dhis2/d2-i18n';
 import orderBy from 'lodash/fp/orderBy';
 import styles from './InterpretationsStyles.js';
@@ -96,7 +95,7 @@ var InterpretationComments = function (_React$Component) {
     }, {
         key: 'onDelete',
         value: function onDelete(comment) {
-            if (confirm(i18n.t('Are you sure you want to remove this comment?'))) {
+            if (window.confirm(i18n.t('Are you sure you want to remove this comment?'))) {
                 this.props.onDelete(comment);
             }
         }
