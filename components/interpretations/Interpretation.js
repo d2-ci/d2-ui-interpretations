@@ -190,7 +190,9 @@ export var Interpretation = function (_React$Component) {
                     onSave: this.props.onSave,
                     onClose: this.closeInterpretation,
                     isNew: false
-                }) : React.createElement(
+                }) :
+                //TODO: Replace with card header component.
+                React.createElement(
                     'div',
                     { className: classes.interpretationDescSection },
                     React.createElement(
@@ -313,3 +315,22 @@ Interpretation.contextTypes = {
 };
 
 export default withStyles(styles)(Interpretation);
+
+/*
+
+<Fragment>
+                        <InterpretationCardHeader 
+                            d2={d2}
+                            interpretation={interpretation}
+    
+                        />
+                        <InterpretationText 
+                            text={interpretation.text}
+                        />
+                        <InterpretationFeedback 
+                            likes={interpretation.likes}
+                            replies={interpretation.comments}
+                        />
+                    </Fragment>
+
+                    */
