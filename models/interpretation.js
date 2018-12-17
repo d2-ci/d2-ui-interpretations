@@ -4,7 +4,7 @@ import _Object$assign from 'babel-runtime/core-js/object/assign';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _createClass from 'babel-runtime/helpers/createClass';
 import { pick, last } from 'lodash/fp';
-import { apiFetch, apiFetchWithResponse } from '../util/api';
+import { apiFetch, apiFetchWithResponse } from '../api/api';
 import Comment from './comment';
 
 function getInterpretationIdFromResponse(response) {
@@ -32,7 +32,7 @@ var Interpretation = function () {
     _createClass(Interpretation, [{
         key: 'save',
         value: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
+            var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(d2) {
                 var _this2 = this;
 
                 var modelId, modelName, isNewInterpretation, sharingPayload;
@@ -51,16 +51,16 @@ var Interpretation = function () {
 
                                 // Set initial sharing of interpretation from the parent object
                                 sharingPayload = { object: pick(Interpretation.sharingFields, this._parent) };
-                                return _context.abrupt('return', apiFetchWithResponse('/interpretations/' + modelName + '/' + modelId, "POST", this.text).then(getInterpretationIdFromResponse).then(function (interpretationId) {
+                                return _context.abrupt('return', apiFetchWithResponse(d2, '/interpretations/' + modelName + '/' + modelId, "POST", this.text).then(getInterpretationIdFromResponse).then(function (interpretationId) {
                                     _this2.id = interpretationId;
                                     var sharingUrl = '/sharing?type=interpretation&id=' + interpretationId;
-                                    return apiFetch(sharingUrl, "PUT", sharingPayload).then(function () {
+                                    return apiFetch(d2, sharingUrl, "PUT", sharingPayload).then(function () {
                                         return _this2;
                                     });
                                 }));
 
                             case 8:
-                                return _context.abrupt('return', apiFetch('/interpretations/' + this.id, "PUT", this.text).then(function () {
+                                return _context.abrupt('return', apiFetch(d2, '/interpretations/' + this.id, "PUT", this.text).then(function () {
                                     return _this2;
                                 }));
 
@@ -72,7 +72,7 @@ var Interpretation = function () {
                 }, _callee, this);
             }));
 
-            function save() {
+            function save(_x) {
                 return _ref.apply(this, arguments);
             }
 
@@ -80,13 +80,13 @@ var Interpretation = function () {
         }()
     }, {
         key: 'delete',
-        value: function _delete() {
-            return apiFetch('/interpretations/' + this.id, "DELETE");
+        value: function _delete(d2) {
+            return apiFetch(d2, '/interpretations/' + this.id, "DELETE");
         }
     }, {
         key: 'like',
-        value: function like(value) {
-            return apiFetch('/interpretations/' + this.id + '/like', value ? "POST" : "DELETE");
+        value: function like(d2, value) {
+            return apiFetch(d2, '/interpretations/' + this.id + '/like', value ? "POST" : "DELETE");
         }
     }]);
 

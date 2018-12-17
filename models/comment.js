@@ -2,7 +2,7 @@ import _slicedToArray from 'babel-runtime/helpers/slicedToArray';
 import _Object$assign from 'babel-runtime/core-js/object/assign';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _createClass from 'babel-runtime/helpers/createClass';
-import { apiFetch } from '../util/api';
+import { apiFetch } from '../api/api';
 
 var Comment = function () {
     function Comment(interpretation, attributes) {
@@ -14,7 +14,7 @@ var Comment = function () {
 
     _createClass(Comment, [{
         key: 'save',
-        value: function save() {
+        value: function save(d2) {
             var interpretation = this._interpretation;
 
             var _ref = this.id ? ['PUT', '/interpretations/' + interpretation.id + '/comments/' + this.id] : ['POST', '/interpretations/' + interpretation.id + '/comments'],
@@ -22,14 +22,14 @@ var Comment = function () {
                 method = _ref2[0],
                 url = _ref2[1];
 
-            return apiFetch(url, method, this.text);
+            return apiFetch(d2, url, method, this.text);
         }
     }, {
         key: 'delete',
-        value: function _delete() {
+        value: function _delete(d2) {
             var interpretation = this._interpretation;
             var url = '/interpretations/' + interpretation.id + '/comments/' + this.id;
-            return apiFetch(url, "DELETE");
+            return apiFetch(d2, url, "DELETE");
         }
     }, {
         key: 'getReply',
