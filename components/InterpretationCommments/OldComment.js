@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import ActionButton from '../ActionButton/ActionButton';
+import CardText from '../Interpretation/CardText';
 import styles from './styles/InterpretationComment.style';
 
 export var OldComment = function OldComment(_ref) {
@@ -14,11 +15,10 @@ export var OldComment = function OldComment(_ref) {
     return React.createElement(
         Fragment,
         null,
-        React.createElement(
-            'div',
-            { className: classes.commentText },
-            comment.text
-        ),
+        React.createElement(CardText, {
+            extended: true,
+            text: comment.text
+        }),
         showManageActions ? React.createElement(
             'div',
             { className: classes.commentActions },

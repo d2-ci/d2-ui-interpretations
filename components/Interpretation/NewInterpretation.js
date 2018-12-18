@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
-import { Editor as RichTextEditor } from '@dhis2/d2-ui-rich-text';
+import { Editor as RichTextEditor, Parser as RichTextParser } from '@dhis2/d2-ui-rich-text';
 import i18n from '@dhis2/d2-i18n';
 import WithAvatar from '../Avatar/WithAvatar';
 import Link from '../Link/Link';
@@ -63,6 +63,12 @@ export var NewInterpretation = function (_Component) {
                 React.createElement(ActionSeparator, null),
                 React.createElement(Link, { label: i18n.t('Cancel'), onClick: _this.onCancel })
             );
+        }, _this.renderRichTextHints = function () {
+            return React.createElement(
+                RichTextParser,
+                { style: styles.richTextHint },
+                i18n.t('**bold**  __italics__  http://<link>')
+            );
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
@@ -95,6 +101,7 @@ export var NewInterpretation = function (_Component) {
         key: 'render',
         value: function render() {
             var ActionButtons = this.renderActionButtons();
+            var EditorHints = this.renderRichTextHints();
 
             return this.state.sharingDialogIsOpen ? React.createElement(SharingDialog, {
                 open: this.state.sharingDialogIsOpen,
@@ -123,7 +130,8 @@ export var NewInterpretation = function (_Component) {
                             })
                         )
                     ),
-                    ActionButtons
+                    ActionButtons,
+                    EditorHints
                 )
             );
         }
