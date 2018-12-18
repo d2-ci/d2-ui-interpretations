@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles/DetailsCard.style';
+import styles from './styles/Details.style';
 
 export var ListItem = function ListItem(_ref) {
     var label = _ref.label,

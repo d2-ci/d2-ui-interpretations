@@ -66,7 +66,7 @@ export var NewComment = function (_React$Component) {
             return React.createElement(
                 RichTextParser,
                 { style: styles.richTextHint },
-                i18n.t('**bold**  __italics__  http://<link>')
+                i18n.t('**bold**    __italics__    http://<link>')
             );
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
@@ -91,7 +91,7 @@ export var NewComment = function (_React$Component) {
                 null,
                 React.createElement(
                     MentionsWrapper,
-                    { d2: this.contextd2, onUserSelect: this.onChange },
+                    { d2: this.context.d2, onUserSelect: this.onChange },
                     React.createElement(
                         RichTextEditor,
                         { onEdit: this.onInputChange },

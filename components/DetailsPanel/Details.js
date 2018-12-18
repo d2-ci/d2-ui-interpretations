@@ -22,24 +22,24 @@ import { getSharingText } from './sharingText';
 import { setSubscription } from '../../api/helpers';
 import { formatDate } from '../../dateformats/dateformatter';
 import { translateModelName } from '../../translations/modelNametranslator';
-import styles from './styles/DetailsCard.style';
+import styles from './styles/Details.style';
 
-var DetailsCard = function (_React$Component) {
-    _inherits(DetailsCard, _React$Component);
+var Details = function (_React$Component) {
+    _inherits(Details, _React$Component);
 
-    function DetailsCard() {
+    function Details() {
         var _ref,
             _this2 = this;
 
         var _temp, _this, _ret;
 
-        _classCallCheck(this, DetailsCard);
+        _classCallCheck(this, Details);
 
         for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = DetailsCard.__proto__ || _Object$getPrototypeOf(DetailsCard)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Details.__proto__ || _Object$getPrototypeOf(Details)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
             isExpanded: true
         }, _this.toggleDetailsExpand = function () {
             _this.setState({ isExpanded: !_this.state.isExpanded });
@@ -62,7 +62,7 @@ var DetailsCard = function (_React$Component) {
         })), _temp), _possibleConstructorReturn(_this, _ret);
     }
 
-    _createClass(DetailsCard, [{
+    _createClass(Details, [{
         key: 'renderSubscriptionButton',
 
 
@@ -116,17 +116,17 @@ var DetailsCard = function (_React$Component) {
         }
     }]);
 
-    return DetailsCard;
+    return Details;
 }(React.Component);
 
-DetailsCard.contextTypes = {
+Details.contextTypes = {
     d2: PropTypes.object.isRequired,
     locale: PropTypes.string.isRequired
 };
 
-DetailsCard.propTypes = {
+Details.propTypes = {
     model: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired
 };
 
-export default DetailsCard;
+export default Details;
