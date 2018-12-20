@@ -53,21 +53,29 @@ export var NewInterpretation = function (_Component) {
             return React.createElement(
                 Fragment,
                 null,
-                React.createElement(Link, { disabled: !_this.state.text, label: i18n.t('Post'), onClick: _this.onPost }),
+                React.createElement(Link, {
+                    disabled: !_this.state.text,
+                    label: _this.props.isNew ? i18n.t('Post') : i18n.t('OK'),
+                    onClick: _this.onPost
+                }),
                 _this.props.isNew && React.createElement(
                     Fragment,
                     null,
                     React.createElement(ActionSeparator, null),
-                    React.createElement(Link, { disabled: !_this.state.text, label: i18n.t('Post & Share'), onClick: _this.onPostAndShare })
+                    React.createElement(Link, {
+                        disabled: !_this.state.text,
+                        label: i18n.t('Post & Share'),
+                        onClick: _this.onPostAndShare
+                    })
                 ),
                 React.createElement(ActionSeparator, null),
                 React.createElement(Link, { label: i18n.t('Cancel'), onClick: _this.onCancel })
             );
         }, _this.renderRichTextHints = function () {
-            return React.createElement(
+            return _this.state.text && React.createElement(
                 RichTextParser,
                 { style: styles.richTextHint },
-                i18n.t('**bold**  __italics__  http://<link>')
+                '**' + i18n.t('bold') + '** __' + i18n.t('italics') + '__ http://<link>'
             );
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }

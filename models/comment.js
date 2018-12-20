@@ -1,4 +1,6 @@
+import _regeneratorRuntime from 'babel-runtime/regenerator';
 import _slicedToArray from 'babel-runtime/helpers/slicedToArray';
+import _asyncToGenerator from 'babel-runtime/helpers/asyncToGenerator';
 import _Object$assign from 'babel-runtime/core-js/object/assign';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _createClass from 'babel-runtime/helpers/createClass';
@@ -14,23 +16,67 @@ var Comment = function () {
 
     _createClass(Comment, [{
         key: 'save',
-        value: function save(d2) {
-            var interpretation = this._interpretation;
+        value: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(d2) {
+                var interpretation, _ref2, _ref3, method, url;
 
-            var _ref = this.id ? ['PUT', '/interpretations/' + interpretation.id + '/comments/' + this.id] : ['POST', '/interpretations/' + interpretation.id + '/comments'],
-                _ref2 = _slicedToArray(_ref, 2),
-                method = _ref2[0],
-                url = _ref2[1];
+                return _regeneratorRuntime.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                interpretation = this._interpretation;
+                                _ref2 = this.id ? ['PUT', '/interpretations/' + interpretation.id + '/comments/' + this.id] : ['POST', '/interpretations/' + interpretation.id + '/comments'], _ref3 = _slicedToArray(_ref2, 2), method = _ref3[0], url = _ref3[1];
+                                _context.next = 4;
+                                return apiFetch(d2, url, method, this.text);
 
-            return apiFetch(d2, url, method, this.text);
-        }
+                            case 4:
+                                return _context.abrupt('return', _context.sent);
+
+                            case 5:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function save(_x) {
+                return _ref.apply(this, arguments);
+            }
+
+            return save;
+        }()
     }, {
         key: 'delete',
-        value: function _delete(d2) {
-            var interpretation = this._interpretation;
-            var url = '/interpretations/' + interpretation.id + '/comments/' + this.id;
-            return apiFetch(d2, url, "DELETE");
-        }
+        value: function () {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2(d2) {
+                var interpretation, url;
+                return _regeneratorRuntime.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                interpretation = this._interpretation;
+                                url = '/interpretations/' + interpretation.id + '/comments/' + this.id;
+                                _context2.next = 4;
+                                return apiFetch(d2, url, "DELETE");
+
+                            case 4:
+                                return _context2.abrupt('return', _context2.sent);
+
+                            case 5:
+                            case 'end':
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, this);
+            }));
+
+            function _delete(_x2) {
+                return _ref4.apply(this, arguments);
+            }
+
+            return _delete;
+        }()
     }, {
         key: 'getReply',
         value: function getReply(d2) {

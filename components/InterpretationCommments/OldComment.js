@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import ActionButton from '../ActionButton/ActionButton';
+import ActionButton from '../Buttons/ActionButton';
 import CardText from '../Cards/CardText';
 import styles from './styles/InterpretationComment.style';
 
 export var OldComment = function OldComment(_ref) {
     var classes = _ref.classes,
         comment = _ref.comment,
-        showManageActions = _ref.showManageActions,
+        isOwner = _ref.isOwner,
         onEdit = _ref.onEdit,
         onDelete = _ref.onDelete,
         onReply = _ref.onReply;
@@ -19,7 +19,7 @@ export var OldComment = function OldComment(_ref) {
             extended: true,
             text: comment.text
         }),
-        showManageActions ? React.createElement(
+        isOwner ? React.createElement(
             'div',
             { className: classes.commentActions },
             React.createElement(ActionButton, {
@@ -52,7 +52,7 @@ export var OldComment = function OldComment(_ref) {
 OldComment.propTypes = {
     classes: PropTypes.object.isRequired,
     comment: PropTypes.object.isRequired,
-    showManageActions: PropTypes.bool.isRequired,
+    isOwner: PropTypes.bool.isRequired,
     onEdit: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onReply: PropTypes.func.isRequired

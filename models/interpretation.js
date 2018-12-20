@@ -45,26 +45,34 @@ var Interpretation = function () {
                                 isNewInterpretation = !this.id;
 
                                 if (!isNewInterpretation) {
-                                    _context.next = 8;
+                                    _context.next = 10;
                                     break;
                                 }
 
                                 // Set initial sharing of interpretation from the parent object
                                 sharingPayload = { object: pick(Interpretation.sharingFields, this._parent) };
-                                return _context.abrupt('return', apiFetchWithResponse(d2, '/interpretations/' + modelName + '/' + modelId, "POST", this.text).then(getInterpretationIdFromResponse).then(function (interpretationId) {
+                                _context.next = 7;
+                                return apiFetchWithResponse(d2, '/interpretations/' + modelName + '/' + modelId, "POST", this.text).then(getInterpretationIdFromResponse).then(function (interpretationId) {
                                     _this2.id = interpretationId;
                                     var sharingUrl = '/sharing?type=interpretation&id=' + interpretationId;
                                     return apiFetch(d2, sharingUrl, "PUT", sharingPayload).then(function () {
                                         return _this2;
                                     });
-                                }));
+                                });
 
-                            case 8:
-                                return _context.abrupt('return', apiFetch(d2, '/interpretations/' + this.id, "PUT", this.text).then(function () {
+                            case 7:
+                                return _context.abrupt('return', _context.sent);
+
+                            case 10:
+                                _context.next = 12;
+                                return apiFetch(d2, '/interpretations/' + this.id, "PUT", this.text).then(function () {
                                     return _this2;
-                                }));
+                                });
 
-                            case 9:
+                            case 12:
+                                return _context.abrupt('return', _context.sent);
+
+                            case 13:
                             case 'end':
                                 return _context.stop();
                         }
@@ -80,14 +88,60 @@ var Interpretation = function () {
         }()
     }, {
         key: 'delete',
-        value: function _delete(d2) {
-            return apiFetch(d2, '/interpretations/' + this.id, "DELETE");
-        }
+        value: function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2(d2) {
+                return _regeneratorRuntime.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                _context2.next = 2;
+                                return apiFetch(d2, '/interpretations/' + this.id, "DELETE");
+
+                            case 2:
+                                return _context2.abrupt('return', _context2.sent);
+
+                            case 3:
+                            case 'end':
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, this);
+            }));
+
+            function _delete(_x2) {
+                return _ref2.apply(this, arguments);
+            }
+
+            return _delete;
+        }()
     }, {
         key: 'like',
-        value: function like(d2, value) {
-            return apiFetch(d2, '/interpretations/' + this.id + '/like', value ? "POST" : "DELETE");
-        }
+        value: function () {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee3(d2, value) {
+                return _regeneratorRuntime.wrap(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
+                                _context3.next = 2;
+                                return apiFetch(d2, '/interpretations/' + this.id + '/like', value ? "POST" : "DELETE");
+
+                            case 2:
+                                return _context3.abrupt('return', _context3.sent);
+
+                            case 3:
+                            case 'end':
+                                return _context3.stop();
+                        }
+                    }
+                }, _callee3, this);
+            }));
+
+            function like(_x3, _x4) {
+                return _ref3.apply(this, arguments);
+            }
+
+            return like;
+        }()
     }]);
 
     return Interpretation;

@@ -21,7 +21,7 @@ import styles from './styles/InterpretationsComponent.style';
 function configI18n(d2) {
     var locale = d2.currentUser.userSettings.settings.keyUiLocale;
     i18n.changeLanguage(locale);
-}
+};
 
 export var InterpretationsComponent = function (_React$Component) {
     _inherits(InterpretationsComponent, _React$Component);
@@ -56,6 +56,7 @@ export var InterpretationsComponent = function (_React$Component) {
         value: function componentWillReceiveProps(nextProps) {
             var fields = ['type', 'id', 'lastUpdated'];
             var modelFieldsChanged = !isEqual(pick(fields, this.props), pick(fields, nextProps));
+
             if (modelFieldsChanged) {
                 this.loadModel(nextProps);
             }
@@ -127,7 +128,9 @@ export var InterpretationsComponent = function (_React$Component) {
             var model = this.state.model;
 
 
-            if (!model) return React.createElement(CircularProgress, null);
+            if (!model) {
+                return React.createElement(CircularProgress, null);
+            }
 
             return React.createElement(
                 'div',
@@ -144,7 +147,7 @@ export var InterpretationsComponent = function (_React$Component) {
     }]);
 
     return InterpretationsComponent;
-}(React.Component);
+}(React.Component);;
 
 InterpretationsComponent.propTypes = {
     classes: PropTypes.object.isRequired,

@@ -2,7 +2,6 @@ export var styles = function styles(theme) {
     return {
         card: {
             margin: '4px',
-            marginBottom: '6px',
             position: 'relative'
         },
 
@@ -10,12 +9,12 @@ export var styles = function styles(theme) {
             marginTop: '0px',
             marginRight: '-4px',
             '& button': {
-                padding: '' + theme.spacing.unit * '0.5px'
+                padding: '8px'
             }
         },
 
         header: {
-            padding: '4px 12px 4px 12px'
+            padding: '0px 12px 0px 12px'
         },
 
         title: {
@@ -34,6 +33,7 @@ export var styles = function styles(theme) {
         },
 
         expand: {
+            background: 'none',
             transform: 'rotate(0deg)',
             transition: theme.transitions.create('transform', {
                 duration: theme.transitions.duration.shortest

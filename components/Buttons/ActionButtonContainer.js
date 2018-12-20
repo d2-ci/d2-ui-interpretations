@@ -16,19 +16,11 @@ var VIEW_INDEX = 7;
 export var ActionButtonContainer = function ActionButtonContainer(_ref) {
     var classes = _ref.classes,
         currentUserLikesInterpretation = _ref.currentUserLikesInterpretation,
-        showActions = _ref.showActions,
-        userCanManage = _ref.userCanManage,
+        isFocused = _ref.isFocused,
+        isOwner = _ref.isOwner,
         onClickHandlers = _ref.onClickHandlers;
 
-    var renderLikeButton = currentUserLikesInterpretation ? React.createElement(ActionButton, {
-        iconType: 'unlike',
-        onClick: onClickHandlers[UNLIKE_INDEX]
-    }) : React.createElement(ActionButton, {
-        iconType: 'like',
-        onClick: onClickHandlers[LIKE_INDEX]
-    });
-
-    var renderOwnerActions = userCanManage && React.createElement(
+    var renderOwnerActions = isOwner && isFocused && React.createElement(
         Fragment,
         null,
         React.createElement(ActionButton, {
@@ -48,31 +40,27 @@ export var ActionButtonContainer = function ActionButtonContainer(_ref) {
     return React.createElement(
         'div',
         { className: classes.actions },
-        showActions ? React.createElement(
-            Fragment,
-            null,
-            renderLikeButton,
-            React.createElement(ActionButton, {
-                iconType: 'reply',
-                onClick: onClickHandlers[REPLY_INDEX]
-            }),
-            React.createElement(ActionButton, {
-                iconType: 'visibilityOff',
-                onClick: onClickHandlers[EXIT_VIEW_INDEX]
-            }),
-            renderOwnerActions
-        ) : React.createElement(ActionButton, {
-            iconType: 'visibility',
-            onClick: onClickHandlers[VIEW_INDEX]
-        })
+        React.createElement(ActionButton, {
+            iconType: currentUserLikesInterpretation ? 'unlike' : 'like',
+            onClick: onClickHandlers[currentUserLikesInterpretation ? UNLIKE_INDEX : LIKE_INDEX]
+        }),
+        React.createElement(ActionButton, {
+            iconType: 'reply',
+            onClick: onClickHandlers[REPLY_INDEX]
+        }),
+        React.createElement(ActionButton, {
+            iconType: isFocused ? 'visibilityOff' : 'visibility',
+            onClick: onClickHandlers[isFocused ? EXIT_VIEW_INDEX : VIEW_INDEX]
+        }),
+        renderOwnerActions
     );
 };
 
 ActionButtonContainer.propTypes = {
     classes: PropTypes.object.isRequired,
     currentUserLikesInterpretation: PropTypes.bool.isRequired,
-    showActions: PropTypes.bool.isRequired,
-    userCanManage: PropTypes.bool.isRequired,
+    isFocused: PropTypes.bool.isRequired,
+    isOwner: PropTypes.bool.isRequired,
     onClickHandlers: PropTypes.array.isRequired
 };
 

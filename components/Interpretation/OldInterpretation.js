@@ -14,7 +14,7 @@ import NewInterpretation from './NewInterpretation';
 import CardHeader from '../Cards/CardHeader';
 import CardText from '../Cards/CardText';
 import LikesAndReplies from './LikesAndReplies';
-import ActionButtonContainer from '../ActionButton/ActionButtonContainer';
+import ActionButtonContainer from '../Buttons/ActionButtonContainer';
 import CommentList from '../InterpretationCommments/CommentList';
 import { userCanManage } from '../../authorization/auth';
 import CommentModel from '../../models/comment';
@@ -87,9 +87,9 @@ export var OldInterpretation = function (_React$Component) {
                     repliedBy: _this.getRepliedByNames()
                 }),
                 React.createElement(ActionButtonContainer, {
-                    showActions: extended,
+                    isFocused: extended,
                     currentUserLikesInterpretation: currentUserLikesInterpretation,
-                    userCanManage: userCanManage(_this.context.d2, interpretation),
+                    isOwner: userCanManage(_this.context.d2, interpretation),
                     onClickHandlers: _this.getOnClickHandlers()
                 })
             );
@@ -220,7 +220,7 @@ export var OldInterpretation = function (_React$Component) {
                 sharingDialogIsOpen = _state.sharingDialogIsOpen;
 
 
-            var Interpretation = this.renderInterpretation();
+            var OldInterpretation = this.renderInterpretation();
 
             return React.createElement(
                 'div',
@@ -238,7 +238,7 @@ export var OldInterpretation = function (_React$Component) {
                     onSave: this.props.onSave,
                     onClose: this.closeInterpretation,
                     isNew: false
-                }) : Interpretation,
+                }) : OldInterpretation,
                 extended && React.createElement(CommentList, {
                     interpretation: interpretation,
                     onSave: this.saveComment,

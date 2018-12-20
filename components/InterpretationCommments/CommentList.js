@@ -5,7 +5,7 @@ import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructo
 import _inherits from 'babel-runtime/helpers/inherits';
 import React from 'react';
 import PropTypes from 'prop-types';
-import ShowMoreButton from '../ActionButton/ShowMoreButton';
+import ShowMoreButton from '../Buttons/ShowMoreButton';
 import { withStyles } from '@material-ui/core/styles';
 import i18n from '@dhis2/d2-i18n';
 import orderBy from 'lodash/fp/orderBy';
@@ -27,8 +27,20 @@ export var CommentList = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (CommentList.__proto__ || _Object$getPrototypeOf(CommentList)).call(this, props));
 
+        _this.getHiddenCommentsCount = function () {
+            var comments = _this.props.interpretation.comments;
+
+            return _this.state.showOnlyFirstComments ? comments.length - comments.slice(0, commentsToShowOnInit).length : 0;
+        };
+
+        _this.getComments = function () {
+            var sortedComments = orderBy(["created"], ["asc"], _this.props.interpretation.comments);
+
+            return _this.state.showOnlyFirstComments ? sortedComments.slice(0, commentsToShowOnInit) : sortedComments;
+        };
+
         _this.renderComments = function () {
-            return _this.props.interpretation.comments.map(function (comment) {
+            return _this.getComments().map(function (comment) {
                 return React.createElement(
                     WithAvatar,
                     { key: comment.id, user: comment.user },
@@ -43,7 +55,7 @@ export var CommentList = function (_React$Component) {
                         isEditing: true
                     }) : React.createElement(OldComment, {
                         comment: comment,
-                        showManageActions: userCanManage(_this.context.d2, comment),
+                        isOwner: userCanManage(_this.context.d2, comment),
                         onEdit: _this.onEdit,
                         onDelete: _this.onDelete,
                         onReply: _this.onReply
@@ -64,7 +76,7 @@ export var CommentList = function (_React$Component) {
         _this.state = {
             commentToEdit: null,
             newComment: props.newComment,
-            showOnlyFirstComments: true
+            showOnlyFirstComments: _this.props.interpretation.comments.length > commentsToShowOnInit
         };
         return _this;
     }
@@ -124,28 +136,19 @@ export var CommentList = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _props = this.props,
-                classes = _props.classes,
-                interpretation = _props.interpretation;
             var _state = this.state,
                 newComment = _state.newComment,
                 showOnlyFirstComments = _state.showOnlyFirstComments;
-
-
-            var sortedComments = orderBy(["created"], ["asc"], interpretation.comments);
-
-            var comments = showOnlyFirstComments ? sortedComments.slice(0, commentsToShowOnInit) : sortedComments;
-            var hiddenCommentsCount = showOnlyFirstComments ? sortedComments.length - comments.length : 0;
 
             var Comments = this.renderComments();
 
             return React.createElement(
                 'div',
-                { className: classes.commentSection },
+                { className: this.props.classes.commentSection },
                 Comments,
                 React.createElement(ShowMoreButton, {
-                    showButton: showOnlyFirstComments && hiddenCommentsCount > 0,
-                    hiddenCommentsCount: hiddenCommentsCount,
+                    showButton: showOnlyFirstComments,
+                    hiddenCommentsCount: this.getHiddenCommentsCount(),
                     onClick: this.onShowMoreComments
                 }),
                 newComment && React.createElement(

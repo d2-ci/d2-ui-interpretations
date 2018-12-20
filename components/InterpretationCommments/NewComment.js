@@ -40,13 +40,15 @@ export var NewComment = function (_React$Component) {
         }, _this.setTextareaRef = function (textarea) {
             _this.textarea = textarea;
             _this.focus();
-        }, _this.onChange = function (text) {
-            _this.setState({ text: text });
+        }, _this.onChange = function (event) {
+            _this.setState({ text: event.target.value });
         }, _this.onPost = function () {
             var newText = _this.state.text;
+
             if (newText && newText.trim()) {
                 var newComment = _this.props.comment;
                 newComment.text = newText;
+
                 _this.props.onPost(newComment);
                 _this.setState({ text: '' });
             }
@@ -66,7 +68,7 @@ export var NewComment = function (_React$Component) {
             return React.createElement(
                 RichTextParser,
                 { style: styles.richTextHint },
-                i18n.t('**bold**    __italics__    http://<link>')
+                '**' + i18n.t('bold') + '** __' + i18n.t('italics') + '__ http://<link>'
             );
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
@@ -81,8 +83,6 @@ export var NewComment = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
-
             var ActionButtons = this.renderActionButtons();
             var EditorHints = this.renderRichTextHints();
 
@@ -101,9 +101,7 @@ export var NewComment = function (_React$Component) {
                             value: this.state.text,
                             rows: 4,
                             autoFocus: true,
-                            onChange: function onChange(event) {
-                                return _this3.onChange(event.target.value);
-                            }
+                            onChange: this.onChange
                         })
                     )
                 ),

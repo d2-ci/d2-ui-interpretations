@@ -1,6 +1,11 @@
+import _regeneratorRuntime from 'babel-runtime/regenerator';
+import _asyncToGenerator from 'babel-runtime/helpers/asyncToGenerator';
 import _Object$assign from 'babel-runtime/core-js/object/assign';
 import _slicedToArray from 'babel-runtime/helpers/slicedToArray';
 import _Promise from 'babel-runtime/core-js/promise';
+
+var _this = this;
+
 import Interpretation from '../models/interpretation';
 import { apiFetch } from './api';
 
@@ -33,12 +38,38 @@ export var getFavoriteWithInterpretations = function getFavoriteWithInterpretati
     });
 };
 
-export var setSubscription = function setSubscription(d2, model, newSubscriptionValue) {
-    if (!model || !model.href) {
-        return _Promise.reject(new Error('Attribute href not found in model'));
-    } else {
-        var path = model.href + '/subscriber';
-        var method = newSubscriptionValue ? "POST" : "DELETE";
-        return apiFetch(d2, path, method);
-    }
-};
+export var setSubscription = function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(d2, model, newSubscriptionValue) {
+        var path, method;
+        return _regeneratorRuntime.wrap(function _callee$(_context) {
+            while (1) {
+                switch (_context.prev = _context.next) {
+                    case 0:
+                        if (!(!model || !model.href)) {
+                            _context.next = 4;
+                            break;
+                        }
+
+                        return _context.abrupt('return', _Promise.reject(new Error('Attribute href not found in model')));
+
+                    case 4:
+                        path = model.href + '/subscriber';
+                        method = newSubscriptionValue ? "POST" : "DELETE";
+                        _context.next = 8;
+                        return apiFetch(d2, path, method);
+
+                    case 8:
+                        return _context.abrupt('return', _context.sent);
+
+                    case 9:
+                    case 'end':
+                        return _context.stop();
+                }
+            }
+        }, _callee, _this);
+    }));
+
+    return function setSubscription(_x, _x2, _x3) {
+        return _ref3.apply(this, arguments);
+    };
+}();

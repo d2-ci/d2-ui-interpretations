@@ -61,6 +61,7 @@ export var CollapsibleCard = function (_React$Component) {
                         React.createElement(
                             IconButton,
                             {
+                                style: styles.iconButton,
                                 className: classnames(classes.expand, _defineProperty({}, classes.expandOpen, expanded)),
                                 onClick: this.handleExpandClick,
                                 'aria-expanded': expanded,

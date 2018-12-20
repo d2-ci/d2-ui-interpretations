@@ -1,22 +1,28 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import styles from './styles/Details.style';
 
 export var ListItem = function ListItem(_ref) {
-    var label = _ref.label,
-        text = _ref.text,
-        button = _ref.button;
+    var classes = _ref.classes,
+        label = _ref.label,
+        text = _ref.text;
     return React.createElement(
         'div',
-        { style: styles.detailsCardItem },
+        { className: classes.detailsCardItem },
         label && React.createElement(
             'label',
             { style: styles.listItemLabel },
             label,
             ':'
         ),
-        text,
-        button
+        text
     );
 };
 
-export default ListItem;
+ListItem.propTypes = {
+    classes: PropTypes.object.isRequired,
+    label: PropTypes.string
+};
+
+export default withStyles(styles)(ListItem);

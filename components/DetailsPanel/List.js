@@ -1,13 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
 import styles from './styles/Details.style';
 
 export var List = function List(_ref) {
-    var children = _ref.children;
+    var classes = _ref.classes,
+        children = _ref.children;
     return React.createElement(
         'div',
-        { style: styles.detailsCardList },
+        { className: classes.detailsCardList },
         children
     );
 };
 
-export default List;
+List.propTypes = {
+    classes: PropTypes.object.isRequired,
+    children: PropTypes.arrayOf(PropTypes.object).isRequired
+};
+
+export default withStyles(styles)(List);

@@ -1,38 +1,35 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import styles from './styles/WithAvatar.style';
+import PropTypes from 'prop-types';
+import UserAvatar from './UserAvatar';
+import { withStyles } from '@material-ui/core/styles';
+import styles from './styles/Avatar.style';
 
-var UserAvatar = function UserAvatar(_ref) {
-    var user = _ref.user;
-
-    var initials = user.displayName.split(" ").map(function (part) {
-        return part[0];
-    }).slice(0, 2).join("");
-    return React.createElement(
-        Avatar,
-        { color: 'black', style: styles.avatar },
-        initials
-    );
-};
-
-export var WithAvatar = function WithAvatar(_ref2) {
-    var style = _ref2.style,
-        user = _ref2.user,
-        children = _ref2.children;
+export var WithAvatar = function WithAvatar(_ref) {
+    var style = _ref.style,
+        classes = _ref.classes,
+        user = _ref.user,
+        children = _ref.children;
     return React.createElement(
         'div',
         { style: style || styles.avatarWrapper },
         React.createElement(
             'div',
-            { style: styles.avatarBox },
+            { className: classes.avatarBox },
             React.createElement(UserAvatar, { user: user })
         ),
         React.createElement(
             'div',
-            { style: styles.avatarBoxContent },
+            { className: classes.avatarBoxContent },
             children
         )
     );
 };
 
-export default WithAvatar;
+WithAvatar.propTypes = {
+    style: PropTypes.object,
+    classes: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired,
+    children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired
+};
+
+export default withStyles(styles)(WithAvatar);

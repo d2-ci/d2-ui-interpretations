@@ -6,6 +6,8 @@ import OldInterpretation from '../Interpretation/OldInterpretation';
 import Link from '../Link/Link';
 import styles from './styles/InterpretationsList.style';
 
+export var interpretationsToShowOnInit = 5;
+
 export var InterpretationsList = function InterpretationsList(_ref) {
     var classes = _ref.classes,
         model = _ref.model,
@@ -19,27 +21,21 @@ export var InterpretationsList = function InterpretationsList(_ref) {
         return React.createElement(
             'div',
             { className: classes.emptyList },
-            React.createElement(
-                'span',
-                null,
-                i18n.t("No interpretations")
-            )
+            i18n.t("No interpretations")
         );
     }
 
-    var listItems = isExpanded ? interpretations.slice(0, 4) : interpretations;
+    var listItems = isExpanded ? interpretations.slice(-interpretationsToShowOnInit) : interpretations;
 
     return React.createElement(
         Fragment,
         null,
-        interpretations.length > 5 && React.createElement(
+        interpretations.length > interpretationsToShowOnInit && React.createElement(
             'div',
             { className: classes.showAllInterpretationsContainer },
             React.createElement(Link, {
-                label: isExpanded ? i18n.t('Show all interpretations') : i18n.t('Hide old interpretations'),
-                onClick: function onClick() {
-                    return toggleShowAllInterpretations();
-                }
+                label: (isExpanded ? i18n.t('Show') : i18n.t('Hide')) + ' old interpretations',
+                onClick: toggleShowAllInterpretations
             }),
             isExpanded && React.createElement(
                 'span',

@@ -67,10 +67,10 @@ var Details = function (_React$Component) {
 
 
         // TOOD: adjust color
-        value: function renderSubscriptionButton(model) {
-            var tOpts = { object: translateModelName(model.modelName) };
+        value: function renderSubscriptionButton() {
+            var tOpts = { object: translateModelName(this.props.model.modelName) };
 
-            var _ref3 = model.subscribed ? [SubscriberIconEnabled, i18n.t('Unsubscribe from this {{object}} and stop receiving notifications', tOpts)] : [SubscriberIconDisabled, i18n.t('Subscribe to this {{object}} and start receiving notifications', tOpts)],
+            var _ref3 = this.props.model.subscribed ? [SubscriberIconEnabled, i18n.t('Unsubscribe from this {{object}} and stop receiving notifications', tOpts)] : [SubscriberIconDisabled, i18n.t('Subscribe to this {{object}} and start receiving notifications', tOpts)],
                 _ref4 = _slicedToArray(_ref3, 2),
                 SubscriberIcon = _ref4[0],
                 subscriptionTooltip = _ref4[1];
@@ -91,16 +91,20 @@ var Details = function (_React$Component) {
             var model = this.props.model;
 
             var owner = model.user ? model.user.displayName : '-';
+            var SubscriptionButton = this.renderSubscriptionButton();
 
             return React.createElement(
                 CollapsibleCard,
                 { title: i18n.t('Details') },
-                this.renderSubscriptionButton(model),
+                SubscriptionButton,
                 React.createElement(
                     List,
                     null,
                     React.createElement(ListItem, { text: React.createElement(Description, { model: model }) }),
-                    React.createElement(ListItem, { label: i18n.t('Owner'), text: owner }),
+                    React.createElement(ListItem, {
+                        label: i18n.t('Owner'),
+                        text: owner
+                    }),
                     React.createElement(ListItem, {
                         label: i18n.t('Created'),
                         text: formatDate(model.created, this.context.locale)
@@ -109,8 +113,14 @@ var Details = function (_React$Component) {
                         label: i18n.t('Last updated'),
                         text: formatDate(model.lastUpdated, this.context.locale)
                     }),
-                    React.createElement(ListItem, { label: i18n.t('Views'), text: model.favoriteViews }),
-                    React.createElement(ListItem, { label: i18n.t('Sharing'), text: getSharingText(model) })
+                    React.createElement(ListItem, {
+                        label: i18n.t('Views'),
+                        text: model.favoriteViews
+                    }),
+                    React.createElement(ListItem, {
+                        label: i18n.t('Sharing'),
+                        text: getSharingText(model)
+                    })
                 )
             );
         }

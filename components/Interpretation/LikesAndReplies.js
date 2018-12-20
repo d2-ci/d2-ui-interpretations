@@ -45,7 +45,7 @@ export var LikesAndReplies = function (_Component) {
             return listItems;
         }, _this.renderTooltip = function (label) {
             var anchorOrigin = label === 'likedBy' ? _this.state.mouseOverLikes : _this.state.mouseOverReplies;
-            var tooltipNames = label === 'repliedBy' ? _this.filterDuplicateUserNames() : _this.props[label];
+            var tooltipNames = label === 'repliedBy' ? _this.filterDuplicateUserNames() : _this.props.likedBy;
 
             return React.createElement(
                 Popper,
@@ -72,6 +72,39 @@ export var LikesAndReplies = function (_Component) {
                     )
                 )
             );
+        }, _this.renderLikes = function () {
+            var _this$props = _this.props,
+                classes = _this$props.classes,
+                likedBy = _this$props.likedBy;
+
+            var LikedByTooltip = _this.state.mouseOverLikes && _this.renderTooltip('likedBy');
+
+            return React.createElement(
+                'span',
+                {
+                    className: classes.intepretationLikes,
+                    onMouseEnter: _this.showLikedByTooltip,
+                    onMouseLeave: _this.hideLikedByTooltip
+                },
+                LikedByTooltip,
+                likedBy.length,
+                ' ',
+                likedBy.length > 1 ? i18n.t('likes') : i18n.t('like')
+            );
+        }, _this.renderReplies = function () {
+            var repliedBy = _this.props.repliedBy;
+
+            var RepliedByTooltip = _this.state.mouseOverReplies && _this.renderTooltip('repliedBy');
+
+            return React.createElement(
+                'span',
+                {
+                    onMouseEnter: _this.showRepliedByTooltip,
+                    onMouseLeave: _this.hideRepliedByTooltip
+                },
+                RepliedByTooltip,
+                repliedBy.length + ' ' + (repliedBy.length > 1 ? i18n.t('replies') : i18n.t('reply'))
+            );
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
@@ -83,33 +116,15 @@ export var LikesAndReplies = function (_Component) {
                 likedBy = _props.likedBy,
                 repliedBy = _props.repliedBy;
 
-            var LikedByTooltip = this.state.mouseOverLikes && this.renderTooltip('likedBy');
-            var RepliedByTooltip = this.state.mouseOverReplies && this.renderTooltip('repliedBy');
+
+            var Likes = !!likedBy.length && this.renderLikes();
+            var Replies = !!repliedBy.length && this.renderReplies();
 
             return React.createElement(
                 'div',
                 { className: classes.interpretationCommentArea },
-                !!likedBy.length && React.createElement(
-                    'span',
-                    {
-                        className: classes.intepretationLikes,
-                        onMouseEnter: this.showLikedByTooltip,
-                        onMouseLeave: this.hideLikedByTooltip
-                    },
-                    LikedByTooltip,
-                    likedBy.length,
-                    ' ',
-                    likedBy.length > 1 ? i18n.t('likes') : i18n.t('like')
-                ),
-                !!repliedBy.length && React.createElement(
-                    'span',
-                    {
-                        onMouseEnter: this.showRepliedByTooltip,
-                        onMouseLeave: this.hideRepliedByTooltip
-                    },
-                    RepliedByTooltip,
-                    repliedBy.length + ' ' + (repliedBy.length > 1 ? i18n.t('replies') : i18n.t('reply'))
-                )
+                Likes,
+                Replies
             );
         }
     }]);

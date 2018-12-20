@@ -10,9 +10,9 @@ import i18n from "@dhis2/d2-i18n";
 import orderBy from "lodash/fp/orderBy";
 
 import CollapsibleCard from '../Cards/CollapsibleCard';
-import PanelButtons from '../ActionButton/PanelButtons';
+import PanelButtons from '../Buttons/PanelButtons';
 import OldInterpretation from '../Interpretation/OldInterpretation';
-import InterpretationsList from './InterpretationsList';
+import InterpretationsList, { interpretationsToShowOnInit } from './InterpretationsList';
 import NewInterpretation from '../Interpretation/NewInterpretation';
 import InterpretationModel from '../../models/interpretation';
 import styles from './styles/InterpretationsCard.style';
@@ -29,7 +29,7 @@ export var InterpretationsCard = function (_React$Component) {
             interpretationToEdit: null,
             currentInterpretationId: props.currentInterpretationId,
             sharingDialogIsOpen: false,
-            listIsExpanded: !props.model.interpretations.length > 5
+            listIsExpanded: props.model.interpretations.length > interpretationsToShowOnInit
         };
 
         _this.notifyChange = _this.notifyChange.bind(_this);
