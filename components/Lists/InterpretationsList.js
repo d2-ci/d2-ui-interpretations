@@ -26,8 +26,11 @@ export var InterpretationsList = function InterpretationsList(_ref) {
             i18n.t("No interpretations")
         );
     }
+    var filteredItems = interpretations.filter(function (item) {
+        return haveReadAccess(d2, item) && item;
+    });
 
-    var listItems = isExpanded ? interpretations : interpretations.slice(-interpretationsToShowOnInit);
+    var listItems = isExpanded ? filteredItems : filteredItems.slice(-interpretationsToShowOnInit);
 
     return React.createElement(
         Fragment,
@@ -37,7 +40,7 @@ export var InterpretationsList = function InterpretationsList(_ref) {
             onClick: toggleShowAllInterpretations
         }),
         listItems.map(function (item) {
-            return haveReadAccess(d2, item) && React.createElement(Interpretation, {
+            return React.createElement(Interpretation, {
                 model: model,
                 key: item.id,
                 interpretation: item,
