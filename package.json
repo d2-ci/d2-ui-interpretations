@@ -48,10 +48,12 @@
   "jest": {
     "transformIgnorePatterns": [
       "node_modules/(?!react-native|react-navigation)/"
-    ]
+    ],
+    "testEnvironments": "jsdom"
   },
   "publishConfig": {
     "access": "public"
   },
-  "version": "5.0.17"
+  "version": "5.0.17",
+  "private": false
 }

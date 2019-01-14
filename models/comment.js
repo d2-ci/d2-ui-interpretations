@@ -87,7 +87,7 @@ var Comment = function () {
         key: 'getReplyText',
         value: function getReplyText(d2, user) {
             var currentUsername = d2.currentUser.username;
-            return user && user.userCredentials && user.userCredentials.username !== currentUsername ? "@" + user.userCredentials.username + "\xA0" : "";
+            return user && user.userCredentials && user.userCredentials.username !== currentUsername ? "@" + user.userCredentials.username + " " : "";
         }
     }, {
         key: 'getReplyForInterpretation',

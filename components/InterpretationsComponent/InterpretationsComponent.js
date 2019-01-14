@@ -8,13 +8,15 @@ import _inherits from 'babel-runtime/helpers/inherits';
 import React from 'react';
 import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { withStyles } from '@material-ui/core/styles';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import isEqual from 'lodash/fp/isEqual';
 import pick from 'lodash/fp/pick';
 
 import { getFavoriteWithInterpretations } from '../../api/helpers';
 import Details from '../DetailsPanel/Details';
-import InterpretationsCard from '../InterpretationPanel/InterpretationsCard';
+import InterpretationsCard from '../Cards/InterpretationsCard';
 import i18n from '../../locales';
 import styles from './styles/InterpretationsComponent.style';
 
@@ -42,7 +44,9 @@ export var InterpretationsComponent = function (_React$Component) {
         value: function getChildContext() {
             return {
                 d2: this.props.d2,
-                locale: this.props.d2.currentUser.userSettings.settings.keyUiLocale || 'en'
+                locale: this.props.d2.currentUser.userSettings.settings.keyUiLocale || 'en',
+                appName: this.props.appName || '',
+                item: this.props.item || {}
             };
         }
     }, {
@@ -133,15 +137,19 @@ export var InterpretationsComponent = function (_React$Component) {
             }
 
             return React.createElement(
-                'div',
-                { className: classes.interpretationsContainer },
-                React.createElement(Details, { model: model, onChange: this.onChange }),
-                React.createElement(InterpretationsCard, {
-                    model: model,
-                    onChange: this.onChange,
-                    currentInterpretationId: currentInterpretationId,
-                    onCurrentInterpretationChange: onCurrentInterpretationChange
-                })
+                MuiThemeProvider,
+                { muiTheme: getMuiTheme() },
+                React.createElement(
+                    'div',
+                    { className: classes.interpretationsContainer },
+                    React.createElement(Details, { model: model, onChange: this.onChange }),
+                    React.createElement(InterpretationsCard, {
+                        model: model,
+                        onChange: this.onChange,
+                        currentInterpretationId: currentInterpretationId,
+                        onCurrentInterpretationChange: onCurrentInterpretationChange
+                    })
+                )
             );
         }
     }]);
@@ -162,7 +170,9 @@ InterpretationsComponent.propTypes = {
 
 InterpretationsComponent.childContextTypes = {
     d2: PropTypes.object,
-    locale: PropTypes.string
+    locale: PropTypes.string,
+    appName: PropTypes.string,
+    item: PropTypes.object
 };
 
 export default withStyles(styles)(InterpretationsComponent);

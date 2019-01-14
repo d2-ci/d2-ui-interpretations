@@ -8,45 +8,62 @@ import PropTypes from 'prop-types';
 import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
-import { Icons } from './ButtonIcons';
+import Icons from './Icons';
 import styles from './styles/ActionButton.style';
 
+var TOOLTIP_ENTER_DELAY = 200;
 export var ActionButton = function (_Component) {
 	_inherits(ActionButton, _Component);
 
-	function ActionButton() {
-		var _ref;
-
-		var _temp, _this, _ret;
-
+	function ActionButton(props) {
 		_classCallCheck(this, ActionButton);
 
-		for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-			args[_key] = arguments[_key];
-		}
+		var _this = _possibleConstructorReturn(this, (ActionButton.__proto__ || _Object$getPrototypeOf(ActionButton)).call(this, props));
 
-		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ActionButton.__proto__ || _Object$getPrototypeOf(ActionButton)).call.apply(_ref, [this].concat(args))), _this), _this.state = { anchorEl: null }, _this.showTooltip = function (event) {
-			return _this.setState({ anchorEl: event.currentTarget });
-		}, _this.hideTooltip = function () {
-			return _this.setState({ anchorEl: null });
-		}, _this.renderTooltip = function () {
+		_this.showTooltip = function () {
+			if (_this.timeout === null) {
+				_this.timeout = setTimeout(function () {
+					return _this.setState({ tooltipIsOpen: true });
+				}, TOOLTIP_ENTER_DELAY);
+			}
+		};
+
+		_this.hideTooltip = function () {
+			if (typeof _this.timeout === 'number') {
+				clearTimeout(_this.timeout);
+				_this.timeout = null;
+				_this.setState({ tooltipIsOpen: false });
+			}
+		};
+
+		_this.renderTooltip = function () {
 			return React.createElement(
 				Popper,
 				{
-					anchorEl: _this.state.anchorEl,
-					open: Boolean(_this.state.anchorEl),
+					anchorEl: document.getElementById(_this.id),
+					open: _this.state.tooltipIsOpen,
 					placement: 'top'
 				},
 				React.createElement(
 					Paper,
 					{ className: _this.props.classes.tooltip },
-					Icons[_this.props.iconType].tooltip
+					_this.props.tooltip || Icons[_this.props.iconType].tooltip
 				)
 			);
-		}, _temp), _possibleConstructorReturn(_this, _ret);
+		};
+
+		_this.id = Math.random().toString(36);
+		_this.timeout = null;
+		_this.state = { tooltipIsOpen: false };
+		return _this;
 	}
 
 	_createClass(ActionButton, [{
+		key: 'componentWillUnmount',
+		value: function componentWillUnmount() {
+			clearTimeout(this.timeout);
+		}
+	}, {
 		key: 'render',
 		value: function render() {
 			var Icon = Icons[this.props.iconType].icon;
@@ -55,6 +72,7 @@ export var ActionButton = function (_Component) {
 			return React.createElement(
 				'div',
 				{
+					id: this.id,
 					className: this.props.classes.iconContainer,
 					onMouseEnter: this.showTooltip,
 					onMouseLeave: this.hideTooltip,
@@ -68,6 +86,12 @@ export var ActionButton = function (_Component) {
 
 	return ActionButton;
 }(Component);;
+
+ActionButton.defaultProps = {
+	onClick: function onClick() {
+		return null;
+	}
+};
 
 ActionButton.propTypes = {
 	classes: PropTypes.object.isRequired,

@@ -1,24 +1,34 @@
 export default {
     interpretationText: {
+        display: 'flex',
+        alignItems: 'center',
         whiteSpace: 'pre-line',
         lineHeight: '1.5em',
         wordBreak: 'break-word',
         fontSize: '13px',
-        marginBottom: '5px',
-        marginTop: '5px'
+        margin: '6px 0px'
     },
 
     interpretationTextLimited: {
-        display: 'block',
+        display: 'flex',
+        alignItems: 'center',
+        whiteSpace: 'pre-line',
+        lineHeight: '1.5em',
+        wordBreak: 'break-word',
+        fontSize: '13px',
         textOverflow: 'ellipsis',
         wordWrap: 'break-word',
         overflow: 'hidden',
-        maxHeight: '3.0em',
-        lineHeight: '1.5em',
-        whiteSpace: 'pre-line',
-        wordBreak: 'break-word',
-        fontSize: '13px',
-        marginBottom: '5px',
-        marginTop: '5px'
+        margin: '6px 0px'
+    },
+
+    parser: {
+        margin: '0px'
+    },
+
+    editTag: {
+        fontSize: '11px',
+        color: 'grey',
+        marginLeft: '5px'
     }
 };

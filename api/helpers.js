@@ -8,13 +8,15 @@ var _this = this;
 
 import Interpretation from '../models/interpretation';
 import { apiFetch } from './api';
+import { itemTypeMap } from './redirect';
 
-var interpretationsFields = ['id', 'user[id,displayName,userCredentials[username]]', 'created', 'likes', 'likedBy[id,displayName]', 'text', 'comments[id,text,created,user[id,displayName,userCredentials[username]]]'];
+var interpretationsFields = ['id', 'user[id,displayName,userCredentials[username]]', 'created', 'lastUpdated', 'likes', 'likedBy[id,displayName]', 'text', 'publicAccess', 'externalAccess', 'userAccesses', 'userGroupAccesses', 'comments[id,text,created,lastUpdated,user[id,displayName,userCredentials[username]]]'];
 
 var favoriteFields = ['id', 'name', 'href', 'subscribed', 'user[id,displayName]', 'displayName', 'description', 'displayDescription', 'created', 'lastUpdated', 'access', 'publicAccess', 'externalAccess', 'userAccesses', 'userGroupAccesses', 'interpretations[' + interpretationsFields.join(',') + ']'];
 
 export var getFavoriteWithInterpretations = function getFavoriteWithInterpretations(d2, type, id) {
-    var modelClass = d2.models[type];
+    var propName = itemTypeMap[type.toUpperCase()].propName;
+    var modelClass = d2.models[propName];
     var api = d2.Api.getApi();
     var model$ = modelClass.get(id, { fields: favoriteFields.join(',') });
     var views$ = api.get('dataStatistics/favorites/' + id).then(function (json) {

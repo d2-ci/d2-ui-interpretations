@@ -1,17 +1,4 @@
 export default {
-    interpretationCommentArea: {
-        fontSize: '12px',
-        margin: '2px 0 5px 0px',
-        color: 'dimgrey',
-        height: '14px',
-        float: 'right',
-        cursor: 'default'
-    },
-
-    intepretationLikes: {
-        paddingRight: '10px'
-    },
-
     tooltipList: {
         listStyleType: 'none',
         margin: '0px',

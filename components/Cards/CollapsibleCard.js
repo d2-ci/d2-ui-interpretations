@@ -4,7 +4,7 @@ import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _createClass from 'babel-runtime/helpers/createClass';
 import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
 import _inherits from 'babel-runtime/helpers/inherits';
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classnames from 'classnames';
@@ -43,7 +43,6 @@ export var CollapsibleCard = function (_React$Component) {
             var _props = this.props,
                 classes = _props.classes,
                 title = _props.title,
-                actions = _props.actions,
                 children = _props.children;
             var expanded = this.state.expanded;
 
@@ -55,20 +54,15 @@ export var CollapsibleCard = function (_React$Component) {
                     title: title,
                     classes: { root: classes.header, title: classes.title, action: classes.actions },
                     action: React.createElement(
-                        Fragment,
-                        null,
-                        expanded ? actions : null,
-                        React.createElement(
-                            IconButton,
-                            {
-                                style: styles.iconButton,
-                                className: classnames(classes.expand, _defineProperty({}, classes.expandOpen, expanded)),
-                                onClick: this.handleExpandClick,
-                                'aria-expanded': expanded,
-                                disableRipple: true
-                            },
-                            React.createElement(ExpandMoreIcon, null)
-                        )
+                        IconButton,
+                        {
+                            style: styles.iconButton,
+                            className: classnames(classes.expand, _defineProperty({}, classes.expandOpen, expanded)),
+                            onClick: this.handleExpandClick,
+                            'aria-expanded': expanded,
+                            disableRipple: true
+                        },
+                        React.createElement(ExpandMoreIcon, null)
                     )
                 }),
                 React.createElement(
@@ -90,7 +84,6 @@ export var CollapsibleCard = function (_React$Component) {
 CollapsibleCard.propTypes = {
     classes: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
-    actions: PropTypes.object,
     children: PropTypes.array.isRequired
 };
 

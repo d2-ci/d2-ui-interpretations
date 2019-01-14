@@ -8,12 +8,7 @@ export default {
     },
 
     avatarWrapper: {
-        display: 'flex',
-        marginTop: '10px',
-        backgroundColor: '#efefef',
-        margin: '4px 0',
-        padding: '6px',
-        borderRadius: '4px'
+        display: 'flex'
     },
 
     avatarBox: {

@@ -28,7 +28,7 @@ export default {
     },
 
     detailsCardList: {
-        padding: '12px',
+        padding: '4px',
         fontSize: '14px'
     },
 
@@ -48,7 +48,7 @@ export default {
         margin: '4px'
     },
 
-    listItemLabel: {
+    item: {
         fontWeight: 'bold',
         marginRight: '5px'
     }

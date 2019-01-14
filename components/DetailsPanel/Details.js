@@ -11,20 +11,20 @@ import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import SubscriberIconEnabled from '@material-ui/icons/Notifications';
 import SubscriberIconDisabled from '@material-ui/icons/AddAlert';
+import { withStyles } from '@material-ui/core/styles';
 import i18n from '@dhis2/d2-i18n';
 
 import CollapsibleCard from '../Cards/CollapsibleCard';
 import Description from './Description';
-import List from './List';
-import ListItem from './ListItem';
-import { getSharingText } from './sharingText';
+import Item from './Item';
+import { getSharingText } from '../../sharing/sharingText';
 
 import { setSubscription } from '../../api/helpers';
 import { formatDate } from '../../dateformats/dateformatter';
 import { translateModelName } from '../../translations/modelNametranslator';
 import styles from './styles/Details.style';
 
-var Details = function (_React$Component) {
+export var Details = function (_React$Component) {
     _inherits(Details, _React$Component);
 
     function Details() {
@@ -39,9 +39,7 @@ var Details = function (_React$Component) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Details.__proto__ || _Object$getPrototypeOf(Details)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-            isExpanded: true
-        }, _this.toggleDetailsExpand = function () {
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Details.__proto__ || _Object$getPrototypeOf(Details)).call.apply(_ref, [this].concat(args))), _this), _this.state = { isExpanded: true }, _this.toggleDetailsExpand = function () {
             _this.setState({ isExpanded: !_this.state.isExpanded });
         }, _this.toggleSubscription = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
             var _this$props, model, onChange;
@@ -64,9 +62,6 @@ var Details = function (_React$Component) {
 
     _createClass(Details, [{
         key: 'renderSubscriptionButton',
-
-
-        // TOOD: adjust color
         value: function renderSubscriptionButton() {
             var tOpts = { object: translateModelName(this.props.model.modelName) };
 
@@ -88,46 +83,39 @@ var Details = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var model = this.props.model;
+            var _props = this.props,
+                model = _props.model,
+                classes = _props.classes;
 
             var owner = model.user ? model.user.displayName : '-';
             var SubscriptionButton = this.renderSubscriptionButton();
 
             return React.createElement(
                 CollapsibleCard,
-                { title: i18n.t('Details') },
+                { title: i18n.t('Favorite details') },
                 SubscriptionButton,
                 React.createElement(
-                    List,
-                    null,
-                    React.createElement(ListItem, { text: React.createElement(Description, { model: model }) }),
-                    React.createElement(ListItem, {
-                        label: i18n.t('Owner'),
-                        text: owner
-                    }),
-                    React.createElement(ListItem, {
+                    'div',
+                    { className: classes.detailsCardList },
+                    React.createElement(Item, { text: React.createElement(Description, { description: model.displayDescription }) }),
+                    React.createElement(Item, { label: i18n.t('Owner'), text: owner }),
+                    React.createElement(Item, {
                         label: i18n.t('Created'),
                         text: formatDate(model.created, this.context.locale)
                     }),
-                    React.createElement(ListItem, {
+                    React.createElement(Item, {
                         label: i18n.t('Last updated'),
                         text: formatDate(model.lastUpdated, this.context.locale)
                     }),
-                    React.createElement(ListItem, {
-                        label: i18n.t('Views'),
-                        text: model.favoriteViews
-                    }),
-                    React.createElement(ListItem, {
-                        label: i18n.t('Sharing'),
-                        text: getSharingText(model)
-                    })
+                    React.createElement(Item, { label: i18n.t('Views'), text: model.favoriteViews }),
+                    React.createElement(Item, { label: i18n.t('Sharing'), text: getSharingText(model) })
                 )
             );
         }
     }]);
 
     return Details;
-}(React.Component);
+}(React.Component);;
 
 Details.contextTypes = {
     d2: PropTypes.object.isRequired,
@@ -139,4 +127,4 @@ Details.propTypes = {
     onChange: PropTypes.func.isRequired
 };
 
-export default Details;
+export default withStyles(styles)(Details);

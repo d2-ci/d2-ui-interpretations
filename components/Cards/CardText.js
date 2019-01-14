@@ -15,12 +15,15 @@ export var CardText = function CardText(_ref) {
         },
         React.createElement(
             RichTextParser,
-            null,
+            { style: styles.parser },
             text
         )
     );
 };
 
+CardText.defaultProps = {
+    extended: true
+};
 CardText.propTypes = {
     classes: PropTypes.object.isRequired,
     extended: PropTypes.bool.isRequired,
