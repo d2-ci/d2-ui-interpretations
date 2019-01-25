@@ -85,6 +85,7 @@ export var Interpretation = function (_React$Component) {
             if (_this.state.interpretationToEdit) {
                 return React.createElement(NewInterpretationField, {
                     model: model,
+                    type: 'interpretation',
                     interpretation: _this.state.interpretationToEdit,
                     onUpdate: _this.onSaveInterpretation,
                     onClose: _this.onCancelEditInterpretation

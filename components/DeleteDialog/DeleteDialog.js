@@ -17,10 +17,10 @@ export var DeleteDialog = function DeleteDialog(_ref) {
         onCancel = _ref.onCancel;
     return React.createElement(
         Dialog,
-        { open: true, maxWidth: 'md' },
+        { open: true, maxWidth: 'sm' },
         React.createElement(
             DialogTitle,
-            { className: classes.title },
+            null,
             title
         ),
         React.createElement(
@@ -32,13 +32,22 @@ export var DeleteDialog = function DeleteDialog(_ref) {
                 { className: classes.actions },
                 React.createElement(
                     Button,
-                    { onClick: onDelete, color: 'primary', variant: 'contained' },
-                    i18n.t('Yes, delete')
+                    {
+                        className: classes.button,
+                        onClick: onCancel,
+                        variant: 'outlined'
+                    },
+                    i18n.t('Cancel')
                 ),
                 React.createElement(
                     Button,
-                    { onClick: onCancel, variant: 'outlined' },
-                    i18n.t('No, cancel')
+                    {
+                        className: classes.button,
+                        onClick: onDelete,
+                        color: 'primary',
+                        variant: 'contained'
+                    },
+                    i18n.t('Confirm')
                 )
             )
         )
@@ -48,6 +57,7 @@ export var DeleteDialog = function DeleteDialog(_ref) {
 export default withStyles(styles)(DeleteDialog);
 
 DeleteDialog.propTypes = {
+    classes: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     onDelete: PropTypes.func.isRequired,

@@ -65,7 +65,8 @@ export var InterpretationsCard = function (_React$Component) {
         _this.renderInputField = function () {
             return !_this.state.currentInterpretationId && haveWriteAccess(_this.context.d2, _this.props.model) && React.createElement(NewInterpretationField, {
                 model: _this.props.model,
-                onSave: _this.notifyChange
+                onSave: _this.notifyChange,
+                type: _this.props.type
             });
         };
 

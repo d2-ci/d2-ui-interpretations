@@ -82,6 +82,6 @@ export var itemTypeMap = (_itemTypeMap = {}, _defineProperty(_itemTypeMap, REPOR
     appUrl: function appUrl(id) {
         return 'dhis-web-event-visualizer/?id=' + id;
     },
-    appName: i18n.t('Event Visualizer'),
-    propName: 'eventChart'
+    propName: 'eventChart',
+    appName: i18n.t('Event Visualizer')
 }), _itemTypeMap);

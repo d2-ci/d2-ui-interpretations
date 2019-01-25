@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import Share from '@material-ui/icons/Share';
 import { withStyles } from '@material-ui/core/styles';
 import i18n from '@dhis2/d2-i18n';
+import Link from '../Link/Link';
 import styles from './styles/SharingInfo.style';
 
 export var SharingInfo = function (_Component) {
@@ -25,11 +26,11 @@ export var SharingInfo = function (_Component) {
         }
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SharingInfo.__proto__ || _Object$getPrototypeOf(SharingInfo)).call.apply(_ref, [this].concat(args))), _this), _this.getUsers = function () {
-            return _this.props.interpretation.userAccesses.map(function (item) {
+            return (_this.props.interpretation.userAccesses || []).map(function (item) {
                 return item.displayName;
             });
         }, _this.getGroups = function () {
-            return _this.props.interpretation.userGroupAccesses.map(function (item) {
+            return (_this.props.interpretation.userGroupAccesses || []).map(function (item) {
                 return item.displayName;
             });
         }, _this.checkExternalAccess = function () {
@@ -46,7 +47,7 @@ export var SharingInfo = function (_Component) {
             var externalAccess = this.checkExternalAccess();
             var publicAccess = this.checkPublicAccess();
 
-            return publicAccess || Info.length || externalAccess.length ? React.createElement(
+            return React.createElement(
                 'div',
                 { className: this.props.classes.sharingContainer },
                 React.createElement(Share, { className: this.props.classes.sharingIcon }),
@@ -56,9 +57,14 @@ export var SharingInfo = function (_Component) {
                     i18n.t('Shared with: '),
                     Info,
                     externalAccess,
-                    publicAccess && (Info.length || externalAccess.length ? i18n.t(' and public access.') : i18n.t('public access.'))
+                    publicAccess && (Info.length || externalAccess.length ? i18n.t(' and public access. ') : i18n.t('public access. ')),
+                    !publicAccess && !(Info.length || externalAccess.length) && i18n.t('None. '),
+                    React.createElement(Link, {
+                        onClick: this.props.onClick,
+                        label: i18n.t('Manage sharing')
+                    })
                 )
-            ) : null;
+            );
         }
     }]);
 

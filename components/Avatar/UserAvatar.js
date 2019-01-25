@@ -8,9 +8,8 @@ var UserAvatar = function UserAvatar(_ref) {
     var classes = _ref.classes,
         user = _ref.user;
 
-    var initials = user.displayName.split(" ").map(function (part) {
-        return part[0];
-    }).slice(0, 2).join("");
+    var nameToArr = user.displayName.split(" ");
+    var initials = nameToArr[0].slice(0, 1).concat(nameToArr[nameToArr.length - 1].slice(0, 1));
 
     return React.createElement(
         Avatar,

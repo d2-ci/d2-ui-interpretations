@@ -35,7 +35,7 @@ export var InterpretationsList = function InterpretationsList(_ref) {
     return React.createElement(
         Fragment,
         null,
-        React.createElement(Link, {
+        filteredItems.length > interpretationsToShowOnInit && React.createElement(Link, {
             label: (isExpanded ? i18n.t('Hide') : i18n.t('Show')) + ' previous interpretations',
             onClick: toggleShowAllInterpretations
         }),

@@ -147,7 +147,8 @@ export var InterpretationsComponent = function (_React$Component) {
                         model: model,
                         onChange: this.onChange,
                         currentInterpretationId: currentInterpretationId,
-                        onCurrentInterpretationChange: onCurrentInterpretationChange
+                        onCurrentInterpretationChange: onCurrentInterpretationChange,
+                        type: this.props.type
                     })
                 )
             );

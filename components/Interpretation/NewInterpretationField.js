@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
+import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 import { Editor as RichTextEditor, convertCtrlKey } from '@dhis2/d2-ui-rich-text';
 import i18n from '@dhis2/d2-i18n';
 import WithAvatar from '../Avatar/WithAvatar';
@@ -72,7 +73,18 @@ export var NewInterpretationField = function (_Component) {
 
         _this.onUpdate = function () {
             _this.props.interpretation.text = _this.state.text;
+            if (_this.state.sharingProps) {
+                _this.props.interpretation.sharing = _this.state.sharingProps;
+            }
             _this.props.onUpdate(_this.props.interpretation);
+        };
+
+        _this.onOpenSharingDialog = function () {
+            return _this.setState({ sharingDialogisOpen: true });
+        };
+
+        _this.onCloseSharingDialog = function (sharingProps) {
+            return sharingProps ? _this.setState({ sharingDialogisOpen: false, sharingProps: sharingProps }) : _this.setState({ sharingDialosIsOpen: false });
         };
 
         _this.focus = function (highlightStart, highlightEnd) {
@@ -123,14 +135,28 @@ export var NewInterpretationField = function (_Component) {
         };
 
         _this.renderSharingInfo = function () {
-            return !!_this.state.text && React.createElement(SharingInfo, { interpretation: _this.props.interpretation || _this.props.model });
+            return !!_this.state.text && React.createElement(SharingInfo, { interpretation: _this.state.sharingProps || _this.props.interpretation || _this.props.model, onClick: _this.onOpenSharingDialog });
+        };
+
+        _this.renderSharingDialog = function () {
+            return _this.state.sharingDialogisOpen && React.createElement(SharingDialog, {
+                open: _this.state.sharingDialogisOpen,
+                type: _this.props.type,
+                d2: _this.context.d2,
+                id: _this.props.interpretation ? _this.props.interpretation.id : _this.props.model.id,
+                doNotPost: true,
+                onConfirm: _this.onCloseSharingDialog,
+                onRequestClose: _this.onCloseSharingDialog
+            });
         };
 
         _this.textarea = React.createRef();
         _this.id = Math.random().toString(36);
         _this.state = {
             text: _this.props.interpretation ? _this.props.interpretation.text : '',
-            showToolbar: false
+            showToolbar: false,
+            sharingDialogisOpen: false,
+            sharingProps: null
         };
         return _this;
     }
@@ -147,9 +173,10 @@ export var NewInterpretationField = function (_Component) {
                                 newInterpretation = new InterpretationModel(this.props.model, {});
 
                                 newInterpretation.text = this.state.text;
+                                newInterpretation.sharing = this.state.sharingProps;
                                 return _context.abrupt('return', newInterpretation.save(this.context.d2));
 
-                            case 3:
+                            case 4:
                             case 'end':
                                 return _context.stop();
                         }
@@ -169,6 +196,7 @@ export var NewInterpretationField = function (_Component) {
             var ActionButtons = this.renderActionButtons();
             var Toolbar = this.renderToolbar();
             var Sharing = this.renderSharingInfo();
+            var SharingDialog = this.renderSharingDialog();
 
             return React.createElement(
                 WithAvatar,
@@ -201,7 +229,8 @@ export var NewInterpretationField = function (_Component) {
                     )
                 ),
                 Sharing,
-                ActionButtons
+                ActionButtons,
+                SharingDialog
             );
         }
     }]);
