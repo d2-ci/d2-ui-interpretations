@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 import ActionButton from './ActionButton';
 import RedirectButton from './RedirectButton';
 import styles from './styles/ActionButtonContainer.style';
-import { haveWriteAccess } from '../../authorization/auth';
 
 var UNLIKE_INDEX = 0;
 var LIKE_INDEX = 1;
@@ -18,31 +17,10 @@ var REPLY_INDEX = 7;
 export var ActionButtonContainer = function ActionButtonContainer(_ref) {
     var classes = _ref.classes,
         isFocused = _ref.isFocused,
-        d2 = _ref.d2,
-        interpretation = _ref.interpretation,
         currentUserLikesInterpretation = _ref.currentUserLikesInterpretation,
-        isOwner = _ref.isOwner,
+        canReply = _ref.canReply,
+        canManage = _ref.canManage,
         onClickHandlers = _ref.onClickHandlers;
-
-    var renderOwnerActions = isOwner && React.createElement(
-        Fragment,
-        null,
-        React.createElement(ActionButton, {
-            iconType: 'share',
-            onClick: onClickHandlers[SHARE_INDEX]
-        }),
-        React.createElement(ActionButton, {
-            iconType: 'edit',
-            onClick: onClickHandlers[EDIT_INDEX]
-        }),
-        React.createElement(ActionButton, {
-            iconType: 'delete',
-            onClick: onClickHandlers[DELETE_INDEX]
-        })
-    );
-
-    var renderDashboardButton = React.createElement(RedirectButton, null);
-
     return React.createElement(
         'div',
         { className: classes.actions },
@@ -50,7 +28,7 @@ export var ActionButtonContainer = function ActionButtonContainer(_ref) {
             iconType: currentUserLikesInterpretation ? 'unlike' : 'like',
             onClick: onClickHandlers[currentUserLikesInterpretation ? UNLIKE_INDEX : LIKE_INDEX]
         }),
-        haveWriteAccess(d2, interpretation) && React.createElement(ActionButton, {
+        canReply && React.createElement(ActionButton, {
             iconType: 'reply',
             onClick: onClickHandlers[REPLY_INDEX]
         }),
@@ -58,16 +36,32 @@ export var ActionButtonContainer = function ActionButtonContainer(_ref) {
             iconType: isFocused ? 'visibilityOff' : 'visibility',
             onClick: onClickHandlers[isFocused ? EXIT_VIEW_INDEX : VIEW_INDEX]
         }),
-        renderDashboardButton,
-        renderOwnerActions
+        React.createElement(RedirectButton, null),
+        canManage && React.createElement(
+            Fragment,
+            null,
+            React.createElement(ActionButton, {
+                iconType: 'share',
+                onClick: onClickHandlers[SHARE_INDEX]
+            }),
+            React.createElement(ActionButton, {
+                iconType: 'edit',
+                onClick: onClickHandlers[EDIT_INDEX]
+            }),
+            React.createElement(ActionButton, {
+                iconType: 'delete',
+                onClick: onClickHandlers[DELETE_INDEX]
+            })
+        )
     );
 };
 
 ActionButtonContainer.propTypes = {
     classes: PropTypes.object.isRequired,
-    currentUserLikesInterpretation: PropTypes.bool.isRequired,
     isFocused: PropTypes.bool.isRequired,
-    isOwner: PropTypes.bool.isRequired,
+    currentUserLikesInterpretation: PropTypes.bool.isRequired,
+    canReply: PropTypes.bool.isRequired,
+    canManage: PropTypes.bool.isRequired,
     onClickHandlers: PropTypes.array.isRequired
 };
 

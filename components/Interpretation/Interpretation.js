@@ -20,7 +20,7 @@ import CommentsList from '../Lists/CommentsList';
 import DeleteDialog from '../DeleteDialog/DeleteDialog';
 import InterpretationModel from '../../models/interpretation';
 import CommentModel from '../../models/comment';
-import { userCanManage } from '../../authorization/auth';
+import { userCanManage, haveWriteAccess } from '../../authorization/auth';
 import { formatRelative } from '../../dateformats/dateformatter';
 import { shouldUpdateSharing } from '../../sharing/sharing';
 import styles from './styles/Interpretation.style';
@@ -111,10 +111,9 @@ export var Interpretation = function (_React$Component) {
                     }),
                     React.createElement(ActionButtonContainer, {
                         isFocused: extended,
-                        d2: _this.context.d2,
-                        interpretation: interpretation,
                         currentUserLikesInterpretation: currentUserLikesInterpretation,
-                        isOwner: userCanManage(_this.context.d2, interpretation),
+                        canReply: haveWriteAccess(_this.context.d2, interpretation),
+                        canManage: userCanManage(_this.context.d2, interpretation),
                         onClickHandlers: _this.getOnClickHandlers()
                     })
                 );
