@@ -44,6 +44,8 @@ var InterpretationDialog = function (_Component) {
             savedInterpretation: null
         }, _this.cancel = function () {
             _this.props.onClose();
+        }, _this.onUserSelect = function (newValue) {
+            _this.setState({ value: newValue });
         }, _this.onChange = function (event) {
             _this.setState({ value: event.target.value });
         }, _this.save = function () {
@@ -111,7 +113,7 @@ var InterpretationDialog = function (_Component) {
                         null,
                         React.createElement(
                             MentionsWrapper,
-                            { d2: d2, onUserSelect: this.onChange },
+                            { d2: d2, onUserSelect: this.onUserSelect },
                             React.createElement(
                                 FormControl,
                                 { fullWidth: true },
