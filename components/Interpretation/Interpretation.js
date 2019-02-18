@@ -21,7 +21,7 @@ import DeleteDialog from '../DeleteDialog/DeleteDialog';
 import InterpretationModel from '../../models/interpretation';
 import CommentModel from '../../models/comment';
 import { userCanManage, haveWriteAccess } from '../../authorization/auth';
-import { formatRelative } from '../../dateformats/dateformatter';
+import { formatDate } from '../../dateformats/dateformatter';
 import { shouldUpdateSharing } from '../../sharing/sharing';
 import styles from './styles/Interpretation.style';
 
@@ -108,7 +108,7 @@ export var Interpretation = function (_React$Component) {
                     React.createElement(CardInfo, {
                         likedBy: _this.getLikedByNames(),
                         repliedBy: _this.getRepliedByNames(),
-                        createdDate: formatRelative(interpretation.created, _this.context.locale)
+                        createdDate: formatDate(interpretation.created, _this.context.locale)
                     }),
                     React.createElement(ActionButtonContainer, {
                         isFocused: extended,

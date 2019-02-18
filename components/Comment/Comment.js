@@ -8,7 +8,7 @@ import CardHeader from '../Cards/CardHeader';
 import CardText from '../Cards/CardText';
 import CardInfo from '../Cards/CardInfo';
 import DeleteDialog from '../DeleteDialog/DeleteDialog';
-import { formatRelative } from '../../dateformats/dateformatter';
+import { formatDate } from '../../dateformats/dateformatter';
 import styles from './styles/Comment.style';
 
 export var Comment = function Comment(_ref) {
@@ -31,7 +31,7 @@ export var Comment = function Comment(_ref) {
             { className: classes.comment, key: comment.id, firstName: comment.user.firstName, surname: comment.user.surname },
             React.createElement(CardHeader, { userName: comment.user.displayName }),
             React.createElement(CardText, { text: comment.text }),
-            React.createElement(CardInfo, { createdDate: formatRelative(comment.created, locale) }),
+            React.createElement(CardInfo, { createdDate: formatDate(comment.created, locale) }),
             isOwner ? React.createElement(
                 'div',
                 { className: classes.commentActions },

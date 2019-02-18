@@ -8,9 +8,7 @@ import _inherits from 'babel-runtime/helpers/inherits';
 import React from 'react';
 import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { withStyles } from '@material-ui/core/styles';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import isEqual from 'lodash/fp/isEqual';
 import pick from 'lodash/fp/pick';
 
@@ -137,20 +135,16 @@ export var InterpretationsComponent = function (_React$Component) {
             }
 
             return React.createElement(
-                MuiThemeProvider,
-                { muiTheme: getMuiTheme() },
-                React.createElement(
-                    'div',
-                    { className: classes.interpretationsContainer },
-                    React.createElement(Details, { model: model, onChange: this.onChange }),
-                    React.createElement(InterpretationsCard, {
-                        model: model,
-                        onChange: this.onChange,
-                        currentInterpretationId: currentInterpretationId,
-                        onCurrentInterpretationChange: onCurrentInterpretationChange,
-                        type: this.props.type
-                    })
-                )
+                'div',
+                { className: classes.interpretationsContainer },
+                React.createElement(Details, { model: model, onChange: this.onChange }),
+                React.createElement(InterpretationsCard, {
+                    model: model,
+                    onChange: this.onChange,
+                    currentInterpretationId: currentInterpretationId,
+                    onCurrentInterpretationChange: onCurrentInterpretationChange,
+                    type: this.props.type
+                })
             );
         }
     }]);
