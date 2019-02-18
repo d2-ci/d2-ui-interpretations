@@ -37,15 +37,31 @@ export var SharingInfo = function (_Component) {
             return _this.props.interpretation.externalAccess ? i18n.t('external access') : '';
         }, _this.checkPublicAccess = function () {
             return _this.props.interpretation.publicAccess === 'rw------' || _this.props.interpretation.publicAccess === 'r-------';
+        }, _this.concatSharingInfo = function () {
+            var displayNames = _this.getUsers().concat(_this.getGroups()).join(', ');
+
+            if (_this.props.interpretation.externalAccess) {
+                displayNames = displayNames.concat(i18n.t('external access'));
+            };
+
+            if (_this.checkPublicAccess()) {
+                displayNames = displayNames.concat(displayNames.length ? i18n.t(', public access') : i18n.t('public access'));
+            };
+
+            if (displayNames.length) {
+                displayNames = displayNames.replace(/, ([^,]*)$/, ' and $1').concat('. ');
+            } else {
+                displayNames = i18n.t('None. ');
+            }
+
+            return displayNames;
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(SharingInfo, [{
         key: 'render',
         value: function render() {
-            var Info = this.getUsers().concat(this.getGroups()).join(', ');
-            var externalAccess = this.checkExternalAccess();
-            var publicAccess = this.checkPublicAccess();
+            var Info = this.concatSharingInfo();
 
             return React.createElement(
                 'div',
@@ -56,9 +72,6 @@ export var SharingInfo = function (_Component) {
                     { className: this.props.classes.label },
                     i18n.t('Shared with: '),
                     Info,
-                    externalAccess,
-                    publicAccess && (Info.length || externalAccess.length ? i18n.t(' and public access. ') : i18n.t('public access. ')),
-                    !publicAccess && !(Info.length || externalAccess.length) && i18n.t('None. '),
                     React.createElement(Link, {
                         onClick: this.props.onClick,
                         label: i18n.t('Manage sharing')

@@ -1,5 +1,6 @@
 import _regeneratorRuntime from 'babel-runtime/regenerator';
 import _asyncToGenerator from 'babel-runtime/helpers/asyncToGenerator';
+import _Object$assign from 'babel-runtime/core-js/object/assign';
 import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
 import _createClass from 'babel-runtime/helpers/createClass';
@@ -13,6 +14,7 @@ import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 import { Editor as RichTextEditor, convertCtrlKey } from '@dhis2/d2-ui-rich-text';
 import i18n from '@dhis2/d2-i18n';
+import isEqual from 'lodash/isEqual';
 import WithAvatar from '../Avatar/WithAvatar';
 import Toolbar from '../Toolbar/Toolbar';
 import SharingInfo from '../SharingInfo/SharingInfo';
@@ -73,8 +75,8 @@ export var NewInterpretationField = function (_Component) {
 
         _this.onUpdate = function () {
             _this.props.interpretation.text = _this.state.text;
-            if (_this.state.sharingProps) {
-                _this.props.interpretation.sharing = _this.state.sharingProps;
+            if (!isEqual(_this.state.sharingProps.object, _this.props.interpretation.sharing)) {
+                _this.props.interpretation.sharing = _this.state.sharingProps.object;
             }
             _this.props.onUpdate(_this.props.interpretation);
         };
@@ -84,7 +86,9 @@ export var NewInterpretationField = function (_Component) {
         };
 
         _this.onCloseSharingDialog = function (sharingProps) {
-            return sharingProps ? _this.setState({ sharingDialogisOpen: false, sharingProps: sharingProps }) : _this.setState({ sharingDialosIsOpen: false });
+            var newSharingProps = _Object$assign({}, _this.state.sharingProps, { object: sharingProps });
+            console.log(newSharingProps);
+            sharingProps ? _this.setState({ sharingDialogisOpen: false, sharingProps: newSharingProps }) : _this.setState({ sharingDialosIsOpen: false });
         };
 
         _this.focus = function (highlightStart, highlightEnd) {
@@ -135,7 +139,7 @@ export var NewInterpretationField = function (_Component) {
         };
 
         _this.renderSharingInfo = function () {
-            return !!_this.state.text && React.createElement(SharingInfo, { interpretation: _this.state.sharingProps || _this.props.interpretation || _this.props.model, onClick: _this.onOpenSharingDialog });
+            return !!_this.state.text && React.createElement(SharingInfo, { interpretation: _this.props.interpretation || _this.state.sharingProps.object, onClick: _this.onOpenSharingDialog });
         };
 
         _this.renderSharingDialog = function () {
@@ -144,7 +148,8 @@ export var NewInterpretationField = function (_Component) {
                 type: _this.props.type,
                 d2: _this.context.d2,
                 id: _this.props.interpretation ? _this.props.interpretation.id : _this.props.model.id,
-                doNotPost: true,
+                doNotPost: !_this.props.interpretation ? true : false,
+                sharedObject: !_this.props.interpretation ? _this.state.sharingProps : null,
                 onConfirm: _this.onCloseSharingDialog,
                 onRequestClose: _this.onCloseSharingDialog
             });
@@ -156,7 +161,20 @@ export var NewInterpretationField = function (_Component) {
             text: _this.props.interpretation ? _this.props.interpretation.text : '',
             showToolbar: false,
             sharingDialogisOpen: false,
-            sharingProps: null
+            sharingProps: {
+                object: {
+                    user: { id: _this.props.model.user.id, name: _this.props.model.user.displayName },
+                    displayName: _this.props.model.displayName,
+                    userAccesses: _this.props.model.userAccesses,
+                    userGroupAccesses: _this.props.model.userGroupAccesses,
+                    publicAccess: _this.props.model.publicAccess,
+                    externalAccess: _this.props.model.externalAccess
+                },
+                meta: {
+                    allowPublicAccess: true,
+                    allowExternalAccess: true
+                }
+            }
         };
         return _this;
     }
@@ -173,7 +191,7 @@ export var NewInterpretationField = function (_Component) {
                                 newInterpretation = new InterpretationModel(this.props.model, {});
 
                                 newInterpretation.text = this.state.text;
-                                newInterpretation.sharing = this.state.sharingProps;
+                                newInterpretation.sharing = this.state.sharingProps.object;
                                 return _context.abrupt('return', newInterpretation.save(this.context.d2));
 
                             case 4:
