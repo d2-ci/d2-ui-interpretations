@@ -145,7 +145,7 @@ export var NewCommentField = function (_React$Component) {
 
             return React.createElement(
                 WithAvatar,
-                { className: this.props.classes.newReply, user: this.context.d2.currentUser },
+                { className: this.props.classes.newReply, firstName: this.context.d2.currentUser.firstName, surname: this.context.d2.currentUser.surname },
                 React.createElement(
                     MentionsWrapper,
                     { d2: this.context.d2, onUserSelect: this.onInputChange },

@@ -8,7 +8,8 @@ export var WithAvatar = function WithAvatar(_ref) {
     var classes = _ref.classes,
         className = _ref.className,
         onClick = _ref.onClick,
-        user = _ref.user,
+        firstName = _ref.firstName,
+        surname = _ref.surname,
         children = _ref.children;
     return React.createElement(
         'div',
@@ -16,7 +17,7 @@ export var WithAvatar = function WithAvatar(_ref) {
         React.createElement(
             'div',
             { className: classes.avatarBox },
-            React.createElement(UserAvatar, { user: user })
+            React.createElement(UserAvatar, { firstName: firstName, surname: surname })
         ),
         React.createElement(
             'div',
@@ -35,7 +36,8 @@ WithAvatar.defaultProps = {
 WithAvatar.propTypes = {
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
-    user: PropTypes.object.isRequired,
+    firstName: PropTypes.string.isRequired,
+    surname: PropTypes.string.isRequired,
     children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired
 };
 

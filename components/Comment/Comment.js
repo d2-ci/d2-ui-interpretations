@@ -10,7 +10,6 @@ import CardInfo from '../Cards/CardInfo';
 import DeleteDialog from '../DeleteDialog/DeleteDialog';
 import { formatRelative } from '../../dateformats/dateformatter';
 import styles from './styles/Comment.style';
-import { haveWriteAccess } from '../../authorization/auth';
 
 export var Comment = function Comment(_ref) {
     var classes = _ref.classes,
@@ -29,7 +28,7 @@ export var Comment = function Comment(_ref) {
         null,
         React.createElement(
             WithAvatar,
-            { className: classes.comment, key: comment.id, user: comment.user },
+            { className: classes.comment, key: comment.id, firstName: comment.user.firstName, surname: comment.user.surname },
             React.createElement(CardHeader, { userName: comment.user.displayName }),
             React.createElement(CardText, { text: comment.text }),
             React.createElement(CardInfo, { createdDate: formatRelative(comment.created, locale) }),

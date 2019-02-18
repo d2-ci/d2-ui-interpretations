@@ -92,7 +92,7 @@ export var Details = function (_React$Component) {
 
             return React.createElement(
                 CollapsibleCard,
-                { title: i18n.t('Favorite details') },
+                { title: i18n.t('Chart details') },
                 SubscriptionButton,
                 React.createElement(
                     'div',

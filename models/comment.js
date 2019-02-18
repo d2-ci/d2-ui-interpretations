@@ -101,3 +101,4 @@ var Comment = function () {
 }();
 
 export default Comment;
+;

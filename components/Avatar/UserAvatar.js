@@ -6,10 +6,10 @@ import styles from './styles/Avatar.style';
 
 var UserAvatar = function UserAvatar(_ref) {
     var classes = _ref.classes,
-        user = _ref.user;
+        firstName = _ref.firstName,
+        surname = _ref.surname;
 
-    var nameToArr = user.displayName.split(" ");
-    var initials = nameToArr[0].slice(0, 1).concat(nameToArr[nameToArr.length - 1].slice(0, 1));
+    var initials = firstName.charAt(0).concat(surname.charAt(0));
 
     return React.createElement(
         Avatar,
@@ -20,7 +20,8 @@ var UserAvatar = function UserAvatar(_ref) {
 
 UserAvatar.propTypes = {
     classes: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired
+    firstName: PropTypes.string.isRequired,
+    surname: PropTypes.string.isRequired
 };
 
 export default withStyles(styles)(UserAvatar);

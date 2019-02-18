@@ -10,9 +10,9 @@ import Interpretation from '../models/interpretation';
 import { apiFetch } from './api';
 import { itemTypeMap } from './redirect';
 
-var interpretationsFields = ['id', 'user[id,displayName,userCredentials[username]]', 'created', 'lastUpdated', 'likes', 'likedBy[id,displayName]', 'text', 'publicAccess', 'externalAccess', 'userAccesses', 'userGroupAccesses', 'comments[id,text,created,lastUpdated,user[id,displayName,userCredentials[username]]]'];
+var interpretationsFields = ['id', 'user[id,firstName,surname,displayName,userCredentials[username]]', 'created', 'lastUpdated', 'likes', 'likedBy[id,displayName]', 'text', 'publicAccess', 'externalAccess', 'userAccesses', 'userGroupAccesses', 'comments[id,text,created,lastUpdated,user[id,firstName,surname,displayName,userCredentials[username]]]'];
 
-var favoriteFields = ['id', 'name', 'href', 'subscribed', 'user[id,displayName]', 'displayName', 'description', 'displayDescription', 'created', 'lastUpdated', 'access', 'publicAccess', 'externalAccess', 'userAccesses', 'userGroupAccesses', 'interpretations[' + interpretationsFields.join(',') + ']'];
+var favoriteFields = ['id', 'name', 'href', 'subscribed', 'user[id,firstName,surname,displayName]', 'displayName', 'description', 'displayDescription', 'created', 'lastUpdated', 'access', 'publicAccess', 'externalAccess', 'userAccesses', 'userGroupAccesses', 'interpretations[' + interpretationsFields.join(',') + ']'];
 
 export var getFavoriteWithInterpretations = function getFavoriteWithInterpretations(d2, type, id) {
     var propName = itemTypeMap[type.toUpperCase()].propName;

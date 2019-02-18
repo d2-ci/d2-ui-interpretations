@@ -113,3 +113,4 @@ var Interpretation = function () {
 
 Interpretation.sharingFields = ["publicAccess", "externalAccess", "userGroupAccesses", "userAccesses"];
 export default Interpretation;
+;

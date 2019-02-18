@@ -14,7 +14,6 @@ import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
 import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
 import { Editor as RichTextEditor, convertCtrlKey } from '@dhis2/d2-ui-rich-text';
 import i18n from '@dhis2/d2-i18n';
-import isEqual from 'lodash/isEqual';
 import WithAvatar from '../Avatar/WithAvatar';
 import Toolbar from '../Toolbar/Toolbar';
 import SharingInfo from '../SharingInfo/SharingInfo';
@@ -75,9 +74,8 @@ export var NewInterpretationField = function (_Component) {
 
         _this.onUpdate = function () {
             _this.props.interpretation.text = _this.state.text;
-            if (!isEqual(_this.state.sharingProps.object, _this.props.interpretation.sharing)) {
-                _this.props.interpretation.sharing = _this.state.sharingProps.object;
-            }
+            _this.props.interpretation.sharing = _this.state.sharingProps.object;
+
             _this.props.onUpdate(_this.props.interpretation);
         };
 
@@ -87,7 +85,7 @@ export var NewInterpretationField = function (_Component) {
 
         _this.onCloseSharingDialog = function (sharingProps) {
             var newSharingProps = _Object$assign({}, _this.state.sharingProps, { object: sharingProps });
-            console.log(newSharingProps);
+
             sharingProps ? _this.setState({ sharingDialogisOpen: false, sharingProps: newSharingProps }) : _this.setState({ sharingDialosIsOpen: false });
         };
 
@@ -139,7 +137,7 @@ export var NewInterpretationField = function (_Component) {
         };
 
         _this.renderSharingInfo = function () {
-            return !!_this.state.text && React.createElement(SharingInfo, { interpretation: _this.props.interpretation || _this.state.sharingProps.object, onClick: _this.onOpenSharingDialog });
+            return !!_this.state.text && React.createElement(SharingInfo, { interpretation: _this.state.sharingProps.object, onClick: _this.onOpenSharingDialog });
         };
 
         _this.renderSharingDialog = function () {
@@ -161,25 +159,51 @@ export var NewInterpretationField = function (_Component) {
             text: _this.props.interpretation ? _this.props.interpretation.text : '',
             showToolbar: false,
             sharingDialogisOpen: false,
-            sharingProps: {
-                object: {
-                    user: { id: _this.props.model.user.id, name: _this.props.model.user.displayName },
-                    displayName: _this.props.model.displayName,
-                    userAccesses: _this.props.model.userAccesses,
-                    userGroupAccesses: _this.props.model.userGroupAccesses,
-                    publicAccess: _this.props.model.publicAccess,
-                    externalAccess: _this.props.model.externalAccess
-                },
-                meta: {
-                    allowPublicAccess: true,
-                    allowExternalAccess: true
-                }
-            }
+            sharingProps: {}
         };
         return _this;
     }
 
     _createClass(NewInterpretationField, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            if (this.props.interpretation) {
+                this.setState({
+                    sharingProps: {
+                        object: {
+                            user: { id: this.props.interpretation.user.id, name: this.props.interpretation.user.displayName },
+                            displayName: this.props.model.displayName,
+                            userAccesses: this.props.interpretation.userAccesses,
+                            userGroupAccesses: this.props.interpretation.userGroupAccesses,
+                            publicAccess: this.props.interpretation.publicAccess,
+                            externalAccess: this.props.interpretation.externalAccess
+                        },
+                        meta: {
+                            allowPublicAccess: this.props.model.publicAccess.includes('r'),
+                            allowExternalAccess: this.props.model.externalAccess
+                        }
+                    }
+                });
+            } else {
+                this.setState({
+                    sharingProps: {
+                        object: {
+                            user: { id: this.props.model.user.id, name: this.props.model.user.displayName },
+                            displayName: this.props.model.displayName,
+                            userAccesses: this.props.model.userAccesses,
+                            userGroupAccesses: this.props.model.userGroupAccesses,
+                            publicAccess: this.props.model.publicAccess,
+                            externalAccess: this.props.model.externalAccess
+                        },
+                        meta: {
+                            allowPublicAccess: this.props.model.publicAccess.includes('r'),
+                            allowExternalAccess: this.props.model.externalAccess
+                        }
+                    }
+                });
+            }
+        }
+    }, {
         key: 'postInterpretation',
         value: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
@@ -192,6 +216,7 @@ export var NewInterpretationField = function (_Component) {
 
                                 newInterpretation.text = this.state.text;
                                 newInterpretation.sharing = this.state.sharingProps.object;
+
                                 return _context.abrupt('return', newInterpretation.save(this.context.d2));
 
                             case 4:
@@ -218,7 +243,7 @@ export var NewInterpretationField = function (_Component) {
 
             return React.createElement(
                 WithAvatar,
-                { className: this.props.classes.newInterpretation, user: this.context.d2.currentUser },
+                { className: this.props.classes.newInterpretation, firstName: this.context.d2.currentUser.firstName, surname: this.context.d2.currentUser.surname },
                 React.createElement(
                     MentionsWrapper,
                     { d2: this.context.d2, onUserSelect: this.onInputChange },

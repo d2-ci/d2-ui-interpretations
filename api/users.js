@@ -80,4 +80,4 @@ export var getMentions = function () {
     return function getMentions(_x) {
         return _ref.apply(this, arguments);
     };
-}();
+}();;
