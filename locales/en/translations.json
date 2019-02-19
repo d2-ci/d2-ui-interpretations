@@ -1,7 +1,10 @@
 {
     "Pivot Tables": "",
+    "Table details": "",
     "Visualizer": "",
+    "Chart details": "",
     "Maps": "",
+    "Map details": "",
     "Event Reports": "",
     "Event Visualizer": "",
     "View": "",
@@ -23,7 +26,6 @@
     "No description": "",
     "Unsubscribe from this {{object}} and stop receiving notifications": "",
     "Subscribe to this {{object}} and start receiving notifications": "",
-    "Chart details": "",
     "Owner": "",
     "Created": "",
     "Last updated": "",

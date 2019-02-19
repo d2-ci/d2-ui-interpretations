@@ -23,6 +23,7 @@ import { setSubscription } from '../../api/helpers';
 import { formatDate } from '../../dateformats/dateformatter';
 import { translateModelName } from '../../translations/modelNametranslator';
 import styles from './styles/Details.style';
+import { itemTypeMap } from '../../../build/api/redirect';
 
 export var Details = function (_React$Component) {
     _inherits(Details, _React$Component);
@@ -92,7 +93,7 @@ export var Details = function (_React$Component) {
 
             return React.createElement(
                 CollapsibleCard,
-                { title: i18n.t('Chart details') },
+                { title: itemTypeMap[this.context.appName].detailsTitle },
                 SubscriptionButton,
                 React.createElement(
                     'div',
@@ -119,7 +120,8 @@ export var Details = function (_React$Component) {
 
 Details.contextTypes = {
     d2: PropTypes.object.isRequired,
-    locale: PropTypes.string.isRequired
+    locale: PropTypes.string.isRequired,
+    appName: PropTypes.string.isRequired
 };
 
 Details.propTypes = {

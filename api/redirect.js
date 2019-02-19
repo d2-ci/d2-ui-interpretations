@@ -55,33 +55,38 @@ export var itemTypeMap = (_itemTypeMap = {}, _defineProperty(_itemTypeMap, REPOR
         return 'dhis-web-pivot/?id=' + id;
     },
     propName: 'reportTable',
-    appName: i18n.t('Pivot Tables')
+    appName: i18n.t('Pivot Tables'),
+    detailsTitle: i18n.t('Table details')
 }), _defineProperty(_itemTypeMap, CHART, {
     id: CHART,
     appUrl: function appUrl(id) {
         return 'dhis-web-data-visualizer/#/' + id;
     },
     propName: 'chart',
-    appName: i18n.t('Visualizer')
+    appName: i18n.t('Visualizer'),
+    detailsTitle: i18n.t('Chart details')
 }), _defineProperty(_itemTypeMap, MAP, {
     id: MAP,
     appUrl: function appUrl(id) {
         return 'dhis-web-maps/?id=' + id;
     },
     propName: 'maps',
-    appName: i18n.t('Maps')
+    appName: i18n.t('Maps'),
+    detailsTitle: i18n.t('Map details')
 }), _defineProperty(_itemTypeMap, EVENT_REPORT, {
     id: EVENT_REPORT,
     appUrl: function appUrl(id) {
         return 'dhis-web-event-reports/?id=' + id;
     },
     propName: 'eventReport',
-    appName: i18n.t('Event Reports')
+    appName: i18n.t('Event Reports'),
+    detailsTitle: i18n.t('Table details')
 }), _defineProperty(_itemTypeMap, EVENT_CHART, {
     id: EVENT_CHART,
     appUrl: function appUrl(id) {
         return 'dhis-web-event-visualizer/?id=' + id;
     },
     propName: 'eventChart',
-    appName: i18n.t('Event Visualizer')
+    appName: i18n.t('Event Visualizer'),
+    detailsTitle: i18n.t('Table details')
 }), _itemTypeMap);
