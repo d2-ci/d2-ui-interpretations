@@ -29,6 +29,46 @@ export var NewInterpretationField = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (NewInterpretationField.__proto__ || _Object$getPrototypeOf(NewInterpretationField)).call(this, props));
 
+        _this.updateSharingProps = function () {
+            if (_this.props.interpretation) {
+                _this.setState({
+                    sharingProps: {
+                        object: {
+                            user: { id: _this.props.interpretation.user.id, name: _this.props.interpretation.user.displayName },
+                            displayName: _this.props.model.displayName,
+                            userAccesses: _this.props.interpretation.userAccesses,
+                            userGroupAccesses: _this.props.interpretation.userGroupAccesses,
+                            publicAccess: _this.props.interpretation.publicAccess,
+                            externalAccess: _this.props.interpretation.externalAccess,
+                            modelId: _this.props.model.id
+                        },
+                        meta: {
+                            allowPublicAccess: _this.props.model.publicAccess.includes('r'),
+                            allowExternalAccess: _this.props.model.externalAccess
+                        }
+                    }
+                });
+            } else {
+                _this.setState({
+                    sharingProps: {
+                        object: {
+                            user: { id: _this.props.model.user.id, name: _this.props.model.user.displayName },
+                            displayName: _this.props.model.displayName,
+                            userAccesses: _this.props.model.userAccesses,
+                            userGroupAccesses: _this.props.model.userGroupAccesses,
+                            publicAccess: _this.props.model.publicAccess,
+                            externalAccess: _this.props.model.externalAccess,
+                            modelId: _this.props.model.id
+                        },
+                        meta: {
+                            allowPublicAccess: _this.props.model.publicAccess.includes('r'),
+                            allowExternalAccess: _this.props.model.externalAccess
+                        }
+                    }
+                });
+            }
+        };
+
         _this.onInputChange = function (event) {
             if (event.target) {
                 _this.setState({ text: event.target.value });
@@ -165,43 +205,16 @@ export var NewInterpretationField = function (_Component) {
     }
 
     _createClass(NewInterpretationField, [{
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate() {
+            if (this.state.sharingProps.object && this.props.model.id !== this.state.sharingProps.object.modelId) {
+                this.updateSharingProps();
+            }
+        }
+    }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
-            if (this.props.interpretation) {
-                this.setState({
-                    sharingProps: {
-                        object: {
-                            user: { id: this.props.interpretation.user.id, name: this.props.interpretation.user.displayName },
-                            displayName: this.props.model.displayName,
-                            userAccesses: this.props.interpretation.userAccesses,
-                            userGroupAccesses: this.props.interpretation.userGroupAccesses,
-                            publicAccess: this.props.interpretation.publicAccess,
-                            externalAccess: this.props.interpretation.externalAccess
-                        },
-                        meta: {
-                            allowPublicAccess: this.props.model.publicAccess.includes('r'),
-                            allowExternalAccess: this.props.model.externalAccess
-                        }
-                    }
-                });
-            } else {
-                this.setState({
-                    sharingProps: {
-                        object: {
-                            user: { id: this.props.model.user.id, name: this.props.model.user.displayName },
-                            displayName: this.props.model.displayName,
-                            userAccesses: this.props.model.userAccesses,
-                            userGroupAccesses: this.props.model.userGroupAccesses,
-                            publicAccess: this.props.model.publicAccess,
-                            externalAccess: this.props.model.externalAccess
-                        },
-                        meta: {
-                            allowPublicAccess: this.props.model.publicAccess.includes('r'),
-                            allowExternalAccess: this.props.model.externalAccess
-                        }
-                    }
-                });
-            }
+            this.updateSharingProps();
         }
     }, {
         key: 'postInterpretation',
