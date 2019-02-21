@@ -21,7 +21,7 @@ import DeleteDialog from '../DeleteDialog/DeleteDialog';
 import InterpretationModel from '../../models/interpretation';
 import CommentModel from '../../models/comment';
 import { userCanManage, haveWriteAccess } from '../../authorization/auth';
-import { formatDate } from '../../dateformats/dateformatter';
+import { formatRelative } from '../../dateformats/dateformatter';
 import { shouldUpdateSharing } from '../../sharing/sharing';
 import styles from './styles/Interpretation.style';
 
@@ -78,6 +78,7 @@ export var Interpretation = function (_React$Component) {
             var _this$props = _this.props,
                 classes = _this$props.classes,
                 model = _this$props.model,
+                userGroups = _this$props.userGroups,
                 extended = _this$props.extended,
                 interpretation = _this$props.interpretation;
 
@@ -93,7 +94,7 @@ export var Interpretation = function (_React$Component) {
             } else {
                 var currentUserLikesInterpretation = some(function (user) {
                     return user.id === _this.context.d2.currentUser.id;
-                }, _this.props.interpretation.likedBy);
+                }, interpretation.likedBy);
 
                 return React.createElement(
                     WithAvatar,
@@ -108,12 +109,12 @@ export var Interpretation = function (_React$Component) {
                     React.createElement(CardInfo, {
                         likedBy: _this.getLikedByNames(),
                         repliedBy: _this.getRepliedByNames(),
-                        createdDate: formatDate(interpretation.created, _this.context.locale)
+                        createdDate: formatRelative(interpretation.created, _this.context.locale)
                     }),
                     React.createElement(ActionButtonContainer, {
                         isFocused: extended,
                         currentUserLikesInterpretation: currentUserLikesInterpretation,
-                        canReply: haveWriteAccess(_this.context.d2, interpretation),
+                        canReply: haveWriteAccess(_this.context.d2, userGroups, interpretation),
                         canManage: userCanManage(_this.context.d2, interpretation),
                         onClickHandlers: _this.getOnClickHandlers()
                     })
@@ -124,6 +125,7 @@ export var Interpretation = function (_React$Component) {
         _this.renderComments = function () {
             return _this.props.extended && React.createElement(CommentsList, {
                 interpretation: _this.props.interpretation,
+                canReply: haveWriteAccess(_this.context.d2, _this.props.userGroups, _this.props.interpretation),
                 newComment: _this.state.newComment,
                 onChange: _this.notifyChange
             });

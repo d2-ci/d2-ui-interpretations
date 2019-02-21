@@ -12,7 +12,7 @@ import NewCommentField from '../Comment/NewCommentField';
 import Comment from '../Comment/Comment';
 import Link from '../Link/Link';
 import CommentModel from '../../models/comment';
-import { userCanManage, haveWriteAccess } from '../../authorization/auth';
+import { userCanManage } from '../../authorization/auth';
 import styles from './styles/CommentsList.style';
 
 var commentsToShowOnInit = 5;
@@ -77,7 +77,7 @@ export var CommentsList = function (_React$Component) {
                 }) : React.createElement(Comment, {
                     key: comment.id,
                     comment: comment,
-                    canReply: haveWriteAccess(_this.context.d2, _this.props.interpretation),
+                    canReply: _this.props.canReply,
                     isOwner: userCanManage(_this.context.d2, comment),
                     locale: _this.context.locale,
                     onEdit: _this.onEdit,
@@ -91,7 +91,7 @@ export var CommentsList = function (_React$Component) {
         };
 
         _this.renderInputField = function () {
-            return (haveWriteAccess(_this.context.d2, _this.props.interpretation) || haveWriteAccess(_this.context.d2, _this.props.comment)) && React.createElement(NewCommentField, {
+            return _this.props.canReply && React.createElement(NewCommentField, {
                 comment: _this.state.newComment,
                 onPost: _this.onSave
             });

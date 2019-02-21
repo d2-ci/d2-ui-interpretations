@@ -207,7 +207,7 @@ export var NewInterpretationField = function (_Component) {
     _createClass(NewInterpretationField, [{
         key: 'componentDidUpdate',
         value: function componentDidUpdate() {
-            if (this.state.sharingProps.object && this.props.model.id !== this.state.sharingProps.object.modelId) {
+            if (!this.props.interpretation && this.state.sharingProps.object && this.props.model.id !== this.state.sharingProps.object.modelId) {
                 this.updateSharingProps();
             }
         }

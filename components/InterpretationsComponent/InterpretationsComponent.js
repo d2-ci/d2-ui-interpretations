@@ -1,4 +1,5 @@
 import _regeneratorRuntime from 'babel-runtime/regenerator';
+import _Array$from from 'babel-runtime/core-js/array/from';
 import _asyncToGenerator from 'babel-runtime/helpers/asyncToGenerator';
 import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
 import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
@@ -31,7 +32,7 @@ export var InterpretationsComponent = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (InterpretationsComponent.__proto__ || _Object$getPrototypeOf(InterpretationsComponent)).call(this, props));
 
-        _this.state = { model: null };
+        _this.state = { model: null, userGroups: [] };
 
         _this.onChange = _this.onChange.bind(_this);
         return _this;
@@ -43,7 +44,7 @@ export var InterpretationsComponent = function (_React$Component) {
             return {
                 d2: this.props.d2,
                 locale: this.props.d2.currentUser.userSettings.settings.keyUiLocale || 'en',
-                appName: this.props.appName || 'CHART',
+                appName: this.props.appName || '',
                 item: this.props.item || {}
             };
         }
@@ -69,16 +70,22 @@ export var InterpretationsComponent = function (_React$Component) {
             var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(props) {
                 var _this2 = this;
 
+                var users;
                 return _regeneratorRuntime.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
+                                _context.next = 2;
+                                return props.d2.currentUser.getUserGroups();
+
+                            case 2:
+                                users = _context.sent;
                                 return _context.abrupt('return', getFavoriteWithInterpretations(props.d2, props.type, props.id).then(function (model) {
-                                    _this2.setState({ model: model });
+                                    _this2.setState({ model: model, userGroups: _Array$from(users.valuesContainerMap) });
                                     return model;
                                 }));
 
-                            case 1:
+                            case 4:
                             case 'end':
                                 return _context.stop();
                         }
@@ -127,7 +134,9 @@ export var InterpretationsComponent = function (_React$Component) {
                 classes = _props.classes,
                 currentInterpretationId = _props.currentInterpretationId,
                 onCurrentInterpretationChange = _props.onCurrentInterpretationChange;
-            var model = this.state.model;
+            var _state = this.state,
+                model = _state.model,
+                userGroups = _state.userGroups;
 
 
             if (!model) {
@@ -137,9 +146,10 @@ export var InterpretationsComponent = function (_React$Component) {
             return React.createElement(
                 'div',
                 { className: classes.interpretationsContainer },
-                React.createElement(Details, { model: model, onChange: this.onChange }),
+                React.createElement(Details, { model: model, onChange: this.onChange, type: this.props.type }),
                 React.createElement(InterpretationsCard, {
                     model: model,
+                    userGroups: userGroups,
                     onChange: this.onChange,
                     currentInterpretationId: currentInterpretationId,
                     onCurrentInterpretationChange: onCurrentInterpretationChange,

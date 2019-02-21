@@ -13,6 +13,7 @@ export var InterpretationsList = function InterpretationsList(_ref) {
     var classes = _ref.classes,
         d2 = _ref.d2,
         model = _ref.model,
+        userGroups = _ref.userGroups,
         interpretations = _ref.interpretations,
         onSelect = _ref.onSelect,
         onChange = _ref.onChange,
@@ -27,7 +28,7 @@ export var InterpretationsList = function InterpretationsList(_ref) {
         );
     }
     var filteredItems = interpretations.filter(function (item) {
-        return haveReadAccess(d2, item) && item;
+        return haveReadAccess(d2, userGroups, item) && item;
     });
 
     var listItems = isExpanded ? filteredItems : filteredItems.slice(-interpretationsToShowOnInit);
@@ -42,6 +43,7 @@ export var InterpretationsList = function InterpretationsList(_ref) {
         listItems.map(function (item) {
             return React.createElement(Interpretation, {
                 model: model,
+                userGroups: userGroups,
                 key: item.id,
                 interpretation: item,
                 onChange: onChange,

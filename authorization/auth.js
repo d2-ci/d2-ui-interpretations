@@ -1,3 +1,4 @@
+import _slicedToArray from 'babel-runtime/helpers/slicedToArray';
 import some from 'lodash/fp/some';
 
 export var userCanManage = function userCanManage(d2, object) {
@@ -15,7 +16,7 @@ export var userCanManage = function userCanManage(d2, object) {
     }
 };
 
-export var haveReadAccess = function haveReadAccess(d2, object) {
+export var haveReadAccess = function haveReadAccess(d2, userGroups, object) {
     var _ref2 = d2 || {},
         currentUser = _ref2.currentUser;
 
@@ -29,14 +30,14 @@ export var haveReadAccess = function haveReadAccess(d2, object) {
         return true;
     } else if (sharedUserAccess(currentUser.id, object.userAccesses, 'r')) {
         return true;
-    } else if (sharedUserGroups(currentUser.userGroupAccesses, object.userGroupAccesses, 'r')) {
+    } else if (sharedUserGroups(userGroups, object.userGroupAccesses, 'r')) {
         return true;
     } else {
         return false;
     }
 };
 
-export var haveWriteAccess = function haveWriteAccess(d2, object) {
+export var haveWriteAccess = function haveWriteAccess(d2, userGroups, object) {
     var _ref3 = d2 || {},
         currentUser = _ref3.currentUser;
 
@@ -50,7 +51,7 @@ export var haveWriteAccess = function haveWriteAccess(d2, object) {
         return true;
     } else if (sharedUserAccess(currentUser.id, object.userAccesses, 'w')) {
         return true;
-    } else if (sharedUserGroups(currentUser.userGroupAccesses, object.userGroupAccesses, 'w')) {
+    } else if (sharedUserGroups(userGroups, object.userGroupAccesses, 'w')) {
         return true;
     } else {
         return false;
@@ -66,12 +67,17 @@ var sharedUserAccess = function sharedUserAccess(userId, users, accessBit) {
 var sharedUserGroups = function sharedUserGroups(userGroups, objectGroups, accessBit) {
     var isMember = false;
 
-    userGroups.forEach(function (userGroup) {
+    userGroups.forEach(function (_ref4) {
+        var _ref5 = _slicedToArray(_ref4, 2),
+            id = _ref5[0],
+            Model = _ref5[1];
+
         if (some(function (objectGroup) {
-            return objectGroup.id === userGroup.id && objectGroup.access.includes(accessBit);
+            return objectGroup.id === id && objectGroup.access.includes(accessBit);
         }, objectGroups)) {
             isMember = true;
         }
     });
+
     return isMember;
 };

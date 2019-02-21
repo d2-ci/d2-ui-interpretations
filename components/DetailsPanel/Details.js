@@ -93,7 +93,7 @@ export var Details = function (_React$Component) {
 
             return React.createElement(
                 CollapsibleCard,
-                { title: itemTypeMap[this.context.appName].detailsTitle },
+                { title: itemTypeMap[this.props.type.toUpperCase()].detailsTitle },
                 SubscriptionButton,
                 React.createElement(
                     'div',

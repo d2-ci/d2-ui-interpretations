@@ -15,6 +15,7 @@ import Interpretation from '../Interpretation/Interpretation';
 import InterpretationsList, { interpretationsToShowOnInit } from '../Lists/InterpretationsList';
 import NewInterpretationField from '../Interpretation/NewInterpretationField';
 import styles from './styles/InterpretationsCard.style';
+import { haveReadAccess } from '../../authorization/auth';
 
 export var InterpretationsCard = function (_React$Component) {
     _inherits(InterpretationsCard, _React$Component);
@@ -46,12 +47,14 @@ export var InterpretationsCard = function (_React$Component) {
 
             return currentInterpretation ? React.createElement(Interpretation, {
                 model: _this.props.model,
+                userGroups: _this.props.userGroups,
                 interpretation: currentInterpretation,
                 onChange: _this.notifyChange,
                 onSelect: _this.setCurrentInterpretation,
                 extended: true
             }) : React.createElement(InterpretationsList, {
                 model: _this.props.model,
+                userGroups: _this.props.userGroups,
                 d2: _this.context.d2,
                 interpretations: sortedInterpretations,
                 onChange: _this.notifyChange,
@@ -62,7 +65,7 @@ export var InterpretationsCard = function (_React$Component) {
         };
 
         _this.renderInputField = function () {
-            return !_this.state.currentInterpretationId && React.createElement(NewInterpretationField, {
+            return !_this.state.currentInterpretationId && haveReadAccess(_this.context.d2, _this.props.userGroups, _this.props.model) && React.createElement(NewInterpretationField, {
                 model: _this.props.model,
                 onSave: _this.notifyChange,
                 type: _this.props.type
