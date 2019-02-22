@@ -57,7 +57,7 @@ var Interpretation = function () {
                                 response = _context.sent;
                                 interpretationId = getInterpretationIdFromResponse(response);
                                 sharingUrl = '/sharing?type=interpretation&id=' + interpretationId;
-                                sharingPayload = this.sharing ? { object: _extends({}, this.sharing, { id: interpretationId }) } : { object: pick(Interpretation.sharingFields, this._parent) };
+                                sharingPayload = this.sharing ? { object: this.sharing } : { object: pick(Interpretation.sharingFields, this._parent) };
 
 
                                 this.sharing = null;

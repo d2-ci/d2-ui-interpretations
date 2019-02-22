@@ -32,7 +32,7 @@ export var Comment = function Comment(_ref) {
             React.createElement(CardHeader, { userName: comment.user.displayName }),
             React.createElement(CardText, { text: comment.text }),
             React.createElement(CardInfo, { createdDate: formatDate(comment.created, locale) }),
-            isOwner ? React.createElement(
+            isOwner && canReply ? React.createElement(
                 'div',
                 { className: classes.commentActions },
                 React.createElement(ActionButton, {

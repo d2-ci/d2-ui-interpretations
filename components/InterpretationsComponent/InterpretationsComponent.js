@@ -81,7 +81,7 @@ export var InterpretationsComponent = function (_React$Component) {
                             case 2:
                                 users = _context.sent;
                                 return _context.abrupt('return', getFavoriteWithInterpretations(props.d2, props.type, props.id).then(function (model) {
-                                    _this2.setState({ model: model, userGroups: _Array$from(users.valuesContainerMap) });
+                                    _this2.setState({ model: model, userGroups: _Array$from(users.keys()) });
                                     return model;
                                 }));
 

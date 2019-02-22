@@ -19,6 +19,7 @@ import Toolbar from '../Toolbar/Toolbar';
 import SharingInfo from '../SharingInfo/SharingInfo';
 import InterpretationModel from '../../models/interpretation';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import { getSharing, setInitialSharing } from '../../sharing/sharing';
 import styles from './styles/NewInterpretationField.style';
 
 export var NewInterpretationField = function (_Component) {
@@ -30,43 +31,7 @@ export var NewInterpretationField = function (_Component) {
         var _this = _possibleConstructorReturn(this, (NewInterpretationField.__proto__ || _Object$getPrototypeOf(NewInterpretationField)).call(this, props));
 
         _this.updateSharingProps = function () {
-            if (_this.props.interpretation) {
-                _this.setState({
-                    sharingProps: {
-                        object: {
-                            user: { id: _this.props.interpretation.user.id, name: _this.props.interpretation.user.displayName },
-                            displayName: _this.props.model.displayName,
-                            userAccesses: _this.props.interpretation.userAccesses,
-                            userGroupAccesses: _this.props.interpretation.userGroupAccesses,
-                            publicAccess: _this.props.interpretation.publicAccess,
-                            externalAccess: _this.props.interpretation.externalAccess,
-                            modelId: _this.props.model.id
-                        },
-                        meta: {
-                            allowPublicAccess: _this.props.model.publicAccess.includes('r'),
-                            allowExternalAccess: _this.props.model.externalAccess
-                        }
-                    }
-                });
-            } else {
-                _this.setState({
-                    sharingProps: {
-                        object: {
-                            user: { id: _this.props.model.user.id, name: _this.props.model.user.displayName },
-                            displayName: _this.props.model.displayName,
-                            userAccesses: _this.props.model.userAccesses,
-                            userGroupAccesses: _this.props.model.userGroupAccesses,
-                            publicAccess: _this.props.model.publicAccess,
-                            externalAccess: _this.props.model.externalAccess,
-                            modelId: _this.props.model.id
-                        },
-                        meta: {
-                            allowPublicAccess: _this.props.model.publicAccess.includes('r'),
-                            allowExternalAccess: _this.props.model.externalAccess
-                        }
-                    }
-                });
-            }
+            _this.props.interpretation ? _this.setState({ sharingProps: getSharing(_this.props.interpretation.user, _this.props.interpretation, _this.props.model) }) : _this.setState({ sharingProps: setInitialSharing(_this.context.d2.currentUser, _this.props.model) });
         };
 
         _this.onInputChange = function (event) {
