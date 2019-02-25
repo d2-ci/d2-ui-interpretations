@@ -25,11 +25,5 @@ export default {
 
     intepretationLikes: {
         paddingRight: '5px'
-    },
-
-    restricted: {
-        fontStyle: 'italic',
-        padding: '8px'
     }
-
 };

@@ -262,11 +262,7 @@ export var Interpretation = function (_React$Component) {
                 Comments,
                 SharingDialog,
                 DeleteInterpretationDialog
-            ) : React.createElement(
-                'div',
-                { className: this.props.classes.restricted },
-                i18n.t('Access restricted')
-            );
+            ) : null;
         }
     }]);
 
