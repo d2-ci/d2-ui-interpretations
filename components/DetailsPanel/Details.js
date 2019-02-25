@@ -40,8 +40,10 @@ export var Details = function (_React$Component) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Details.__proto__ || _Object$getPrototypeOf(Details)).call.apply(_ref, [this].concat(args))), _this), _this.state = { isExpanded: true }, _this.toggleDetailsExpand = function () {
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Details.__proto__ || _Object$getPrototypeOf(Details)).call.apply(_ref, [this].concat(args))), _this), _this.state = { isExpanded: true, showCompleteDescription: false }, _this.toggleDetailsExpand = function () {
             _this.setState({ isExpanded: !_this.state.isExpanded });
+        }, _this.toggleDescription = function () {
+            return _this.setState({ showCompleteDescription: !_this.state.showCompleteDescription });
         }, _this.toggleSubscription = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
             var _this$props, model, onChange;
 
@@ -98,7 +100,12 @@ export var Details = function (_React$Component) {
                 React.createElement(
                     'div',
                     { className: classes.detailsCardList },
-                    React.createElement(Item, { text: React.createElement(Description, { description: model.displayDescription }) }),
+                    React.createElement(Item, { text: React.createElement(Description, {
+                            displayDescription: model.displayDescription,
+                            isToggled: this.state.showCompleteDescription,
+                            onToggleDescription: this.toggleDescription
+                        })
+                    }),
                     React.createElement(Item, { label: i18n.t('Owner'), text: owner }),
                     React.createElement(Item, {
                         label: i18n.t('Created'),
