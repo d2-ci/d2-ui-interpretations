@@ -50,6 +50,7 @@ export var InterpretationsCard = function (_React$Component) {
                 userGroups: _this.props.userGroups,
                 interpretation: currentInterpretation,
                 onChange: _this.notifyChange,
+                haveReadAccess: haveReadAccess(_this.context.d2, _this.props.userGroups, currentInterpretation),
                 onSelect: _this.setCurrentInterpretation,
                 extended: true
             }) : React.createElement(InterpretationsList, {

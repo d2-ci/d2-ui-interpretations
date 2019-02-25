@@ -255,13 +255,17 @@ export var Interpretation = function (_React$Component) {
             var SharingDialog = this.renderSharingDialog();
             var DeleteInterpretationDialog = this.renderDeleteInterpretationDialog();
 
-            return React.createElement(
+            return this.props.haveReadAccess ? React.createElement(
                 Fragment,
                 null,
                 Interpretation,
                 Comments,
                 SharingDialog,
                 DeleteInterpretationDialog
+            ) : React.createElement(
+                'div',
+                { className: this.props.classes.restricted },
+                i18n.t('Access restricted')
             );
         }
     }]);

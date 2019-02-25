@@ -19,7 +19,9 @@ export var haveReadAccess = function haveReadAccess(d2, userGroups, object) {
     var _ref2 = d2 || {},
         currentUser = _ref2.currentUser;
 
-    if (object.user && currentUser.id === object.user.id) {
+    if (!object || !currentUser) {
+        return false;
+    } else if (object.user && currentUser.id === object.user.id) {
         return true;
     } else if (currentUser.authorities.has('ALL')) {
         return true;
@@ -38,7 +40,9 @@ export var haveWriteAccess = function haveWriteAccess(d2, userGroups, object) {
     var _ref3 = d2 || {},
         currentUser = _ref3.currentUser;
 
-    if (object.user && currentUser.id === object.user.id) {
+    if (!object || !currentUser) {
+        return false;
+    } else if (object.user && currentUser.id === object.user.id) {
         return true;
     } else if (currentUser.authorities.has('ALL')) {
         return true;
