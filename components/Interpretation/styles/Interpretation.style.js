@@ -18,12 +18,17 @@ export default {
     expanded: {
         display: 'flex',
         padding: '8px',
-        margin: '8px 0px',
+        margin: '0px 0px 8px',
         borderRadius: '4px',
         backgroundColor: '#F3F5F7'
     },
 
     intepretationLikes: {
         paddingRight: '5px'
+    },
+
+    restricted: {
+        fontStyle: 'italic',
+        padding: '8px'
     }
 };

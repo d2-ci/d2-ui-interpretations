@@ -20,20 +20,13 @@ export var InterpretationsList = function InterpretationsList(_ref) {
         isExpanded = _ref.isExpanded,
         toggleShowAllInterpretations = _ref.toggleShowAllInterpretations;
 
-    if (!interpretations.length) {
-        return React.createElement(
-            'div',
-            { className: classes.emptyList },
-            i18n.t("No interpretations")
-        );
-    }
     var filteredItems = interpretations.filter(function (item) {
         return haveReadAccess(d2, userGroups, item) && item;
     });
 
     var listItems = isExpanded ? filteredItems : filteredItems.slice(-interpretationsToShowOnInit);
 
-    return React.createElement(
+    return listItems.length ? React.createElement(
         Fragment,
         null,
         listItems.length > interpretationsToShowOnInit && React.createElement(Link, {
@@ -44,6 +37,7 @@ export var InterpretationsList = function InterpretationsList(_ref) {
             return React.createElement(Interpretation, {
                 model: model,
                 userGroups: userGroups,
+                haveReadAccess: haveReadAccess(d2, userGroups, item),
                 key: item.id,
                 interpretation: item,
                 onChange: onChange,
@@ -51,6 +45,10 @@ export var InterpretationsList = function InterpretationsList(_ref) {
                 extended: false
             });
         })
+    ) : React.createElement(
+        'div',
+        { className: classes.emptyList },
+        i18n.t("No interpretations")
     );
 };
 
