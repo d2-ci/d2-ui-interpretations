@@ -15,5 +15,9 @@ export default {
         borderRadius: '3px',
         position: 'relative',
         bottom: '2px'
+    },
+
+    popper: {
+        zIndex: 1200
     }
 };

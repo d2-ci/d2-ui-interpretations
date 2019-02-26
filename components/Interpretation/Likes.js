@@ -44,7 +44,8 @@ export var Likes = function (_Component) {
                 {
                     anchorEl: document.getElementById(_this.id),
                     open: _this.state.tooltipIsOpen,
-                    placement: 'top'
+                    placement: 'top',
+                    style: styles.popper
                 },
                 React.createElement(
                     Paper,

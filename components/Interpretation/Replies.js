@@ -56,7 +56,8 @@ export var Replies = function (_Component) {
                 {
                     placement: 'top',
                     open: _this.state.tooltipIsOpen,
-                    anchorEl: document.getElementById(_this.id)
+                    anchorEl: document.getElementById(_this.id),
+                    style: styles.popper
                 },
                 React.createElement(
                     Paper,
