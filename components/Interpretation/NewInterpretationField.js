@@ -40,6 +40,10 @@ export var NewInterpretationField = function (_Component) {
             }
         };
 
+        _this.onUserSelect = function (newValue) {
+            _this.setState({ text: newValue });
+        };
+
         _this.setNativeInputVal = function (val) {
             var node = _this.textarea.current;
             node.value = val;
@@ -224,7 +228,7 @@ export var NewInterpretationField = function (_Component) {
                 { className: this.props.classes.newInterpretation, firstName: this.context.d2.currentUser.firstName, surname: this.context.d2.currentUser.surname },
                 React.createElement(
                     MentionsWrapper,
-                    { d2: this.context.d2, onUserSelect: this.onInputChange },
+                    { d2: this.context.d2, onUserSelect: this.onUserSelect },
                     React.createElement(
                         RichTextEditor,
                         { onEdit: this.onInputChange },
