@@ -1,37 +1,115 @@
-import _Object$assign from 'babel-runtime/core-js/object/assign';
-import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import i18n from '@dhis2/d2-i18n';
-import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
-import { withStyles } from '@material-ui/core/styles';
-import some from 'lodash/fp/some';
-import NewInterpretationField from './NewInterpretationField';
-import WithAvatar from '../Avatar/WithAvatar';
-import CardHeader from '../Cards/CardHeader';
-import CardText from '../Cards/CardText';
-import CardInfo from '../Cards/CardInfo';
-import ActionButtonContainer from '../Buttons/ActionButtonContainer';
-import CommentsList from '../Lists/CommentsList';
-import DeleteDialog from '../DeleteDialog/DeleteDialog';
-import InterpretationModel from '../../models/interpretation';
-import CommentModel from '../../models/comment';
-import { userCanManage, haveWriteAccess } from '../../authorization/auth';
-import { formatDate } from '../../dateformats/dateformatter';
-import { shouldUpdateSharing } from '../../sharing/sharing';
-import styles from './styles/Interpretation.style';
+'use strict';
 
-export var Interpretation = function (_React$Component) {
-    _inherits(Interpretation, _React$Component);
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Interpretation = undefined;
+
+var _assign = require('babel-runtime/core-js/object/assign');
+
+var _assign2 = _interopRequireDefault(_assign);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _d2I18n = require('@dhis2/d2-i18n');
+
+var _d2I18n2 = _interopRequireDefault(_d2I18n);
+
+var _d2UiSharingDialog = require('@dhis2/d2-ui-sharing-dialog');
+
+var _d2UiSharingDialog2 = _interopRequireDefault(_d2UiSharingDialog);
+
+var _styles = require('@material-ui/core/styles');
+
+var _some = require('lodash/fp/some');
+
+var _some2 = _interopRequireDefault(_some);
+
+var _NewInterpretationField = require('./NewInterpretationField');
+
+var _NewInterpretationField2 = _interopRequireDefault(_NewInterpretationField);
+
+var _WithAvatar = require('../Avatar/WithAvatar');
+
+var _WithAvatar2 = _interopRequireDefault(_WithAvatar);
+
+var _CardHeader = require('../Cards/CardHeader');
+
+var _CardHeader2 = _interopRequireDefault(_CardHeader);
+
+var _CardText = require('../Cards/CardText');
+
+var _CardText2 = _interopRequireDefault(_CardText);
+
+var _CardInfo = require('../Cards/CardInfo');
+
+var _CardInfo2 = _interopRequireDefault(_CardInfo);
+
+var _ActionButtonContainer = require('../Buttons/ActionButtonContainer');
+
+var _ActionButtonContainer2 = _interopRequireDefault(_ActionButtonContainer);
+
+var _CommentsList = require('../Lists/CommentsList');
+
+var _CommentsList2 = _interopRequireDefault(_CommentsList);
+
+var _DeleteDialog = require('../DeleteDialog/DeleteDialog');
+
+var _DeleteDialog2 = _interopRequireDefault(_DeleteDialog);
+
+var _interpretation = require('../../models/interpretation');
+
+var _interpretation2 = _interopRequireDefault(_interpretation);
+
+var _comment = require('../../models/comment');
+
+var _comment2 = _interopRequireDefault(_comment);
+
+var _auth = require('../../authorization/auth');
+
+var _dateformatter = require('../../dateformats/dateformatter');
+
+var _sharing = require('../../sharing/sharing');
+
+var _Interpretation = require('./styles/Interpretation.style');
+
+var _Interpretation2 = _interopRequireDefault(_Interpretation);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Interpretation = exports.Interpretation = function (_React$Component) {
+    (0, _inherits3.default)(Interpretation, _React$Component);
 
     function Interpretation(props) {
-        _classCallCheck(this, Interpretation);
+        (0, _classCallCheck3.default)(this, Interpretation);
 
-        var _this = _possibleConstructorReturn(this, (Interpretation.__proto__ || _Object$getPrototypeOf(Interpretation)).call(this, props));
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Interpretation.__proto__ || (0, _getPrototypeOf2.default)(Interpretation)).call(this, props));
 
         _this.onOpenSharingDialog = function (event) {
             event.stopPropagation();
@@ -39,9 +117,9 @@ export var Interpretation = function (_React$Component) {
         };
 
         _this.onCloseSharingDialog = function (newSharingInfo) {
-            if (shouldUpdateSharing(newSharingInfo, _this.props.interpretation)) {
-                var sharingProperties = _Object$assign({}, _this.props.interpretation, newSharingInfo);
-                var updatedInterpretation = new InterpretationModel(_this.props.model, sharingProperties);
+            if ((0, _sharing.shouldUpdateSharing)(newSharingInfo, _this.props.interpretation)) {
+                var sharingProperties = (0, _assign2.default)({}, _this.props.interpretation, newSharingInfo);
+                var updatedInterpretation = new _interpretation2.default(_this.props.model, sharingProperties);
                 _this.onSaveInterpretation(updatedInterpretation);
             }
             _this.setState({ sharingDialogIsOpen: false });
@@ -84,7 +162,7 @@ export var Interpretation = function (_React$Component) {
 
 
             if (_this.state.interpretationToEdit) {
-                return React.createElement(NewInterpretationField, {
+                return _react2.default.createElement(_NewInterpretationField2.default, {
                     model: model,
                     type: 'interpretation',
                     interpretation: _this.state.interpretationToEdit,
@@ -92,30 +170,30 @@ export var Interpretation = function (_React$Component) {
                     onClose: _this.onCancelEditInterpretation
                 });
             } else {
-                var currentUserLikesInterpretation = some(function (user) {
+                var currentUserLikesInterpretation = (0, _some2.default)(function (user) {
                     return user.id === _this.context.d2.currentUser.id;
                 }, interpretation.likedBy);
 
-                return React.createElement(
-                    WithAvatar,
+                return _react2.default.createElement(
+                    _WithAvatar2.default,
                     {
                         className: extended ? classes.expanded : classes.compact,
                         firstName: interpretation.user.firstName,
                         surname: interpretation.user.surname,
                         onClick: !extended ? _this.onView : null
                     },
-                    React.createElement(CardHeader, { userName: interpretation.user.displayName }),
-                    React.createElement(CardText, { extended: extended, text: interpretation.text }),
-                    React.createElement(CardInfo, {
+                    _react2.default.createElement(_CardHeader2.default, { userName: interpretation.user.displayName }),
+                    _react2.default.createElement(_CardText2.default, { extended: extended, text: interpretation.text }),
+                    _react2.default.createElement(_CardInfo2.default, {
                         likedBy: _this.getLikedByNames(),
                         repliedBy: _this.getRepliedByNames(),
-                        createdDate: formatDate(interpretation.created, _this.context.locale)
+                        createdDate: (0, _dateformatter.formatDate)(interpretation.created, _this.context.locale)
                     }),
-                    React.createElement(ActionButtonContainer, {
+                    _react2.default.createElement(_ActionButtonContainer2.default, {
                         isFocused: extended,
                         currentUserLikesInterpretation: currentUserLikesInterpretation,
-                        canReply: haveWriteAccess(_this.context.d2, userGroups, interpretation),
-                        canManage: userCanManage(_this.context.d2, interpretation),
+                        canReply: (0, _auth.haveWriteAccess)(_this.context.d2, userGroups, interpretation),
+                        canManage: (0, _auth.userCanManage)(_this.context.d2, interpretation),
                         onClickHandlers: _this.getOnClickHandlers()
                     })
                 );
@@ -123,16 +201,16 @@ export var Interpretation = function (_React$Component) {
         };
 
         _this.renderComments = function () {
-            return _this.props.extended && React.createElement(CommentsList, {
+            return _this.props.extended && _react2.default.createElement(_CommentsList2.default, {
                 interpretation: _this.props.interpretation,
-                canReply: haveWriteAccess(_this.context.d2, _this.props.userGroups, _this.props.interpretation),
+                canReply: (0, _auth.haveWriteAccess)(_this.context.d2, _this.props.userGroups, _this.props.interpretation),
                 newComment: _this.state.newComment,
                 onChange: _this.notifyChange
             });
         };
 
         _this.renderSharingDialog = function () {
-            return _this.state.sharingDialogIsOpen && React.createElement(SharingDialog, {
+            return _this.state.sharingDialogIsOpen && _react2.default.createElement(_d2UiSharingDialog2.default, {
                 open: true,
                 onRequestClose: _this.onCloseSharingDialog,
                 d2: _this.context.d2,
@@ -142,9 +220,9 @@ export var Interpretation = function (_React$Component) {
         };
 
         _this.renderDeleteInterpretationDialog = function () {
-            return _this.state.deleteDialogIsOpen && React.createElement(DeleteDialog, {
-                title: i18n.t('Delete interpretation'),
-                text: i18n.t('Are you sure you want to delete this interpretation?'),
+            return _this.state.deleteDialogIsOpen && _react2.default.createElement(_DeleteDialog2.default, {
+                title: _d2I18n2.default.t('Delete interpretation'),
+                text: _d2I18n2.default.t('Are you sure you want to delete this interpretation?'),
                 onDelete: _this.onDeleteInterpretation,
                 onCancel: _this.onCloseDeleteDialog
             });
@@ -170,7 +248,7 @@ export var Interpretation = function (_React$Component) {
         return _this;
     }
 
-    _createClass(Interpretation, [{
+    (0, _createClass3.default)(Interpretation, [{
         key: 'notifyChange',
         value: function notifyChange(interpretation) {
             if (this.props.onChange) {
@@ -213,7 +291,7 @@ export var Interpretation = function (_React$Component) {
     }, {
         key: 'onReply',
         value: function onReply() {
-            var newComment = CommentModel.getReplyForInterpretation(this.context.d2, this.props.interpretation);
+            var newComment = _comment2.default.getReplyForInterpretation(this.context.d2, this.props.interpretation);
             this.setState({ newComment: newComment });
         }
     }, {
@@ -255,35 +333,34 @@ export var Interpretation = function (_React$Component) {
             var SharingDialog = this.renderSharingDialog();
             var DeleteInterpretationDialog = this.renderDeleteInterpretationDialog();
 
-            return this.props.haveReadAccess ? React.createElement(
-                Fragment,
+            return this.props.haveReadAccess ? _react2.default.createElement(
+                _react.Fragment,
                 null,
                 Interpretation,
                 Comments,
                 SharingDialog,
                 DeleteInterpretationDialog
-            ) : React.createElement(
+            ) : _react2.default.createElement(
                 'div',
                 { className: this.props.classes.restricted },
-                i18n.t('Access restricted')
+                _d2I18n2.default.t('Access restricted')
             );
         }
     }]);
-
     return Interpretation;
-}(React.Component);
+}(_react2.default.Component);
 
 Interpretation.propTypes = {
-    classes: PropTypes.object.isRequired,
-    interpretation: PropTypes.object.isRequired,
-    onChange: PropTypes.func.isRequired,
-    onSelect: PropTypes.func,
-    extended: PropTypes.bool.isRequired
+    classes: _propTypes2.default.object.isRequired,
+    interpretation: _propTypes2.default.object.isRequired,
+    onChange: _propTypes2.default.func.isRequired,
+    onSelect: _propTypes2.default.func,
+    extended: _propTypes2.default.bool.isRequired
 };
 
 Interpretation.contextTypes = {
-    d2: PropTypes.object.isRequired,
-    locale: PropTypes.string
+    d2: _propTypes2.default.object.isRequired,
+    locale: _propTypes2.default.string
 };
 
-export default withStyles(styles)(Interpretation);
+exports.default = (0, _styles.withStyles)(_Interpretation2.default)(Interpretation);

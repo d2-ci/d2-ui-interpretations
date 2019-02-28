@@ -1,6 +1,17 @@
-import some from 'lodash/fp/some';
+'use strict';
 
-export var userCanManage = function userCanManage(d2, object) {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.haveWriteAccess = exports.haveReadAccess = exports.userCanManage = undefined;
+
+var _some = require('lodash/fp/some');
+
+var _some2 = _interopRequireDefault(_some);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var userCanManage = exports.userCanManage = function userCanManage(d2, object) {
     var _ref = d2 || {},
         currentUser = _ref.currentUser;
 
@@ -15,7 +26,7 @@ export var userCanManage = function userCanManage(d2, object) {
     }
 };
 
-export var haveReadAccess = function haveReadAccess(d2, userGroups, object) {
+var haveReadAccess = exports.haveReadAccess = function haveReadAccess(d2, userGroups, object) {
     var _ref2 = d2 || {},
         currentUser = _ref2.currentUser;
 
@@ -36,7 +47,7 @@ export var haveReadAccess = function haveReadAccess(d2, userGroups, object) {
     }
 };
 
-export var haveWriteAccess = function haveWriteAccess(d2, userGroups, object) {
+var haveWriteAccess = exports.haveWriteAccess = function haveWriteAccess(d2, userGroups, object) {
     var _ref3 = d2 || {},
         currentUser = _ref3.currentUser;
 
@@ -58,7 +69,7 @@ export var haveWriteAccess = function haveWriteAccess(d2, userGroups, object) {
 };
 
 var sharedUserAccess = function sharedUserAccess(userId, users, accessBit) {
-    return some(function (user) {
+    return (0, _some2.default)(function (user) {
         return user.id === userId && user.access.includes(accessBit);
     }, users);
 };
@@ -67,7 +78,7 @@ var sharedUserGroups = function sharedUserGroups(userGroups, objectGroups, acces
     var isMember = false;
 
     userGroups.forEach(function (id) {
-        if (some(function (objectGroup) {
+        if ((0, _some2.default)(function (objectGroup) {
             return objectGroup.id === id && objectGroup.access.includes(accessBit);
         }, objectGroups)) {
             isMember = true;

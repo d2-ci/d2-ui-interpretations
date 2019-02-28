@@ -1,49 +1,92 @@
-import _extends from 'babel-runtime/helpers/extends';
-import React from 'react';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import Reply from '@material-ui/icons/Reply';
-import Create from '@material-ui/icons/Create';
-import Share from '@material-ui/icons/Share';
-import Delete from '@material-ui/icons/Delete';
-import Launch from '@material-ui/icons/Launch';
-import i18n from '@dhis2/d2-i18n';
-import styles from './styles/Icons.style';
+'use strict';
 
-export default {
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Visibility = require('@material-ui/icons/Visibility');
+
+var _Visibility2 = _interopRequireDefault(_Visibility);
+
+var _VisibilityOff = require('@material-ui/icons/VisibilityOff');
+
+var _VisibilityOff2 = _interopRequireDefault(_VisibilityOff);
+
+var _ThumbUp = require('@material-ui/icons/ThumbUp');
+
+var _ThumbUp2 = _interopRequireDefault(_ThumbUp);
+
+var _Reply = require('@material-ui/icons/Reply');
+
+var _Reply2 = _interopRequireDefault(_Reply);
+
+var _Create = require('@material-ui/icons/Create');
+
+var _Create2 = _interopRequireDefault(_Create);
+
+var _Share = require('@material-ui/icons/Share');
+
+var _Share2 = _interopRequireDefault(_Share);
+
+var _Delete = require('@material-ui/icons/Delete');
+
+var _Delete2 = _interopRequireDefault(_Delete);
+
+var _Launch = require('@material-ui/icons/Launch');
+
+var _Launch2 = _interopRequireDefault(_Launch);
+
+var _d2I18n = require('@dhis2/d2-i18n');
+
+var _d2I18n2 = _interopRequireDefault(_d2I18n);
+
+var _Icons = require('./styles/Icons.style');
+
+var _Icons2 = _interopRequireDefault(_Icons);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
 	visibility: {
-		icon: React.createElement(Visibility, { style: styles.interpretationCommentIcon }),
-		tooltip: i18n.t('View')
+		icon: _react2.default.createElement(_Visibility2.default, { style: _Icons2.default.interpretationCommentIcon }),
+		tooltip: _d2I18n2.default.t('View')
 	},
 	visibilityOff: {
-		icon: React.createElement(VisibilityOff, { style: styles.interpretationCommentIcon }),
-		tooltip: i18n.t('Exit View')
+		icon: _react2.default.createElement(_VisibilityOff2.default, { style: _Icons2.default.interpretationCommentIcon }),
+		tooltip: _d2I18n2.default.t('Exit View')
 	},
 	like: {
-		icon: React.createElement(ThumbUpIcon, { style: _extends({}, styles.interpretationCommentIcon, styles.unlikedThumbUp) }),
-		tooltip: i18n.t('Like')
+		icon: _react2.default.createElement(_ThumbUp2.default, { style: (0, _extends3.default)({}, _Icons2.default.interpretationCommentIcon, _Icons2.default.unlikedThumbUp) }),
+		tooltip: _d2I18n2.default.t('Like')
 	},
 	unlike: {
-		icon: React.createElement(ThumbUpIcon, { style: _extends({}, styles.interpretationCommentIcon, styles.likedThumbUp) }),
-		tooltip: i18n.t('Unlike')
+		icon: _react2.default.createElement(_ThumbUp2.default, { style: (0, _extends3.default)({}, _Icons2.default.interpretationCommentIcon, _Icons2.default.likedThumbUp) }),
+		tooltip: _d2I18n2.default.t('Unlike')
 	},
 	reply: {
-		icon: React.createElement(Reply, { style: styles.interpretationCommentIcon }),
-		tooltip: i18n.t('Reply')
+		icon: _react2.default.createElement(_Reply2.default, { style: _Icons2.default.interpretationCommentIcon }),
+		tooltip: _d2I18n2.default.t('Reply')
 	},
 	edit: {
-		icon: React.createElement(Create, { style: styles.interpretationCommentIcon }),
-		tooltip: i18n.t('Edit')
+		icon: _react2.default.createElement(_Create2.default, { style: _Icons2.default.interpretationCommentIcon }),
+		tooltip: _d2I18n2.default.t('Edit')
 	},
 	share: {
-		icon: React.createElement(Share, { style: styles.interpretationCommentIcon }),
-		tooltip: i18n.t('Manage sharing') },
+		icon: _react2.default.createElement(_Share2.default, { style: _Icons2.default.interpretationCommentIcon }),
+		tooltip: _d2I18n2.default.t('Manage sharing') },
 	delete: {
-		icon: React.createElement(Delete, { style: styles.interpretationCommentIcon }),
-		tooltip: i18n.t('Delete')
+		icon: _react2.default.createElement(_Delete2.default, { style: _Icons2.default.interpretationCommentIcon }),
+		tooltip: _d2I18n2.default.t('Delete')
 	},
 	openApp: {
-		icon: React.createElement(Launch, { style: styles.interpretationCommentIcon })
+		icon: _react2.default.createElement(_Launch2.default, { style: _Icons2.default.interpretationCommentIcon })
 	}
 };

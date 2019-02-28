@@ -1,15 +1,33 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import styles from './styles/CardHeader.style';
+'use strict';
 
-export var CardHeader = function CardHeader(_ref) {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.CardHeader = undefined;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _styles = require('@material-ui/core/styles');
+
+var _CardHeader = require('./styles/CardHeader.style');
+
+var _CardHeader2 = _interopRequireDefault(_CardHeader);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var CardHeader = exports.CardHeader = function CardHeader(_ref) {
     var classes = _ref.classes,
         userName = _ref.userName;
-    return React.createElement(
+    return _react2.default.createElement(
         'div',
         { className: classes.interpretationName },
-        React.createElement(
+        _react2.default.createElement(
             'span',
             { className: classes.userLink },
             userName
@@ -18,8 +36,8 @@ export var CardHeader = function CardHeader(_ref) {
 };
 
 CardHeader.propTypes = {
-    classes: PropTypes.object.isRequired,
-    userName: PropTypes.string.isRequired
+    classes: _propTypes2.default.object.isRequired,
+    userName: _propTypes2.default.string.isRequired
 };
 
-export default withStyles(styles)(CardHeader);
+exports.default = (0, _styles.withStyles)(_CardHeader2.default)(CardHeader);

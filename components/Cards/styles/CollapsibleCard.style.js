@@ -1,4 +1,9 @@
-export var styles = function styles(theme) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var styles = exports.styles = function styles(theme) {
     return {
         card: {
             margin: '2px',

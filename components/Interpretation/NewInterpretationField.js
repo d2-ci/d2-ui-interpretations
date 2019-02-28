@@ -1,37 +1,108 @@
-import _regeneratorRuntime from 'babel-runtime/regenerator';
-import _asyncToGenerator from 'babel-runtime/helpers/asyncToGenerator';
-import _Object$assign from 'babel-runtime/core-js/object/assign';
-import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
-import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
-import SharingDialog from '@dhis2/d2-ui-sharing-dialog';
-import { Editor as RichTextEditor, convertCtrlKey } from '@dhis2/d2-ui-rich-text';
-import i18n from '@dhis2/d2-i18n';
-import WithAvatar from '../Avatar/WithAvatar';
-import Toolbar from '../Toolbar/Toolbar';
-import SharingInfo from '../SharingInfo/SharingInfo';
-import InterpretationModel from '../../models/interpretation';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import { getSharing, setInitialSharing } from '../../sharing/sharing';
-import styles from './styles/NewInterpretationField.style';
+'use strict';
 
-export var NewInterpretationField = function (_Component) {
-    _inherits(NewInterpretationField, _Component);
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.NewInterpretationField = undefined;
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _assign = require('babel-runtime/core-js/object/assign');
+
+var _assign2 = _interopRequireDefault(_assign);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _Button = require('@material-ui/core/Button');
+
+var _Button2 = _interopRequireDefault(_Button);
+
+var _styles = require('@material-ui/core/styles');
+
+var _d2UiMentionsWrapper = require('@dhis2/d2-ui-mentions-wrapper');
+
+var _d2UiMentionsWrapper2 = _interopRequireDefault(_d2UiMentionsWrapper);
+
+var _d2UiSharingDialog = require('@dhis2/d2-ui-sharing-dialog');
+
+var _d2UiSharingDialog2 = _interopRequireDefault(_d2UiSharingDialog);
+
+var _d2UiRichText = require('@dhis2/d2-ui-rich-text');
+
+var _d2I18n = require('@dhis2/d2-i18n');
+
+var _d2I18n2 = _interopRequireDefault(_d2I18n);
+
+var _WithAvatar = require('../Avatar/WithAvatar');
+
+var _WithAvatar2 = _interopRequireDefault(_WithAvatar);
+
+var _Toolbar = require('../Toolbar/Toolbar');
+
+var _Toolbar2 = _interopRequireDefault(_Toolbar);
+
+var _SharingInfo = require('../SharingInfo/SharingInfo');
+
+var _SharingInfo2 = _interopRequireDefault(_SharingInfo);
+
+var _interpretation = require('../../models/interpretation');
+
+var _interpretation2 = _interopRequireDefault(_interpretation);
+
+var _ClickAwayListener = require('@material-ui/core/ClickAwayListener');
+
+var _ClickAwayListener2 = _interopRequireDefault(_ClickAwayListener);
+
+var _sharing = require('../../sharing/sharing');
+
+var _NewInterpretationField = require('./styles/NewInterpretationField.style');
+
+var _NewInterpretationField2 = _interopRequireDefault(_NewInterpretationField);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var NewInterpretationField = exports.NewInterpretationField = function (_Component) {
+    (0, _inherits3.default)(NewInterpretationField, _Component);
 
     function NewInterpretationField(props) {
-        _classCallCheck(this, NewInterpretationField);
+        (0, _classCallCheck3.default)(this, NewInterpretationField);
 
-        var _this = _possibleConstructorReturn(this, (NewInterpretationField.__proto__ || _Object$getPrototypeOf(NewInterpretationField)).call(this, props));
+        var _this = (0, _possibleConstructorReturn3.default)(this, (NewInterpretationField.__proto__ || (0, _getPrototypeOf2.default)(NewInterpretationField)).call(this, props));
 
         _this.updateSharingProps = function () {
-            _this.props.interpretation ? _this.setState({ sharingProps: getSharing(_this.props.interpretation.user, _this.props.interpretation, _this.props.model) }) : _this.setState({ sharingProps: setInitialSharing(_this.context.d2.currentUser, _this.props.model) });
+            _this.props.interpretation ? _this.setState({ sharingProps: (0, _sharing.getSharing)(_this.props.interpretation.user, _this.props.interpretation, _this.props.model) }) : _this.setState({ sharingProps: (0, _sharing.setInitialSharing)(_this.context.d2.currentUser, _this.props.model) });
         };
 
         _this.onInputChange = function (event) {
@@ -50,7 +121,7 @@ export var NewInterpretationField = function (_Component) {
         };
 
         _this.onKeyDown = function (event) {
-            convertCtrlKey(event, _this.setNativeInputVal);
+            (0, _d2UiRichText.convertCtrlKey)(event, _this.setNativeInputVal);
             _this.setState({ text: _this.textarea.current.value });
         };
 
@@ -93,7 +164,7 @@ export var NewInterpretationField = function (_Component) {
         };
 
         _this.onCloseSharingDialog = function (sharingProps) {
-            var newSharingProps = _Object$assign({}, _this.state.sharingProps, { object: sharingProps });
+            var newSharingProps = (0, _assign2.default)({}, _this.state.sharingProps, { object: sharingProps });
 
             sharingProps ? _this.setState({ sharingDialogisOpen: false, sharingProps: newSharingProps }) : _this.setState({ sharingDialosIsOpen: false });
         };
@@ -105,52 +176,52 @@ export var NewInterpretationField = function (_Component) {
 
         _this.renderActionButtons = function () {
             if (_this.state.text.length) {
-                return React.createElement(
-                    Fragment,
+                return _react2.default.createElement(
+                    _react.Fragment,
                     null,
-                    React.createElement(
-                        Button,
+                    _react2.default.createElement(
+                        _Button2.default,
                         {
                             className: _this.props.classes.saveButton,
                             color: 'primary',
                             variant: 'contained',
                             onClick: _this.props.interpretation ? _this.onUpdate : _this.onPost
                         },
-                        i18n.t('Save interpretation')
+                        _d2I18n2.default.t('Save interpretation')
                     ),
-                    React.createElement(
-                        Button,
+                    _react2.default.createElement(
+                        _Button2.default,
                         {
                             className: _this.props.classes.cancelButton,
                             variant: 'outlined',
                             onClick: _this.props.onClose || _this.onClearInput
                         },
-                        i18n.t('Cancel')
+                        _d2I18n2.default.t('Cancel')
                     )
                 );
             } else if (_this.props.interpretation) {
-                return React.createElement(
-                    Button,
+                return _react2.default.createElement(
+                    _Button2.default,
                     {
                         className: _this.props.classes.cancelButton,
                         variant: 'outlined',
                         onClick: _this.props.onClose
                     },
-                    i18n.t('Cancel')
+                    _d2I18n2.default.t('Cancel')
                 );
             }
         };
 
         _this.renderToolbar = function () {
-            return (_this.state.text.length || _this.state.showToolbar) && React.createElement(Toolbar, { text: _this.state.text, onClick: _this.onToolbarClick, element: document.getElementById(_this.id) });
+            return (_this.state.text.length || _this.state.showToolbar) && _react2.default.createElement(_Toolbar2.default, { text: _this.state.text, onClick: _this.onToolbarClick, element: document.getElementById(_this.id) });
         };
 
         _this.renderSharingInfo = function () {
-            return !!_this.state.text && React.createElement(SharingInfo, { interpretation: _this.state.sharingProps.object, onClick: _this.onOpenSharingDialog });
+            return !!_this.state.text && _react2.default.createElement(_SharingInfo2.default, { interpretation: _this.state.sharingProps.object, onClick: _this.onOpenSharingDialog });
         };
 
         _this.renderSharingDialog = function () {
-            return _this.state.sharingDialogisOpen && React.createElement(SharingDialog, {
+            return _this.state.sharingDialogisOpen && _react2.default.createElement(_d2UiSharingDialog2.default, {
                 open: _this.state.sharingDialogisOpen,
                 type: _this.props.type,
                 d2: _this.context.d2,
@@ -162,7 +233,7 @@ export var NewInterpretationField = function (_Component) {
             });
         };
 
-        _this.textarea = React.createRef();
+        _this.textarea = _react2.default.createRef();
         _this.id = Math.random().toString(36);
         _this.state = {
             text: _this.props.interpretation ? _this.props.interpretation.text : '',
@@ -173,7 +244,7 @@ export var NewInterpretationField = function (_Component) {
         return _this;
     }
 
-    _createClass(NewInterpretationField, [{
+    (0, _createClass3.default)(NewInterpretationField, [{
         key: 'componentDidUpdate',
         value: function componentDidUpdate() {
             if (!this.props.interpretation && this.state.sharingProps.object && this.props.model.id !== this.state.sharingProps.object.modelId) {
@@ -188,13 +259,13 @@ export var NewInterpretationField = function (_Component) {
     }, {
         key: 'postInterpretation',
         value: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
+            var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
                 var newInterpretation;
-                return _regeneratorRuntime.wrap(function _callee$(_context) {
+                return _regenerator2.default.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
-                                newInterpretation = new InterpretationModel(this.props.model, {});
+                                newInterpretation = new _interpretation2.default(this.props.model, {});
 
                                 newInterpretation.text = this.state.text;
                                 newInterpretation.sharing = this.state.sharingProps.object;
@@ -223,28 +294,28 @@ export var NewInterpretationField = function (_Component) {
             var Sharing = this.renderSharingInfo();
             var SharingDialog = this.renderSharingDialog();
 
-            return React.createElement(
-                WithAvatar,
+            return _react2.default.createElement(
+                _WithAvatar2.default,
                 { className: this.props.classes.newInterpretation, firstName: this.context.d2.currentUser.firstName, surname: this.context.d2.currentUser.surname },
-                React.createElement(
-                    MentionsWrapper,
+                _react2.default.createElement(
+                    _d2UiMentionsWrapper2.default,
                     { d2: this.context.d2, onUserSelect: this.onUserSelect },
-                    React.createElement(
-                        RichTextEditor,
+                    _react2.default.createElement(
+                        _d2UiRichText.Editor,
                         { onEdit: this.onInputChange },
-                        React.createElement(
-                            ClickAwayListener,
+                        _react2.default.createElement(
+                            _ClickAwayListener2.default,
                             { mouseEvent: 'onClick', onClickAway: this.onBlur },
-                            React.createElement(
+                            _react2.default.createElement(
                                 'div',
                                 { className: this.props.classes.inputField, onFocus: this.onFocus },
                                 Toolbar,
-                                React.createElement('textarea', {
+                                _react2.default.createElement('textarea', {
                                     className: this.props.classes.textArea,
                                     id: this.id,
                                     ref: this.textarea,
                                     value: this.state.text,
-                                    placeholder: i18n.t('Write an interpretation'),
+                                    placeholder: _d2I18n2.default.t('Write an interpretation'),
                                     rows: this.state.showToolbar || this.state.text.length ? 4 : 2,
                                     onChange: this.onInputChange,
                                     onKeyDown: this.onKeyDown
@@ -259,21 +330,22 @@ export var NewInterpretationField = function (_Component) {
             );
         }
     }]);
-
     return NewInterpretationField;
-}(Component);;
+}(_react.Component);
+
+;
 
 NewInterpretationField.contextTypes = {
-    d2: PropTypes.object.isRequired
+    d2: _propTypes2.default.object.isRequired
 };
 
 NewInterpretationField.propTypes = {
-    classes: PropTypes.object.isRequired,
-    model: PropTypes.object.isRequired,
-    interpretation: PropTypes.object,
-    onSave: PropTypes.func,
-    onUpdate: PropTypes.func,
-    onClose: PropTypes.func
+    classes: _propTypes2.default.object.isRequired,
+    model: _propTypes2.default.object.isRequired,
+    interpretation: _propTypes2.default.object,
+    onSave: _propTypes2.default.func,
+    onUpdate: _propTypes2.default.func,
+    onClose: _propTypes2.default.func
 };
 
-export default withStyles(styles)(NewInterpretationField);
+exports.default = (0, _styles.withStyles)(_NewInterpretationField2.default)(NewInterpretationField);

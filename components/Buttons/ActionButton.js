@@ -1,24 +1,67 @@
-import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Popper from '@material-ui/core/Popper';
-import Paper from '@material-ui/core/Paper';
-import { withStyles } from '@material-ui/core/styles';
-import Icons from './Icons';
-import styles from './styles/ActionButton.style';
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.ActionButton = undefined;
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _Popper = require('@material-ui/core/Popper');
+
+var _Popper2 = _interopRequireDefault(_Popper);
+
+var _Paper = require('@material-ui/core/Paper');
+
+var _Paper2 = _interopRequireDefault(_Paper);
+
+var _styles = require('@material-ui/core/styles');
+
+var _Icons = require('./Icons');
+
+var _Icons2 = _interopRequireDefault(_Icons);
+
+var _ActionButton = require('./styles/ActionButton.style');
+
+var _ActionButton2 = _interopRequireDefault(_ActionButton);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var TOOLTIP_ENTER_DELAY = 200;
-export var ActionButton = function (_Component) {
-	_inherits(ActionButton, _Component);
+
+var ActionButton = exports.ActionButton = function (_Component) {
+	(0, _inherits3.default)(ActionButton, _Component);
 
 	function ActionButton(props) {
-		_classCallCheck(this, ActionButton);
+		(0, _classCallCheck3.default)(this, ActionButton);
 
-		var _this = _possibleConstructorReturn(this, (ActionButton.__proto__ || _Object$getPrototypeOf(ActionButton)).call(this, props));
+		var _this = (0, _possibleConstructorReturn3.default)(this, (ActionButton.__proto__ || (0, _getPrototypeOf2.default)(ActionButton)).call(this, props));
 
 		_this.showTooltip = function () {
 			if (_this.timeout === null) {
@@ -37,18 +80,18 @@ export var ActionButton = function (_Component) {
 		};
 
 		_this.renderTooltip = function () {
-			return React.createElement(
-				Popper,
+			return _react2.default.createElement(
+				_Popper2.default,
 				{
 					anchorEl: document.getElementById(_this.id),
 					open: _this.state.tooltipIsOpen,
 					placement: 'top',
-					style: styles.popper
+					style: _ActionButton2.default.popper
 				},
-				React.createElement(
-					Paper,
+				_react2.default.createElement(
+					_Paper2.default,
 					{ className: _this.props.classes.tooltip },
-					_this.props.tooltip || Icons[_this.props.iconType].tooltip
+					_this.props.tooltip || _Icons2.default[_this.props.iconType].tooltip
 				)
 			);
 		};
@@ -59,7 +102,7 @@ export var ActionButton = function (_Component) {
 		return _this;
 	}
 
-	_createClass(ActionButton, [{
+	(0, _createClass3.default)(ActionButton, [{
 		key: 'componentWillUnmount',
 		value: function componentWillUnmount() {
 			clearTimeout(this.timeout);
@@ -67,10 +110,10 @@ export var ActionButton = function (_Component) {
 	}, {
 		key: 'render',
 		value: function render() {
-			var Icon = Icons[this.props.iconType].icon;
+			var Icon = _Icons2.default[this.props.iconType].icon;
 			var Tooltip = this.renderTooltip();
 
-			return React.createElement(
+			return _react2.default.createElement(
 				'div',
 				{
 					id: this.id,
@@ -84,9 +127,10 @@ export var ActionButton = function (_Component) {
 			);
 		}
 	}]);
-
 	return ActionButton;
-}(Component);;
+}(_react.Component);
+
+;
 
 ActionButton.defaultProps = {
 	onClick: function onClick() {
@@ -95,9 +139,9 @@ ActionButton.defaultProps = {
 };
 
 ActionButton.propTypes = {
-	classes: PropTypes.object.isRequired,
-	iconType: PropTypes.string.isRequired,
-	onClick: PropTypes.func.isRequired
+	classes: _propTypes2.default.object.isRequired,
+	iconType: _propTypes2.default.string.isRequired,
+	onClick: _propTypes2.default.func.isRequired
 };
 
-export default withStyles(styles)(ActionButton);
+exports.default = (0, _styles.withStyles)(_ActionButton2.default)(ActionButton);

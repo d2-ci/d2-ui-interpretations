@@ -1,27 +1,79 @@
-import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import { withStyles } from '@material-ui/core/styles';
-import { Editor as RichTextEditor, convertCtrlKey } from '@dhis2/d2-ui-rich-text';
-import MentionsWrapper from '@dhis2/d2-ui-mentions-wrapper';
-import i18n from '@dhis2/d2-i18n';
-import WithAvatar from '../Avatar/WithAvatar';
-import Toolbar from '../Toolbar/Toolbar';
-import styles from './styles/NewCommentField.style';
+'use strict';
 
-export var NewCommentField = function (_React$Component) {
-    _inherits(NewCommentField, _React$Component);
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.NewCommentField = undefined;
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _Button = require('@material-ui/core/Button');
+
+var _Button2 = _interopRequireDefault(_Button);
+
+var _ClickAwayListener = require('@material-ui/core/ClickAwayListener');
+
+var _ClickAwayListener2 = _interopRequireDefault(_ClickAwayListener);
+
+var _styles = require('@material-ui/core/styles');
+
+var _d2UiRichText = require('@dhis2/d2-ui-rich-text');
+
+var _d2UiMentionsWrapper = require('@dhis2/d2-ui-mentions-wrapper');
+
+var _d2UiMentionsWrapper2 = _interopRequireDefault(_d2UiMentionsWrapper);
+
+var _d2I18n = require('@dhis2/d2-i18n');
+
+var _d2I18n2 = _interopRequireDefault(_d2I18n);
+
+var _WithAvatar = require('../Avatar/WithAvatar');
+
+var _WithAvatar2 = _interopRequireDefault(_WithAvatar);
+
+var _Toolbar = require('../Toolbar/Toolbar');
+
+var _Toolbar2 = _interopRequireDefault(_Toolbar);
+
+var _NewCommentField = require('./styles/NewCommentField.style');
+
+var _NewCommentField2 = _interopRequireDefault(_NewCommentField);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var NewCommentField = exports.NewCommentField = function (_React$Component) {
+    (0, _inherits3.default)(NewCommentField, _React$Component);
 
     function NewCommentField(props) {
-        _classCallCheck(this, NewCommentField);
+        (0, _classCallCheck3.default)(this, NewCommentField);
 
-        var _this = _possibleConstructorReturn(this, (NewCommentField.__proto__ || _Object$getPrototypeOf(NewCommentField)).call(this, props));
+        var _this = (0, _possibleConstructorReturn3.default)(this, (NewCommentField.__proto__ || (0, _getPrototypeOf2.default)(NewCommentField)).call(this, props));
 
         _this.onInputChange = function (event) {
             if (event.target) {
@@ -39,7 +91,7 @@ export var NewCommentField = function (_React$Component) {
         };
 
         _this.onKeyDown = function (event) {
-            convertCtrlKey(event, _this.setNativeInputVal);
+            (0, _d2UiRichText.convertCtrlKey)(event, _this.setNativeInputVal);
             _this.setState({ text: _this.textarea.current.value });
         };
 
@@ -80,47 +132,47 @@ export var NewCommentField = function (_React$Component) {
 
         _this.renderActionButtons = function () {
             if (_this.state.text.length) {
-                return React.createElement(
-                    Fragment,
+                return _react2.default.createElement(
+                    _react.Fragment,
                     null,
-                    React.createElement(
-                        Button,
+                    _react2.default.createElement(
+                        _Button2.default,
                         {
                             className: _this.props.classes.saveButton,
                             color: 'primary',
                             variant: 'contained',
                             onClick: _this.onPost
                         },
-                        i18n.t('Save reply')
+                        _d2I18n2.default.t('Save reply')
                     ),
-                    React.createElement(
-                        Button,
+                    _react2.default.createElement(
+                        _Button2.default,
                         {
                             className: _this.props.classes.cancelButton,
                             variant: 'outlined',
                             onClick: _this.props.onCancel || _this.onClearInput
                         },
-                        i18n.t('Cancel')
+                        _d2I18n2.default.t('Cancel')
                     )
                 );
             } else if (_this.props.comment && _this.props.comment.id) {
-                return React.createElement(
-                    Button,
+                return _react2.default.createElement(
+                    _Button2.default,
                     {
                         className: _this.props.classes.cancelButton,
                         variant: 'outlined',
                         onClick: _this.props.onCancel
                     },
-                    i18n.t('Cancel')
+                    _d2I18n2.default.t('Cancel')
                 );
             }
         };
 
         _this.renderToolbar = function () {
-            return (_this.state.text.length || _this.state.showToolbar) && React.createElement(Toolbar, { text: _this.state.text, onClick: _this.onToolbarClick, element: document.getElementById(_this.id) });
+            return (_this.state.text.length || _this.state.showToolbar) && _react2.default.createElement(_Toolbar2.default, { text: _this.state.text, onClick: _this.onToolbarClick, element: document.getElementById(_this.id) });
         };
 
-        _this.textarea = React.createRef();
+        _this.textarea = _react2.default.createRef();
         _this.id = Math.random().toString(36);
         _this.state = {
             text: _this.props.comment ? _this.props.comment.text : '',
@@ -130,7 +182,7 @@ export var NewCommentField = function (_React$Component) {
         return _this;
     }
 
-    _createClass(NewCommentField, [{
+    (0, _createClass3.default)(NewCommentField, [{
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(newProps) {
             var _this2 = this;
@@ -147,27 +199,27 @@ export var NewCommentField = function (_React$Component) {
             var ActionButtons = this.renderActionButtons();
             var Toolbar = this.renderToolbar();
 
-            return React.createElement(
-                WithAvatar,
+            return _react2.default.createElement(
+                _WithAvatar2.default,
                 { className: this.props.classes.newReply, firstName: this.context.d2.currentUser.firstName, surname: this.context.d2.currentUser.surname },
-                React.createElement(
-                    MentionsWrapper,
+                _react2.default.createElement(
+                    _d2UiMentionsWrapper2.default,
                     { d2: this.context.d2, onUserSelect: this.onUserSelect },
-                    React.createElement(
-                        RichTextEditor,
+                    _react2.default.createElement(
+                        _d2UiRichText.Editor,
                         { onEdit: this.onInputChange },
-                        React.createElement(
-                            ClickAwayListener,
+                        _react2.default.createElement(
+                            _ClickAwayListener2.default,
                             { mouseEvent: 'onClick', onClickAway: this.onBlur },
-                            React.createElement(
+                            _react2.default.createElement(
                                 'div',
                                 { onClick: this.onFocus, className: this.props.classes.inputField, onFocus: this.onFocus },
                                 Toolbar,
-                                React.createElement('textarea', {
+                                _react2.default.createElement('textarea', {
                                     className: this.props.classes.commentArea,
                                     id: this.id,
                                     ref: this.textarea,
-                                    placeholder: i18n.t('Write a reply'),
+                                    placeholder: _d2I18n2.default.t('Write a reply'),
                                     value: this.state.text,
                                     rows: this.state.showToolbar ? 4 : 2,
                                     autoFocus: true,
@@ -182,19 +234,20 @@ export var NewCommentField = function (_React$Component) {
             );
         }
     }]);
-
     return NewCommentField;
-}(React.Component);;
+}(_react2.default.Component);
+
+;
 
 NewCommentField.contextTypes = {
-    d2: PropTypes.object
+    d2: _propTypes2.default.object
 };
 
 NewCommentField.propTypes = {
-    classes: PropTypes.object.isRequired,
-    comment: PropTypes.object,
-    onPost: PropTypes.func.isRequired,
-    onCancel: PropTypes.func
+    classes: _propTypes2.default.object.isRequired,
+    comment: _propTypes2.default.object,
+    onPost: _propTypes2.default.func.isRequired,
+    onCancel: _propTypes2.default.func
 };
 
-export default withStyles(styles)(NewCommentField);
+exports.default = (0, _styles.withStyles)(_NewCommentField2.default)(NewCommentField);

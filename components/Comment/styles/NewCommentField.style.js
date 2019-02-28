@@ -1,4 +1,9 @@
-export default {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
     commentArea: {
         border: 'none',
         boxSizing: 'border-box',

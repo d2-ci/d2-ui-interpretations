@@ -1,27 +1,75 @@
-import _toConsumableArray from 'babel-runtime/helpers/toConsumableArray';
-import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
-import React, { Fragment, Component } from 'react';
-import i18n from '@dhis2/d2-i18n';
-import PropTypes from 'prop-types';
-import Popper from '@material-ui/core/Popper';
-import Paper from '@material-ui/core/Paper';
-import { withStyles } from '@material-ui/core/styles';
-import TextSeparator from '../TextSeparator/TextSeparator';
-import styles from './styles/LikesAndReplies.style';
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Replies = undefined;
+
+var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
+
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _d2I18n = require('@dhis2/d2-i18n');
+
+var _d2I18n2 = _interopRequireDefault(_d2I18n);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _Popper = require('@material-ui/core/Popper');
+
+var _Popper2 = _interopRequireDefault(_Popper);
+
+var _Paper = require('@material-ui/core/Paper');
+
+var _Paper2 = _interopRequireDefault(_Paper);
+
+var _styles = require('@material-ui/core/styles');
+
+var _TextSeparator = require('../TextSeparator/TextSeparator');
+
+var _TextSeparator2 = _interopRequireDefault(_TextSeparator);
+
+var _LikesAndReplies = require('./styles/LikesAndReplies.style');
+
+var _LikesAndReplies2 = _interopRequireDefault(_LikesAndReplies);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var TOOLTIP_ENTER_DELAY = 200;
 
-export var Replies = function (_Component) {
-    _inherits(Replies, _Component);
+var Replies = exports.Replies = function (_Component) {
+    (0, _inherits3.default)(Replies, _Component);
 
     function Replies(props) {
-        _classCallCheck(this, Replies);
+        (0, _classCallCheck3.default)(this, Replies);
 
-        var _this = _possibleConstructorReturn(this, (Replies.__proto__ || _Object$getPrototypeOf(Replies)).call(this, props));
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Replies.__proto__ || (0, _getPrototypeOf2.default)(Replies)).call(this, props));
 
         _this.showTooltip = function () {
             if (_this.timeout === null) {
@@ -43,7 +91,7 @@ export var Replies = function (_Component) {
             var listItems = [];
             _this.props.repliedBy.forEach(function (userName) {
                 if (!listItems.includes(userName)) {
-                    listItems = [].concat(_toConsumableArray(listItems), [userName]);
+                    listItems = [].concat((0, _toConsumableArray3.default)(listItems), [userName]);
                 }
             });
 
@@ -51,22 +99,22 @@ export var Replies = function (_Component) {
         };
 
         _this.renderTooltip = function () {
-            return React.createElement(
-                Popper,
+            return _react2.default.createElement(
+                _Popper2.default,
                 {
                     placement: 'top',
                     open: _this.state.tooltipIsOpen,
                     anchorEl: document.getElementById(_this.id),
-                    style: styles.popper
+                    style: _LikesAndReplies2.default.popper
                 },
-                React.createElement(
-                    Paper,
+                _react2.default.createElement(
+                    _Paper2.default,
                     { className: _this.props.classes.tooltip },
-                    React.createElement(
+                    _react2.default.createElement(
                         'ul',
                         { className: _this.props.classes.tooltipList },
                         _this.filterDuplicateUserNames().map(function (userName, key) {
-                            return React.createElement(
+                            return _react2.default.createElement(
                                 'li',
                                 { key: key },
                                 ' ',
@@ -85,7 +133,7 @@ export var Replies = function (_Component) {
         return _this;
     }
 
-    _createClass(Replies, [{
+    (0, _createClass3.default)(Replies, [{
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
             clearTimeout(this.id);
@@ -97,11 +145,11 @@ export var Replies = function (_Component) {
 
             var Tooltip = this.state.tooltipIsOpen && this.renderTooltip();
 
-            return !!repliedBy.length && React.createElement(
-                Fragment,
+            return !!repliedBy.length && _react2.default.createElement(
+                _react.Fragment,
                 null,
-                React.createElement(TextSeparator, null),
-                React.createElement(
+                _react2.default.createElement(_TextSeparator2.default, null),
+                _react2.default.createElement(
                     'span',
                     {
                         id: this.id,
@@ -109,18 +157,19 @@ export var Replies = function (_Component) {
                         onMouseLeave: this.hideTooltip
                     },
                     Tooltip,
-                    repliedBy.length + ' ' + (repliedBy.length > 1 ? i18n.t('replies') : i18n.t('reply'))
+                    repliedBy.length + ' ' + (repliedBy.length > 1 ? _d2I18n2.default.t('replies') : _d2I18n2.default.t('reply'))
                 )
             );
         }
     }]);
-
     return Replies;
-}(Component);;
+}(_react.Component);
+
+;
 
 Replies.propTypes = {
-    classes: PropTypes.object.isRequired,
-    repliedBy: PropTypes.array.isRequired
+    classes: _propTypes2.default.object.isRequired,
+    repliedBy: _propTypes2.default.array.isRequired
 };
 
-export default withStyles(styles)(Replies);
+exports.default = (0, _styles.withStyles)(_LikesAndReplies2.default)(Replies);

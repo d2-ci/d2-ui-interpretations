@@ -1,33 +1,91 @@
-import _Object$getPrototypeOf from "babel-runtime/core-js/object/get-prototype-of";
-import _classCallCheck from "babel-runtime/helpers/classCallCheck";
-import _createClass from "babel-runtime/helpers/createClass";
-import _possibleConstructorReturn from "babel-runtime/helpers/possibleConstructorReturn";
-import _inherits from "babel-runtime/helpers/inherits";
-import React from "react";
-import PropTypes from "prop-types";
-import Button from '@material-ui/core/Button';
-import ChevronLeft from '@material-ui/icons/ChevronLeft';
-import { withStyles } from '@material-ui/core/styles';
-import i18n from "@dhis2/d2-i18n";
-import orderBy from "lodash/fp/orderBy";
-import CollapsibleCard from './CollapsibleCard';
-import Interpretation from '../Interpretation/Interpretation';
-import InterpretationsList, { interpretationsToShowOnInit } from '../Lists/InterpretationsList';
-import NewInterpretationField from '../Interpretation/NewInterpretationField';
-import styles from './styles/InterpretationsCard.style';
-import { haveReadAccess } from '../../authorization/auth';
+"use strict";
 
-export var InterpretationsCard = function (_React$Component) {
-    _inherits(InterpretationsCard, _React$Component);
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.InterpretationsCard = undefined;
+
+var _getPrototypeOf = require("babel-runtime/core-js/object/get-prototype-of");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require("babel-runtime/helpers/classCallCheck");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require("babel-runtime/helpers/createClass");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require("babel-runtime/helpers/possibleConstructorReturn");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require("babel-runtime/helpers/inherits");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require("prop-types");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _Button = require("@material-ui/core/Button");
+
+var _Button2 = _interopRequireDefault(_Button);
+
+var _ChevronLeft = require("@material-ui/icons/ChevronLeft");
+
+var _ChevronLeft2 = _interopRequireDefault(_ChevronLeft);
+
+var _styles = require("@material-ui/core/styles");
+
+var _d2I18n = require("@dhis2/d2-i18n");
+
+var _d2I18n2 = _interopRequireDefault(_d2I18n);
+
+var _orderBy = require("lodash/fp/orderBy");
+
+var _orderBy2 = _interopRequireDefault(_orderBy);
+
+var _CollapsibleCard = require("./CollapsibleCard");
+
+var _CollapsibleCard2 = _interopRequireDefault(_CollapsibleCard);
+
+var _Interpretation = require("../Interpretation/Interpretation");
+
+var _Interpretation2 = _interopRequireDefault(_Interpretation);
+
+var _InterpretationsList = require("../Lists/InterpretationsList");
+
+var _InterpretationsList2 = _interopRequireDefault(_InterpretationsList);
+
+var _NewInterpretationField = require("../Interpretation/NewInterpretationField");
+
+var _NewInterpretationField2 = _interopRequireDefault(_NewInterpretationField);
+
+var _InterpretationsCard = require("./styles/InterpretationsCard.style");
+
+var _InterpretationsCard2 = _interopRequireDefault(_InterpretationsCard);
+
+var _auth = require("../../authorization/auth");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var InterpretationsCard = exports.InterpretationsCard = function (_React$Component) {
+    (0, _inherits3.default)(InterpretationsCard, _React$Component);
 
     function InterpretationsCard(props) {
-        _classCallCheck(this, InterpretationsCard);
+        (0, _classCallCheck3.default)(this, InterpretationsCard);
 
-        var _this = _possibleConstructorReturn(this, (InterpretationsCard.__proto__ || _Object$getPrototypeOf(InterpretationsCard)).call(this, props));
+        var _this = (0, _possibleConstructorReturn3.default)(this, (InterpretationsCard.__proto__ || (0, _getPrototypeOf2.default)(InterpretationsCard)).call(this, props));
 
         _this.renderBackButton = function () {
-            return _this.state.currentInterpretationId && React.createElement(
-                Button,
+            return _this.state.currentInterpretationId && _react2.default.createElement(
+                _Button2.default,
                 {
                     className: _this.props.classes.backButton,
                     variant: "outlined",
@@ -36,24 +94,24 @@ export var InterpretationsCard = function (_React$Component) {
                         return _this.setCurrentInterpretation(null);
                     }
                 },
-                React.createElement(ChevronLeft, null),
-                i18n.t('Back to all interpretations')
+                _react2.default.createElement(_ChevronLeft2.default, null),
+                _d2I18n2.default.t('Back to all interpretations')
             );
         };
 
         _this.renderCardContent = function () {
             var currentInterpretation = _this.getCurrentInterpretation();
-            var sortedInterpretations = orderBy(["created"], ["asc"], _this.props.model.interpretations);
+            var sortedInterpretations = (0, _orderBy2.default)(["created"], ["asc"], _this.props.model.interpretations);
 
-            return currentInterpretation ? React.createElement(Interpretation, {
+            return currentInterpretation ? _react2.default.createElement(_Interpretation2.default, {
                 model: _this.props.model,
                 userGroups: _this.props.userGroups,
                 interpretation: currentInterpretation,
                 onChange: _this.notifyChange,
-                haveReadAccess: haveReadAccess(_this.context.d2, _this.props.userGroups, currentInterpretation),
+                haveReadAccess: (0, _auth.haveReadAccess)(_this.context.d2, _this.props.userGroups, currentInterpretation),
                 onSelect: _this.setCurrentInterpretation,
                 extended: true
-            }) : React.createElement(InterpretationsList, {
+            }) : _react2.default.createElement(_InterpretationsList2.default, {
                 model: _this.props.model,
                 userGroups: _this.props.userGroups,
                 d2: _this.context.d2,
@@ -66,7 +124,7 @@ export var InterpretationsCard = function (_React$Component) {
         };
 
         _this.renderInputField = function () {
-            return !_this.state.currentInterpretationId && haveReadAccess(_this.context.d2, _this.props.userGroups, _this.props.model) && React.createElement(NewInterpretationField, {
+            return !_this.state.currentInterpretationId && (0, _auth.haveReadAccess)(_this.context.d2, _this.props.userGroups, _this.props.model) && _react2.default.createElement(_NewInterpretationField2.default, {
                 model: _this.props.model,
                 onSave: _this.notifyChange,
                 type: _this.props.type
@@ -80,12 +138,12 @@ export var InterpretationsCard = function (_React$Component) {
 
         _this.state = {
             currentInterpretationId: props.currentInterpretationId,
-            listIsExpanded: !(props.model.interpretations.length > interpretationsToShowOnInit)
+            listIsExpanded: !(props.model.interpretations.length > _InterpretationsList.interpretationsToShowOnInit)
         };
         return _this;
     }
 
-    _createClass(InterpretationsCard, [{
+    (0, _createClass3.default)(InterpretationsCard, [{
         key: "componentDidMount",
         value: function componentDidMount() {
             var currentInterpretation = this.getCurrentInterpretation();
@@ -147,29 +205,28 @@ export var InterpretationsCard = function (_React$Component) {
             var Interpretations = this.renderCardContent();
             var InputField = this.renderInputField();
 
-            return React.createElement(
-                CollapsibleCard,
-                { title: i18n.t("Interpretations") },
+            return _react2.default.createElement(
+                _CollapsibleCard2.default,
+                { title: _d2I18n2.default.t("Interpretations") },
                 BackButton,
                 Interpretations,
                 InputField
             );
         }
     }]);
-
     return InterpretationsCard;
-}(React.Component);
+}(_react2.default.Component);
 
 InterpretationsCard.propTypes = {
-    classes: PropTypes.object.isRequired,
-    model: PropTypes.object.isRequired,
-    currentInterpretationId: PropTypes.string,
-    onChange: PropTypes.func.isRequired,
-    onCurrentInterpretationChange: PropTypes.func
+    classes: _propTypes2.default.object.isRequired,
+    model: _propTypes2.default.object.isRequired,
+    currentInterpretationId: _propTypes2.default.string,
+    onChange: _propTypes2.default.func.isRequired,
+    onCurrentInterpretationChange: _propTypes2.default.func
 };
 
 InterpretationsCard.contextTypes = {
-    d2: PropTypes.object.isRequired
+    d2: _propTypes2.default.object.isRequired
 };
 
-export default withStyles(styles)(InterpretationsCard);
+exports.default = (0, _styles.withStyles)(_InterpretationsCard2.default)(InterpretationsCard);

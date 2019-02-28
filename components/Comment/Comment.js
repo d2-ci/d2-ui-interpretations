@@ -1,17 +1,57 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import i18n from '@dhis2/d2-i18n';
-import ActionButton from '../Buttons/ActionButton';
-import WithAvatar from '../Avatar/WithAvatar';
-import CardHeader from '../Cards/CardHeader';
-import CardText from '../Cards/CardText';
-import CardInfo from '../Cards/CardInfo';
-import DeleteDialog from '../DeleteDialog/DeleteDialog';
-import { formatDate } from '../../dateformats/dateformatter';
-import styles from './styles/Comment.style';
+'use strict';
 
-export var Comment = function Comment(_ref) {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Comment = undefined;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _styles = require('@material-ui/core/styles');
+
+var _d2I18n = require('@dhis2/d2-i18n');
+
+var _d2I18n2 = _interopRequireDefault(_d2I18n);
+
+var _ActionButton = require('../Buttons/ActionButton');
+
+var _ActionButton2 = _interopRequireDefault(_ActionButton);
+
+var _WithAvatar = require('../Avatar/WithAvatar');
+
+var _WithAvatar2 = _interopRequireDefault(_WithAvatar);
+
+var _CardHeader = require('../Cards/CardHeader');
+
+var _CardHeader2 = _interopRequireDefault(_CardHeader);
+
+var _CardText = require('../Cards/CardText');
+
+var _CardText2 = _interopRequireDefault(_CardText);
+
+var _CardInfo = require('../Cards/CardInfo');
+
+var _CardInfo2 = _interopRequireDefault(_CardInfo);
+
+var _DeleteDialog = require('../DeleteDialog/DeleteDialog');
+
+var _DeleteDialog2 = _interopRequireDefault(_DeleteDialog);
+
+var _dateformatter = require('../../dateformats/dateformatter');
+
+var _Comment = require('./styles/Comment.style');
+
+var _Comment2 = _interopRequireDefault(_Comment);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Comment = exports.Comment = function Comment(_ref) {
     var classes = _ref.classes,
         comment = _ref.comment,
         isOwner = _ref.isOwner,
@@ -23,44 +63,44 @@ export var Comment = function Comment(_ref) {
         dialogIsOpen = _ref.dialogIsOpen,
         onDeleteConfirm = _ref.onDeleteConfirm,
         onDeleteCancel = _ref.onDeleteCancel;
-    return React.createElement(
-        Fragment,
+    return _react2.default.createElement(
+        _react.Fragment,
         null,
-        React.createElement(
-            WithAvatar,
+        _react2.default.createElement(
+            _WithAvatar2.default,
             { className: classes.comment, key: comment.id, firstName: comment.user.firstName, surname: comment.user.surname },
-            React.createElement(CardHeader, { userName: comment.user.displayName }),
-            React.createElement(CardText, { text: comment.text }),
-            React.createElement(CardInfo, { createdDate: formatDate(comment.created, locale) }),
-            isOwner && canReply ? React.createElement(
+            _react2.default.createElement(_CardHeader2.default, { userName: comment.user.displayName }),
+            _react2.default.createElement(_CardText2.default, { text: comment.text }),
+            _react2.default.createElement(_CardInfo2.default, { createdDate: (0, _dateformatter.formatDate)(comment.created, locale) }),
+            isOwner && canReply ? _react2.default.createElement(
                 'div',
                 { className: classes.commentActions },
-                React.createElement(ActionButton, {
+                _react2.default.createElement(_ActionButton2.default, {
                     iconType: 'edit',
                     onClick: function onClick() {
                         return onEdit(comment);
                     }
                 }),
-                React.createElement(ActionButton, {
+                _react2.default.createElement(_ActionButton2.default, {
                     iconType: 'reply',
                     onClick: function onClick() {
                         return onReply(comment);
                     }
                 }),
-                React.createElement(ActionButton, {
+                _react2.default.createElement(_ActionButton2.default, {
                     iconType: 'delete',
                     onClick: onDelete
                 })
-            ) : canReply && React.createElement(ActionButton, {
+            ) : canReply && _react2.default.createElement(_ActionButton2.default, {
                 iconType: 'reply',
                 onClick: function onClick() {
                     return onReply(comment);
                 }
             })
         ),
-        dialogIsOpen && React.createElement(DeleteDialog, {
-            title: i18n.t('Delete comment'),
-            text: i18n.t('Are you sure you want to delete this comment?'),
+        dialogIsOpen && _react2.default.createElement(_DeleteDialog2.default, {
+            title: _d2I18n2.default.t('Delete comment'),
+            text: _d2I18n2.default.t('Are you sure you want to delete this comment?'),
             onDelete: function onDelete() {
                 return onDeleteConfirm(comment);
             },
@@ -70,16 +110,16 @@ export var Comment = function Comment(_ref) {
 };
 
 Comment.propTypes = {
-    classes: PropTypes.object.isRequired,
-    comment: PropTypes.object.isRequired,
-    isOwner: PropTypes.bool.isRequired,
-    locale: PropTypes.string.isRequired,
-    onEdit: PropTypes.func.isRequired,
-    onReply: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
-    dialogIsOpen: PropTypes.bool.isRequired,
-    onDeleteConfirm: PropTypes.func.isRequired,
-    onDeleteCancel: PropTypes.func.isRequired
+    classes: _propTypes2.default.object.isRequired,
+    comment: _propTypes2.default.object.isRequired,
+    isOwner: _propTypes2.default.bool.isRequired,
+    locale: _propTypes2.default.string.isRequired,
+    onEdit: _propTypes2.default.func.isRequired,
+    onReply: _propTypes2.default.func.isRequired,
+    onDelete: _propTypes2.default.func.isRequired,
+    dialogIsOpen: _propTypes2.default.bool.isRequired,
+    onDeleteConfirm: _propTypes2.default.func.isRequired,
+    onDeleteCancel: _propTypes2.default.func.isRequired
 };
 
-export default withStyles(styles)(Comment);
+exports.default = (0, _styles.withStyles)(_Comment2.default)(Comment);

@@ -1,4 +1,9 @@
-export default {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
     interpretationCommentArea: {
         fontSize: '12px',
         margin: '2px 0 5px 0px',

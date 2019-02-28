@@ -1,4 +1,9 @@
-export default {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
     cardInfo: {
         fontSize: '11px',
         margin: '0px 0px 8px 0px',

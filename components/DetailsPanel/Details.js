@@ -1,32 +1,98 @@
-import _slicedToArray from 'babel-runtime/helpers/slicedToArray';
-import _regeneratorRuntime from 'babel-runtime/regenerator';
-import _asyncToGenerator from 'babel-runtime/helpers/asyncToGenerator';
-import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
-import React from 'react';
-import PropTypes from 'prop-types';
-import IconButton from '@material-ui/core/IconButton';
-import SubscriberIconEnabled from '@material-ui/icons/Notifications';
-import SubscriberIconDisabled from '@material-ui/icons/AddAlert';
-import { withStyles } from '@material-ui/core/styles';
-import i18n from '@dhis2/d2-i18n';
+'use strict';
 
-import CollapsibleCard from '../Cards/CollapsibleCard';
-import Description from './Description';
-import Item from './Item';
-import { getSharingText } from '../../sharing/sharingText';
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Details = undefined;
 
-import { setSubscription } from '../../api/helpers';
-import { formatDate } from '../../dateformats/dateformatter';
-import { translateModelName } from '../../translations/modelNametranslator';
-import styles from './styles/Details.style';
-import { itemTypeMap } from '../../api/redirect';
+var _slicedToArray2 = require('babel-runtime/helpers/slicedToArray');
 
-export var Details = function (_React$Component) {
-    _inherits(Details, _React$Component);
+var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _IconButton = require('@material-ui/core/IconButton');
+
+var _IconButton2 = _interopRequireDefault(_IconButton);
+
+var _Notifications = require('@material-ui/icons/Notifications');
+
+var _Notifications2 = _interopRequireDefault(_Notifications);
+
+var _AddAlert = require('@material-ui/icons/AddAlert');
+
+var _AddAlert2 = _interopRequireDefault(_AddAlert);
+
+var _styles = require('@material-ui/core/styles');
+
+var _d2I18n = require('@dhis2/d2-i18n');
+
+var _d2I18n2 = _interopRequireDefault(_d2I18n);
+
+var _CollapsibleCard = require('../Cards/CollapsibleCard');
+
+var _CollapsibleCard2 = _interopRequireDefault(_CollapsibleCard);
+
+var _Description = require('./Description');
+
+var _Description2 = _interopRequireDefault(_Description);
+
+var _Item = require('./Item');
+
+var _Item2 = _interopRequireDefault(_Item);
+
+var _sharingText = require('../../sharing/sharingText');
+
+var _helpers = require('../../api/helpers');
+
+var _dateformatter = require('../../dateformats/dateformatter');
+
+var _modelNametranslator = require('../../translations/modelNametranslator');
+
+var _Details = require('./styles/Details.style');
+
+var _Details2 = _interopRequireDefault(_Details);
+
+var _redirect = require('../../api/redirect');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Details = exports.Details = function (_React$Component) {
+    (0, _inherits3.default)(Details, _React$Component);
 
     function Details() {
         var _ref,
@@ -34,25 +100,25 @@ export var Details = function (_React$Component) {
 
         var _temp, _this, _ret;
 
-        _classCallCheck(this, Details);
+        (0, _classCallCheck3.default)(this, Details);
 
         for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Details.__proto__ || _Object$getPrototypeOf(Details)).call.apply(_ref, [this].concat(args))), _this), _this.state = { isExpanded: true, showCompleteDescription: false }, _this.toggleDetailsExpand = function () {
+        return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Details.__proto__ || (0, _getPrototypeOf2.default)(Details)).call.apply(_ref, [this].concat(args))), _this), _this.state = { isExpanded: true, showCompleteDescription: false }, _this.toggleDetailsExpand = function () {
             _this.setState({ isExpanded: !_this.state.isExpanded });
         }, _this.toggleDescription = function () {
             return _this.setState({ showCompleteDescription: !_this.state.showCompleteDescription });
-        }, _this.toggleSubscription = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee() {
+        }, _this.toggleSubscription = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee() {
             var _this$props, model, onChange;
 
-            return _regeneratorRuntime.wrap(function _callee$(_context) {
+            return _regenerator2.default.wrap(function _callee$(_context) {
                 while (1) {
                     switch (_context.prev = _context.next) {
                         case 0:
                             _this$props = _this.props, model = _this$props.model, onChange = _this$props.onChange;
-                            return _context.abrupt('return', setSubscription(_this.context.d2, model, !model.subscribed).then(onChange));
+                            return _context.abrupt('return', (0, _helpers.setSubscription)(_this.context.d2, model, !model.subscribed).then(onChange));
 
                         case 2:
                         case 'end':
@@ -60,27 +126,27 @@ export var Details = function (_React$Component) {
                     }
                 }
             }, _callee, _this2);
-        })), _temp), _possibleConstructorReturn(_this, _ret);
+        })), _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
     }
 
-    _createClass(Details, [{
+    (0, _createClass3.default)(Details, [{
         key: 'renderSubscriptionButton',
         value: function renderSubscriptionButton() {
-            var tOpts = { object: translateModelName(this.props.model.modelName) };
+            var tOpts = { object: (0, _modelNametranslator.translateModelName)(this.props.model.modelName) };
 
-            var _ref3 = this.props.model.subscribed ? [SubscriberIconEnabled, i18n.t('Unsubscribe from this {{object}} and stop receiving notifications', tOpts)] : [SubscriberIconDisabled, i18n.t('Subscribe to this {{object}} and start receiving notifications', tOpts)],
-                _ref4 = _slicedToArray(_ref3, 2),
+            var _ref3 = this.props.model.subscribed ? [_Notifications2.default, _d2I18n2.default.t('Unsubscribe from this {{object}} and stop receiving notifications', tOpts)] : [_AddAlert2.default, _d2I18n2.default.t('Subscribe to this {{object}} and start receiving notifications', tOpts)],
+                _ref4 = (0, _slicedToArray3.default)(_ref3, 2),
                 SubscriberIcon = _ref4[0],
                 subscriptionTooltip = _ref4[1];
 
-            return React.createElement(
-                IconButton,
+            return _react2.default.createElement(
+                _IconButton2.default,
                 {
-                    style: styles.subscriberIcon,
+                    style: _Details2.default.subscriberIcon,
                     title: subscriptionTooltip,
                     onClick: this.toggleSubscription
                 },
-                React.createElement(SubscriberIcon, null)
+                _react2.default.createElement(SubscriberIcon, null)
             );
         }
     }, {
@@ -93,47 +159,48 @@ export var Details = function (_React$Component) {
             var owner = model.user ? model.user.displayName : '-';
             var SubscriptionButton = this.renderSubscriptionButton();
 
-            return React.createElement(
-                CollapsibleCard,
-                { title: itemTypeMap[this.props.type.toUpperCase()].detailsTitle },
+            return _react2.default.createElement(
+                _CollapsibleCard2.default,
+                { title: _redirect.itemTypeMap[this.props.type.toUpperCase()].detailsTitle },
                 SubscriptionButton,
-                React.createElement(
+                _react2.default.createElement(
                     'div',
                     { className: classes.detailsCardList },
-                    React.createElement(Item, { text: React.createElement(Description, {
+                    _react2.default.createElement(_Item2.default, { text: _react2.default.createElement(_Description2.default, {
                             displayDescription: model.displayDescription,
                             isToggled: this.state.showCompleteDescription,
                             onToggleDescription: this.toggleDescription
                         })
                     }),
-                    React.createElement(Item, { label: i18n.t('Owner'), text: owner }),
-                    React.createElement(Item, {
-                        label: i18n.t('Created'),
-                        text: formatDate(model.created, this.context.locale)
+                    _react2.default.createElement(_Item2.default, { label: _d2I18n2.default.t('Owner'), text: owner }),
+                    _react2.default.createElement(_Item2.default, {
+                        label: _d2I18n2.default.t('Created'),
+                        text: (0, _dateformatter.formatDate)(model.created, this.context.locale)
                     }),
-                    React.createElement(Item, {
-                        label: i18n.t('Last updated'),
-                        text: formatDate(model.lastUpdated, this.context.locale)
+                    _react2.default.createElement(_Item2.default, {
+                        label: _d2I18n2.default.t('Last updated'),
+                        text: (0, _dateformatter.formatDate)(model.lastUpdated, this.context.locale)
                     }),
-                    React.createElement(Item, { label: i18n.t('Views'), text: model.favoriteViews }),
-                    React.createElement(Item, { label: i18n.t('Sharing'), text: getSharingText(model) })
+                    _react2.default.createElement(_Item2.default, { label: _d2I18n2.default.t('Views'), text: model.favoriteViews }),
+                    _react2.default.createElement(_Item2.default, { label: _d2I18n2.default.t('Sharing'), text: (0, _sharingText.getSharingText)(model) })
                 )
             );
         }
     }]);
-
     return Details;
-}(React.Component);;
+}(_react2.default.Component);
+
+;
 
 Details.contextTypes = {
-    d2: PropTypes.object.isRequired,
-    locale: PropTypes.string.isRequired,
-    appName: PropTypes.string.isRequired
+    d2: _propTypes2.default.object.isRequired,
+    locale: _propTypes2.default.string.isRequired,
+    appName: _propTypes2.default.string.isRequired
 };
 
 Details.propTypes = {
-    model: PropTypes.object.isRequired,
-    onChange: PropTypes.func.isRequired
+    model: _propTypes2.default.object.isRequired,
+    onChange: _propTypes2.default.func.isRequired
 };
 
-export default withStyles(styles)(Details);
+exports.default = (0, _styles.withStyles)(_Details2.default)(Details);

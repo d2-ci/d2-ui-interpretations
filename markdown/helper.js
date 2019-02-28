@@ -1,47 +1,55 @@
-import { markdownHandler, insertMarkdown } from './markdownHandler';
-import { insertLinkWithSpace, insertLinkWithoutSpace, insertBoldWithSpace, insertBoldWithoutSpace, insertItalicWithSpace, insertItalicWithoutSpace, concatLinkWithSpace, concatLinkWithoutSpace, concatBoldWithSpace, concatBoldWithoutSpace, concatItalicWithSpace, concatItalicWithoutSpace, insertEmoticonWithSpace, insertEmoticonWithoutSpace } from './formats';
+'use strict';
 
-export var LINK = 'LINK';
-export var BOLD = 'BOLD';
-export var ITALIC = 'ITALIC';
-export var EMOTICON = 'EMOTICON';
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.concatHelper = exports.insertHelper = exports.getEmoticon = exports.getMarkdown = exports.WITHOUT_SPACE = exports.WITH_SPACE = exports.EMOTICON = exports.ITALIC = exports.BOLD = exports.LINK = undefined;
 
-export var WITH_SPACE = true;
-export var WITHOUT_SPACE = false;
+var _markdownHandler = require('./markdownHandler');
 
-export var getMarkdown = function getMarkdown(TYPE, currentInput, highlightedText, cursorStart, cursorEnd) {
-    return currentInput.length ? markdownHandler(TYPE, currentInput, highlightedText, cursorStart, cursorEnd) : insertHelper(TYPE, WITHOUT_SPACE, currentInput, cursorStart);
+var _formats = require('./formats');
+
+var LINK = exports.LINK = 'LINK';
+var BOLD = exports.BOLD = 'BOLD';
+var ITALIC = exports.ITALIC = 'ITALIC';
+var EMOTICON = exports.EMOTICON = 'EMOTICON';
+
+var WITH_SPACE = exports.WITH_SPACE = true;
+var WITHOUT_SPACE = exports.WITHOUT_SPACE = false;
+
+var getMarkdown = exports.getMarkdown = function getMarkdown(TYPE, currentInput, highlightedText, cursorStart, cursorEnd) {
+    return currentInput.length ? (0, _markdownHandler.markdownHandler)(TYPE, currentInput, highlightedText, cursorStart, cursorEnd) : insertHelper(TYPE, WITHOUT_SPACE, currentInput, cursorStart);
 };
 
-export var getEmoticon = function getEmoticon(emoticon, currentInput, cursorStart) {
-    return currentInput.length ? insertMarkdown(EMOTICON, currentInput, cursorStart, emoticon) : insertHelper(EMOTICON, WITHOUT_SPACE, currentInput, cursorStart, emoticon);
+var getEmoticon = exports.getEmoticon = function getEmoticon(emoticon, currentInput, cursorStart) {
+    return currentInput.length ? (0, _markdownHandler.insertMarkdown)(EMOTICON, currentInput, cursorStart, emoticon) : insertHelper(EMOTICON, WITHOUT_SPACE, currentInput, cursorStart, emoticon);
 };
 
-export var insertHelper = function insertHelper(TYPE, WITH_SPACE, currentInput, cursorStart) {
+var insertHelper = exports.insertHelper = function insertHelper(TYPE, WITH_SPACE, currentInput, cursorStart) {
     var emoticon = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
 
     switch (TYPE) {
         case LINK:
-            return WITH_SPACE ? insertLinkWithSpace(currentInput, cursorStart) : insertLinkWithoutSpace(currentInput, cursorStart);
+            return WITH_SPACE ? (0, _formats.insertLinkWithSpace)(currentInput, cursorStart) : (0, _formats.insertLinkWithoutSpace)(currentInput, cursorStart);
         case BOLD:
-            return WITH_SPACE ? insertBoldWithSpace(currentInput, cursorStart) : insertBoldWithoutSpace(currentInput, cursorStart);
+            return WITH_SPACE ? (0, _formats.insertBoldWithSpace)(currentInput, cursorStart) : (0, _formats.insertBoldWithoutSpace)(currentInput, cursorStart);
         case ITALIC:
-            return WITH_SPACE ? insertItalicWithSpace(currentInput, cursorStart) : insertItalicWithoutSpace(currentInput, cursorStart);
+            return WITH_SPACE ? (0, _formats.insertItalicWithSpace)(currentInput, cursorStart) : (0, _formats.insertItalicWithoutSpace)(currentInput, cursorStart);
         case EMOTICON:
-            return WITH_SPACE ? insertEmoticonWithSpace(currentInput, cursorStart, emoticon) : insertEmoticonWithoutSpace(currentInput, cursorStart, emoticon);
+            return WITH_SPACE ? (0, _formats.insertEmoticonWithSpace)(currentInput, cursorStart, emoticon) : (0, _formats.insertEmoticonWithoutSpace)(currentInput, cursorStart, emoticon);
         default:
             return {};
     };
 };
 
-export var concatHelper = function concatHelper(TYPE, WITH_SPACE, currentInput, highlightedText, cursorStart, cursorEnd) {
+var concatHelper = exports.concatHelper = function concatHelper(TYPE, WITH_SPACE, currentInput, highlightedText, cursorStart, cursorEnd) {
     switch (TYPE) {
         case LINK:
-            return WITH_SPACE ? concatLinkWithSpace(currentInput, highlightedText, cursorStart, cursorEnd) : concatLinkWithoutSpace(currentInput, highlightedText, cursorStart, cursorEnd);
+            return WITH_SPACE ? (0, _formats.concatLinkWithSpace)(currentInput, highlightedText, cursorStart, cursorEnd) : (0, _formats.concatLinkWithoutSpace)(currentInput, highlightedText, cursorStart, cursorEnd);
         case BOLD:
-            return WITH_SPACE ? concatBoldWithSpace(currentInput, highlightedText, cursorStart, cursorEnd) : concatBoldWithoutSpace(currentInput, highlightedText, cursorStart, cursorEnd);
+            return WITH_SPACE ? (0, _formats.concatBoldWithSpace)(currentInput, highlightedText, cursorStart, cursorEnd) : (0, _formats.concatBoldWithoutSpace)(currentInput, highlightedText, cursorStart, cursorEnd);
         case ITALIC:
-            return WITH_SPACE ? concatItalicWithSpace(currentInput, highlightedText, cursorStart, cursorEnd) : concatItalicWithoutSpace(currentInput, highlightedText, cursorStart, cursorEnd);
+            return WITH_SPACE ? (0, _formats.concatItalicWithSpace)(currentInput, highlightedText, cursorStart, cursorEnd) : (0, _formats.concatItalicWithoutSpace)(currentInput, highlightedText, cursorStart, cursorEnd);
         default:
             return {};
     };

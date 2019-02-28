@@ -1,12 +1,33 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import i18n from '@dhis2/d2-i18n';
-import { Parser as RichTextParser } from '@dhis2/d2-ui-rich-text';
-import Link from '../Link/Link';
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Description = undefined;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _d2I18n = require('@dhis2/d2-i18n');
+
+var _d2I18n2 = _interopRequireDefault(_d2I18n);
+
+var _d2UiRichText = require('@dhis2/d2-ui-rich-text');
+
+var _Link = require('../Link/Link');
+
+var _Link2 = _interopRequireDefault(_Link);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var descriptionMaxLength = 250;
 
-export var Description = function Description(_ref) {
+var Description = exports.Description = function Description(_ref) {
     var displayDescription = _ref.displayDescription,
         isToggled = _ref.isToggled,
         onToggleDescription = _ref.onToggleDescription;
@@ -14,36 +35,37 @@ export var Description = function Description(_ref) {
     var description = void 0;
 
     if (!displayDescription) {
-        description = i18n.t('_No description_');
+        description = _d2I18n2.default.t('_No description_');
     } else if (displayDescription.length < descriptionMaxLength || isToggled) {
         description = displayDescription;
     } else {
         description = displayDescription.substring(0, descriptionMaxLength) + ' ... ';
     }
 
-    return React.createElement(
-        Fragment,
+    return _react2.default.createElement(
+        _react.Fragment,
         null,
-        React.createElement(
-            RichTextParser,
+        _react2.default.createElement(
+            _d2UiRichText.Parser,
             null,
             description
         ),
-        displayDescription.length > descriptionMaxLength && React.createElement(Link, {
+        displayDescription.length > descriptionMaxLength && _react2.default.createElement(_Link2.default, {
             onClick: onToggleDescription,
-            label: '[' + i18n.t('Show ') + ' ' + (isToggled ? i18n.t('less') : i18n.t('more')) + ']'
+            label: '[' + _d2I18n2.default.t('Show ') + ' ' + (isToggled ? _d2I18n2.default.t('less') : _d2I18n2.default.t('more')) + ']'
         })
     );
 };
 
-export default Description;
+exports.default = Description;
+
 
 Description.defaultProps = {
     displayDescription: ''
 };
 
 Description.propTypes = {
-    displayDescription: PropTypes.string,
-    isToggled: PropTypes.bool.isRequired,
-    onToggleDescription: PropTypes.func.isRequired
+    displayDescription: _propTypes2.default.string,
+    isToggled: _propTypes2.default.bool.isRequired,
+    onToggleDescription: _propTypes2.default.func.isRequired
 };

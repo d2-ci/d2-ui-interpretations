@@ -1,4 +1,9 @@
-export default {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
     sharingContainer: {
         margin: '8px 0px',
         fontSize: '12px'

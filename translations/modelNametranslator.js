@@ -1,18 +1,29 @@
-import i18n from '@dhis2/d2-i18n';
+'use strict';
 
-export function translateModelName(modelName) {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.translateModelName = translateModelName;
+
+var _d2I18n = require('@dhis2/d2-i18n');
+
+var _d2I18n2 = _interopRequireDefault(_d2I18n);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function translateModelName(modelName) {
     switch (modelName) {
         case 'chart':
-            return i18n.t('chart');
+            return _d2I18n2.default.t('chart');
         case 'reportTable':
-            return i18n.t('pivot table');
+            return _d2I18n2.default.t('pivot table');
         case 'map':
-            return i18n.t('map');
+            return _d2I18n2.default.t('map');
         case 'eventChart':
-            return i18n.t('event chart');
+            return _d2I18n2.default.t('event chart');
         case 'eventReport':
-            return i18n.t('event report');
+            return _d2I18n2.default.t('event report');
         default:
-            return i18n.t('object');
+            return _d2I18n2.default.t('object');
     }
 };

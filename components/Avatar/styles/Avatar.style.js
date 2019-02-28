@@ -1,4 +1,9 @@
-export default {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
     avatar: {
         color: '#4A5768',
         backgroundColor: '#D5DDE5',

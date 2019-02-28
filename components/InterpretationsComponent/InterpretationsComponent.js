@@ -1,36 +1,96 @@
-import _regeneratorRuntime from 'babel-runtime/regenerator';
-import _Array$from from 'babel-runtime/core-js/array/from';
-import _asyncToGenerator from 'babel-runtime/helpers/asyncToGenerator';
-import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
-import React from 'react';
-import PropTypes from 'prop-types';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { withStyles } from '@material-ui/core/styles';
-import isEqual from 'lodash/fp/isEqual';
-import pick from 'lodash/fp/pick';
+'use strict';
 
-import { getFavoriteWithInterpretations } from '../../api/helpers';
-import Details from '../DetailsPanel/Details';
-import InterpretationsCard from '../Cards/InterpretationsCard';
-import i18n from '../../locales';
-import styles from './styles/InterpretationsComponent.style';
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.InterpretationsComponent = undefined;
+
+var _regenerator = require('babel-runtime/regenerator');
+
+var _regenerator2 = _interopRequireDefault(_regenerator);
+
+var _from = require('babel-runtime/core-js/array/from');
+
+var _from2 = _interopRequireDefault(_from);
+
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
+
+var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _CircularProgress = require('@material-ui/core/CircularProgress');
+
+var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
+
+var _styles = require('@material-ui/core/styles');
+
+var _isEqual = require('lodash/fp/isEqual');
+
+var _isEqual2 = _interopRequireDefault(_isEqual);
+
+var _pick = require('lodash/fp/pick');
+
+var _pick2 = _interopRequireDefault(_pick);
+
+var _helpers = require('../../api/helpers');
+
+var _Details = require('../DetailsPanel/Details');
+
+var _Details2 = _interopRequireDefault(_Details);
+
+var _InterpretationsCard = require('../Cards/InterpretationsCard');
+
+var _InterpretationsCard2 = _interopRequireDefault(_InterpretationsCard);
+
+var _locales = require('../../locales');
+
+var _locales2 = _interopRequireDefault(_locales);
+
+var _InterpretationsComponent = require('./styles/InterpretationsComponent.style');
+
+var _InterpretationsComponent2 = _interopRequireDefault(_InterpretationsComponent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function configI18n(d2) {
     var locale = d2.currentUser.userSettings.settings.keyUiLocale;
-    i18n.changeLanguage(locale);
+    _locales2.default.changeLanguage(locale);
 };
 
-export var InterpretationsComponent = function (_React$Component) {
-    _inherits(InterpretationsComponent, _React$Component);
+var InterpretationsComponent = exports.InterpretationsComponent = function (_React$Component) {
+    (0, _inherits3.default)(InterpretationsComponent, _React$Component);
 
     function InterpretationsComponent(props) {
-        _classCallCheck(this, InterpretationsComponent);
+        (0, _classCallCheck3.default)(this, InterpretationsComponent);
 
-        var _this = _possibleConstructorReturn(this, (InterpretationsComponent.__proto__ || _Object$getPrototypeOf(InterpretationsComponent)).call(this, props));
+        var _this = (0, _possibleConstructorReturn3.default)(this, (InterpretationsComponent.__proto__ || (0, _getPrototypeOf2.default)(InterpretationsComponent)).call(this, props));
 
         _this.state = { model: null, userGroups: [] };
 
@@ -38,7 +98,7 @@ export var InterpretationsComponent = function (_React$Component) {
         return _this;
     }
 
-    _createClass(InterpretationsComponent, [{
+    (0, _createClass3.default)(InterpretationsComponent, [{
         key: 'getChildContext',
         value: function getChildContext() {
             return {
@@ -58,7 +118,7 @@ export var InterpretationsComponent = function (_React$Component) {
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(nextProps) {
             var fields = ['type', 'id', 'lastUpdated'];
-            var modelFieldsChanged = !isEqual(pick(fields, this.props), pick(fields, nextProps));
+            var modelFieldsChanged = !(0, _isEqual2.default)((0, _pick2.default)(fields, this.props), (0, _pick2.default)(fields, nextProps));
 
             if (modelFieldsChanged) {
                 this.loadModel(nextProps);
@@ -67,11 +127,11 @@ export var InterpretationsComponent = function (_React$Component) {
     }, {
         key: 'loadModel',
         value: function () {
-            var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(props) {
+            var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(props) {
                 var _this2 = this;
 
                 var users;
-                return _regeneratorRuntime.wrap(function _callee$(_context) {
+                return _regenerator2.default.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
@@ -80,8 +140,8 @@ export var InterpretationsComponent = function (_React$Component) {
 
                             case 2:
                                 users = _context.sent;
-                                return _context.abrupt('return', getFavoriteWithInterpretations(props.d2, props.type, props.id).then(function (model) {
-                                    _this2.setState({ model: model, userGroups: _Array$from(users.keys()) });
+                                return _context.abrupt('return', (0, _helpers.getFavoriteWithInterpretations)(props.d2, props.type, props.id).then(function (model) {
+                                    _this2.setState({ model: model, userGroups: (0, _from2.default)(users.keys()) });
                                     return model;
                                 }));
 
@@ -102,10 +162,10 @@ export var InterpretationsComponent = function (_React$Component) {
     }, {
         key: 'onChange',
         value: function () {
-            var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
+            var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2() {
                 var _this3 = this;
 
-                return _regeneratorRuntime.wrap(function _callee2$(_context2) {
+                return _regenerator2.default.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
@@ -140,14 +200,14 @@ export var InterpretationsComponent = function (_React$Component) {
 
 
             if (!model) {
-                return React.createElement(CircularProgress, null);
+                return _react2.default.createElement(_CircularProgress2.default, null);
             }
 
-            return React.createElement(
+            return _react2.default.createElement(
                 'div',
                 { className: classes.interpretationsContainer },
-                React.createElement(Details, { model: model, onChange: this.onChange, type: this.props.type }),
-                React.createElement(InterpretationsCard, {
+                _react2.default.createElement(_Details2.default, { model: model, onChange: this.onChange, type: this.props.type }),
+                _react2.default.createElement(_InterpretationsCard2.default, {
                     model: model,
                     userGroups: userGroups,
                     onChange: this.onChange,
@@ -158,26 +218,27 @@ export var InterpretationsComponent = function (_React$Component) {
             );
         }
     }]);
-
     return InterpretationsComponent;
-}(React.Component);;
+}(_react2.default.Component);
+
+;
 
 InterpretationsComponent.propTypes = {
-    classes: PropTypes.object.isRequired,
-    d2: PropTypes.object.isRequired,
-    type: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    lastUpdated: PropTypes.string,
-    currentInterpretationId: PropTypes.string,
-    onChange: PropTypes.func,
-    onCurrentInterpretationChange: PropTypes.func
+    classes: _propTypes2.default.object.isRequired,
+    d2: _propTypes2.default.object.isRequired,
+    type: _propTypes2.default.string.isRequired,
+    id: _propTypes2.default.string.isRequired,
+    lastUpdated: _propTypes2.default.string,
+    currentInterpretationId: _propTypes2.default.string,
+    onChange: _propTypes2.default.func,
+    onCurrentInterpretationChange: _propTypes2.default.func
 };
 
 InterpretationsComponent.childContextTypes = {
-    d2: PropTypes.object,
-    locale: PropTypes.string,
-    appName: PropTypes.string,
-    item: PropTypes.object
+    d2: _propTypes2.default.object,
+    locale: _propTypes2.default.string,
+    appName: _propTypes2.default.string,
+    item: _propTypes2.default.object
 };
 
-export default withStyles(styles)(InterpretationsComponent);
+exports.default = (0, _styles.withStyles)(_InterpretationsComponent2.default)(InterpretationsComponent);

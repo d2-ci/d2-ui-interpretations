@@ -1,4 +1,9 @@
-export default {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
     toolbarContainer: {
         borderBottom: '1px solid darkgrey',
 

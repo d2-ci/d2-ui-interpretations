@@ -1,26 +1,71 @@
-import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
-import React, { Fragment, Component } from 'react';
-import i18n from '@dhis2/d2-i18n';
-import PropTypes from 'prop-types';
-import Popper from '@material-ui/core/Popper';
-import Paper from '@material-ui/core/Paper';
-import { withStyles } from '@material-ui/core/styles';
-import TextSeparator from '../TextSeparator/TextSeparator';
-import styles from './styles/LikesAndReplies.style';
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Likes = undefined;
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _d2I18n = require('@dhis2/d2-i18n');
+
+var _d2I18n2 = _interopRequireDefault(_d2I18n);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _Popper = require('@material-ui/core/Popper');
+
+var _Popper2 = _interopRequireDefault(_Popper);
+
+var _Paper = require('@material-ui/core/Paper');
+
+var _Paper2 = _interopRequireDefault(_Paper);
+
+var _styles = require('@material-ui/core/styles');
+
+var _TextSeparator = require('../TextSeparator/TextSeparator');
+
+var _TextSeparator2 = _interopRequireDefault(_TextSeparator);
+
+var _LikesAndReplies = require('./styles/LikesAndReplies.style');
+
+var _LikesAndReplies2 = _interopRequireDefault(_LikesAndReplies);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var TOOLTIP_ENTER_DELAY = 200;
 
-export var Likes = function (_Component) {
-    _inherits(Likes, _Component);
+var Likes = exports.Likes = function (_Component) {
+    (0, _inherits3.default)(Likes, _Component);
 
     function Likes(props) {
-        _classCallCheck(this, Likes);
+        (0, _classCallCheck3.default)(this, Likes);
 
-        var _this = _possibleConstructorReturn(this, (Likes.__proto__ || _Object$getPrototypeOf(Likes)).call(this, props));
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Likes.__proto__ || (0, _getPrototypeOf2.default)(Likes)).call(this, props));
 
         _this.showTooltip = function () {
             if (_this.timeout === null) {
@@ -39,22 +84,22 @@ export var Likes = function (_Component) {
         };
 
         _this.renderTooltip = function () {
-            return React.createElement(
-                Popper,
+            return _react2.default.createElement(
+                _Popper2.default,
                 {
                     anchorEl: document.getElementById(_this.id),
                     open: _this.state.tooltipIsOpen,
                     placement: 'top',
-                    style: styles.popper
+                    style: _LikesAndReplies2.default.popper
                 },
-                React.createElement(
-                    Paper,
+                _react2.default.createElement(
+                    _Paper2.default,
                     { className: _this.props.classes.tooltip },
-                    React.createElement(
+                    _react2.default.createElement(
                         'ul',
                         { className: _this.props.classes.tooltipList },
                         _this.props.likedBy.map(function (userName, key) {
-                            return React.createElement(
+                            return _react2.default.createElement(
                                 'li',
                                 { key: key },
                                 ' ',
@@ -73,7 +118,7 @@ export var Likes = function (_Component) {
         return _this;
     }
 
-    _createClass(Likes, [{
+    (0, _createClass3.default)(Likes, [{
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
             clearTimeout(this.id);
@@ -85,11 +130,11 @@ export var Likes = function (_Component) {
 
             var Tooltip = this.state.tooltipIsOpen && this.renderTooltip();
 
-            return !!likedBy.length && React.createElement(
-                Fragment,
+            return !!likedBy.length && _react2.default.createElement(
+                _react.Fragment,
                 null,
-                React.createElement(TextSeparator, null),
-                React.createElement(
+                _react2.default.createElement(_TextSeparator2.default, null),
+                _react2.default.createElement(
                     'span',
                     {
                         id: this.id,
@@ -99,18 +144,19 @@ export var Likes = function (_Component) {
                     Tooltip,
                     likedBy.length,
                     ' ',
-                    likedBy.length > 1 ? i18n.t('likes') : i18n.t('like')
+                    likedBy.length > 1 ? _d2I18n2.default.t('likes') : _d2I18n2.default.t('like')
                 )
             );
         }
     }]);
-
     return Likes;
-}(Component);;
+}(_react.Component);
+
+;
 
 Likes.propTypes = {
-    classes: PropTypes.object.isRequired,
-    likedBy: PropTypes.array.isRequired
+    classes: _propTypes2.default.object.isRequired,
+    likedBy: _propTypes2.default.array.isRequired
 };
 
-export default withStyles(styles)(Likes);
+exports.default = (0, _styles.withStyles)(_LikesAndReplies2.default)(Likes);

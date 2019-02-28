@@ -1,4 +1,9 @@
-export default {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
     userLink: {
         color: '#3d4245',
         fontWeight: 'bold',

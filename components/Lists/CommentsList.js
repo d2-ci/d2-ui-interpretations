@@ -1,29 +1,81 @@
-import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import i18n from '@dhis2/d2-i18n';
-import orderBy from 'lodash/fp/orderBy';
-import NewCommentField from '../Comment/NewCommentField';
-import Comment from '../Comment/Comment';
-import Link from '../Link/Link';
-import CommentModel from '../../models/comment';
-import { userCanManage } from '../../authorization/auth';
-import styles from './styles/CommentsList.style';
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.CommentsList = undefined;
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _styles = require('@material-ui/core/styles');
+
+var _d2I18n = require('@dhis2/d2-i18n');
+
+var _d2I18n2 = _interopRequireDefault(_d2I18n);
+
+var _orderBy = require('lodash/fp/orderBy');
+
+var _orderBy2 = _interopRequireDefault(_orderBy);
+
+var _NewCommentField = require('../Comment/NewCommentField');
+
+var _NewCommentField2 = _interopRequireDefault(_NewCommentField);
+
+var _Comment = require('../Comment/Comment');
+
+var _Comment2 = _interopRequireDefault(_Comment);
+
+var _Link = require('../Link/Link');
+
+var _Link2 = _interopRequireDefault(_Link);
+
+var _comment = require('../../models/comment');
+
+var _comment2 = _interopRequireDefault(_comment);
+
+var _auth = require('../../authorization/auth');
+
+var _CommentsList = require('./styles/CommentsList.style');
+
+var _CommentsList2 = _interopRequireDefault(_CommentsList);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var commentsToShowOnInit = 5;
 
-export var CommentsList = function (_React$Component) {
-    _inherits(CommentsList, _React$Component);
+var CommentsList = exports.CommentsList = function (_React$Component) {
+    (0, _inherits3.default)(CommentsList, _React$Component);
 
     function CommentsList(props) {
-        _classCallCheck(this, CommentsList);
+        (0, _classCallCheck3.default)(this, CommentsList);
 
-        var _this = _possibleConstructorReturn(this, (CommentsList.__proto__ || _Object$getPrototypeOf(CommentsList)).call(this, props));
+        var _this = (0, _possibleConstructorReturn3.default)(this, (CommentsList.__proto__ || (0, _getPrototypeOf2.default)(CommentsList)).call(this, props));
 
         _this.onShowMoreComments = function () {
             return _this.setState({ listIsExpanded: true });
@@ -55,30 +107,30 @@ export var CommentsList = function (_React$Component) {
         };
 
         _this.getComments = function () {
-            var sortedComments = orderBy(["created"], ["asc"], _this.props.interpretation.comments);
+            var sortedComments = (0, _orderBy2.default)(["created"], ["asc"], _this.props.interpretation.comments);
 
             return !_this.state.listIsExpanded ? sortedComments.slice(-commentsToShowOnInit) : sortedComments;
         };
 
         _this.renderViewMoreLink = function () {
-            return _this.props.interpretation.comments.length > commentsToShowOnInit && React.createElement(Link, {
-                label: _this.state.listIsExpanded ? i18n.t('Hide old replies') : i18n.t('View more replies'),
+            return _this.props.interpretation.comments.length > commentsToShowOnInit && _react2.default.createElement(_Link2.default, {
+                label: _this.state.listIsExpanded ? _d2I18n2.default.t('Hide old replies') : _d2I18n2.default.t('View more replies'),
                 onClick: _this.state.listIsExpanded ? _this.onHideOldComments : _this.onShowMoreComments
             });
         };
 
         _this.renderComments = function () {
             return _this.getComments().map(function (comment) {
-                return _this.state.commentToEdit && _this.state.commentToEdit.id === comment.id ? React.createElement(NewCommentField, {
+                return _this.state.commentToEdit && _this.state.commentToEdit.id === comment.id ? _react2.default.createElement(_NewCommentField2.default, {
                     key: comment.id,
                     comment: comment,
                     onPost: _this.onUpdate,
                     onCancel: _this.onCancelEdit
-                }) : React.createElement(Comment, {
+                }) : _react2.default.createElement(_Comment2.default, {
                     key: comment.id,
                     comment: comment,
                     canReply: _this.props.canReply,
-                    isOwner: userCanManage(_this.context.d2, comment),
+                    isOwner: (0, _auth.userCanManage)(_this.context.d2, comment),
                     locale: _this.context.locale,
                     onEdit: _this.onEdit,
                     onReply: _this.onReply,
@@ -91,7 +143,7 @@ export var CommentsList = function (_React$Component) {
         };
 
         _this.renderInputField = function () {
-            return _this.props.canReply && React.createElement(NewCommentField, {
+            return _this.props.canReply && _react2.default.createElement(_NewCommentField2.default, {
                 comment: _this.state.newComment,
                 onPost: _this.onSave
             });
@@ -111,10 +163,10 @@ export var CommentsList = function (_React$Component) {
         return _this;
     }
 
-    _createClass(CommentsList, [{
+    (0, _createClass3.default)(CommentsList, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var newComment = CommentModel.getReplyForInterpretation(this.context.d2, this.props.interpretation);
+            var newComment = _comment2.default.getReplyForInterpretation(this.context.d2, this.props.interpretation);
             this.setState({ newComment: newComment, showToolbar: true });
         }
     }, {
@@ -162,7 +214,7 @@ export var CommentsList = function (_React$Component) {
             var Comments = this.renderComments();
             var InputField = this.renderInputField();
 
-            return React.createElement(
+            return _react2.default.createElement(
                 'div',
                 { className: this.props.classes.commentSection },
                 ViewMoreReplies,
@@ -171,18 +223,19 @@ export var CommentsList = function (_React$Component) {
             );
         }
     }]);
-
     return CommentsList;
-}(React.Component);CommentsList.contextTypes = {
-    locale: PropTypes.string,
-    d2: PropTypes.object.isRequired
+}(_react2.default.Component);
+
+CommentsList.contextTypes = {
+    locale: _propTypes2.default.string,
+    d2: _propTypes2.default.object.isRequired
 };
 CommentsList.propTypes = {
-    classes: PropTypes.object.isRequired,
-    interpretation: PropTypes.object.isRequired,
-    newComment: PropTypes.object,
-    onChange: PropTypes.func
+    classes: _propTypes2.default.object.isRequired,
+    interpretation: _propTypes2.default.object.isRequired,
+    newComment: _propTypes2.default.object,
+    onChange: _propTypes2.default.func
 };
 ;
 
-export default withStyles(styles)(CommentsList);
+exports.default = (0, _styles.withStyles)(_CommentsList2.default)(CommentsList);
