@@ -101,7 +101,7 @@ var InterpretationsCard = exports.InterpretationsCard = function (_React$Compone
 
         _this.renderCardContent = function () {
             var currentInterpretation = _this.getCurrentInterpretation();
-            var sortedInterpretations = (0, _orderBy2.default)(["created"], ["asc"], _this.props.model.interpretations);
+            var sortedInterpretations = (0, _orderBy2.default)(["created"], ["desc"], _this.props.model.interpretations);
 
             return currentInterpretation ? _react2.default.createElement(_Interpretation2.default, {
                 model: _this.props.model,
