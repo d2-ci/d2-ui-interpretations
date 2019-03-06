@@ -52,7 +52,7 @@ var InterpretationsList = exports.InterpretationsList = function Interpretations
         return (0, _auth.haveReadAccess)(d2, userGroups, item) && item;
     });
 
-    var listItems = isExpanded ? filteredItems : filteredItems.slice(-interpretationsToShowOnInit);
+    var listItems = isExpanded ? filteredItems : filteredItems.slice(0, interpretationsToShowOnInit);
 
     return listItems.length ? _react2.default.createElement(
         _react.Fragment,
