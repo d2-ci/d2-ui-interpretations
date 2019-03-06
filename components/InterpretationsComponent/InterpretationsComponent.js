@@ -205,16 +205,24 @@ var InterpretationsComponent = exports.InterpretationsComponent = function (_Rea
 
             return _react2.default.createElement(
                 'div',
-                { className: classes.interpretationsContainer },
-                _react2.default.createElement(_Details2.default, { model: model, onChange: this.onChange, type: this.props.type }),
-                _react2.default.createElement(_InterpretationsCard2.default, {
-                    model: model,
-                    userGroups: userGroups,
-                    onChange: this.onChange,
-                    currentInterpretationId: currentInterpretationId,
-                    onCurrentInterpretationChange: onCurrentInterpretationChange,
-                    type: this.props.type
-                })
+                null,
+                _react2.default.createElement(
+                    'div',
+                    { className: classes.interpretationsContainer },
+                    _react2.default.createElement(_Details2.default, {
+                        model: model,
+                        onChange: this.onChange,
+                        type: this.props.type
+                    }),
+                    _react2.default.createElement(_InterpretationsCard2.default, {
+                        model: model,
+                        userGroups: userGroups,
+                        onChange: this.onChange,
+                        currentInterpretationId: currentInterpretationId,
+                        onCurrentInterpretationChange: onCurrentInterpretationChange,
+                        type: this.props.type
+                    })
+                )
             );
         }
     }]);

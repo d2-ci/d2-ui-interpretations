@@ -65,7 +65,7 @@ var RedirectButton = exports.RedirectButton = function (_Component) {
             return this.context.appName === 'dashboard' ? _react2.default.createElement(
                 'a',
                 {
-                    href: (0, _redirect.getLink)(this.context.item, this.context.d2),
+                    href: (0, _redirect.getLink)(this.context.item, this.context.d2, this.props.interpretationId),
                     className: this.props.classes.iconContainer,
                     title: _d2I18n2.default.t('View in ' + _redirect.itemTypeMap[this.context.item.type].appName + ' app')
                 },
@@ -80,6 +80,11 @@ var RedirectButton = exports.RedirectButton = function (_Component) {
 }(_react.Component);
 
 ;
+
+RedirectButton.propTypes = {
+    classes: _propTypes2.default.object.isRequired,
+    interpretationId: _propTypes2.default.string.isRequired
+};
 
 RedirectButton.contextTypes = {
     item: _propTypes2.default.object,

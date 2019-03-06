@@ -191,6 +191,7 @@ var Interpretation = exports.Interpretation = function (_React$Component) {
                     }),
                     _react2.default.createElement(_ActionButtonContainer2.default, {
                         isFocused: extended,
+                        interpretationId: interpretation.id,
                         currentUserLikesInterpretation: currentUserLikesInterpretation,
                         canReply: (0, _auth.haveWriteAccess)(_this.context.d2, userGroups, interpretation),
                         canManage: (0, _auth.userCanManage)(_this.context.d2, interpretation),

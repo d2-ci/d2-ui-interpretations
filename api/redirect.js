@@ -58,51 +58,51 @@ var getBaseUrl = exports.getBaseUrl = function getBaseUrl(d2) {
     return idx > -1 ? api.baseUrl.slice(0, idx) : api.baseUrl;
 };
 
-var getLink = exports.getLink = function getLink(item, d2) {
+var getLink = exports.getLink = function getLink(item, d2, interpretationId) {
     var baseUrl = getBaseUrl(d2);
-    var appUrl = itemTypeMap[item.type].appUrl(getId(item));
+    var appUrl = itemTypeMap[item.type].appUrl(getId(item), interpretationId);
 
     return baseUrl + '/' + appUrl;
 };
 
 var itemTypeMap = exports.itemTypeMap = (_itemTypeMap = {}, (0, _defineProperty3.default)(_itemTypeMap, REPORT_TABLE, {
     id: REPORT_TABLE,
-    appUrl: function appUrl(id) {
-        return 'dhis-web-pivot/?id=' + id;
+    appUrl: function appUrl(modelId, interpretationId) {
+        return 'dhis-web-pivot/?id=' + modelId + '&interpretationid=' + interpretationId;
     },
     propName: 'reportTable',
     appName: _d2I18n2.default.t('Pivot Tables'),
     detailsTitle: _d2I18n2.default.t('Table details')
 }), (0, _defineProperty3.default)(_itemTypeMap, CHART, {
     id: CHART,
-    appUrl: function appUrl(id) {
-        return 'dhis-web-data-visualizer/#/' + id;
+    appUrl: function appUrl(modelId, interpretationId) {
+        return 'dhis-web-data-visualizer/#/' + modelId + '/interpretation/' + interpretationId;
     },
     propName: 'chart',
     appName: _d2I18n2.default.t('Visualizer'),
     detailsTitle: _d2I18n2.default.t('Chart details')
 }), (0, _defineProperty3.default)(_itemTypeMap, MAP, {
     id: MAP,
-    appUrl: function appUrl(id) {
-        return 'dhis-web-maps/?id=' + id;
+    appUrl: function appUrl(modelId, interpretationId) {
+        return 'dhis-web-maps/?id=' + modelId + '&interpretationid=' + interpretationId;
     },
     propName: 'maps',
     appName: _d2I18n2.default.t('Maps'),
     detailsTitle: _d2I18n2.default.t('Map details')
 }), (0, _defineProperty3.default)(_itemTypeMap, EVENT_REPORT, {
     id: EVENT_REPORT,
-    appUrl: function appUrl(id) {
-        return 'dhis-web-event-reports/?id=' + id;
+    appUrl: function appUrl(modelId, interpretationId) {
+        return 'dhis-web-event-reports/?id=' + modelId + '&interpretationid=' + interpretationId;
     },
     propName: 'eventReport',
     appName: _d2I18n2.default.t('Event Reports'),
     detailsTitle: _d2I18n2.default.t('Table details')
 }), (0, _defineProperty3.default)(_itemTypeMap, EVENT_CHART, {
     id: EVENT_CHART,
-    appUrl: function appUrl(id) {
-        return 'dhis-web-event-visualizer/?id=' + id;
+    appUrl: function appUrl(modelId, interpretationId) {
+        return 'dhis-web-event-visualizer/?id=' + modelId + '&interpretationid=' + interpretationId;
     },
     propName: 'eventChart',
     appName: _d2I18n2.default.t('Event Visualizer'),
-    detailsTitle: _d2I18n2.default.t('Table details')
+    detailsTitle: _d2I18n2.default.t('Chart details')
 }), _itemTypeMap);

@@ -41,6 +41,7 @@ var REPLY_INDEX = 7;
 var ActionButtonContainer = exports.ActionButtonContainer = function ActionButtonContainer(_ref) {
     var classes = _ref.classes,
         isFocused = _ref.isFocused,
+        interpretationId = _ref.interpretationId,
         currentUserLikesInterpretation = _ref.currentUserLikesInterpretation,
         canReply = _ref.canReply,
         canManage = _ref.canManage,
@@ -60,7 +61,7 @@ var ActionButtonContainer = exports.ActionButtonContainer = function ActionButto
             iconType: isFocused ? 'visibilityOff' : 'visibility',
             onClick: onClickHandlers[isFocused ? EXIT_VIEW_INDEX : VIEW_INDEX]
         }),
-        _react2.default.createElement(_RedirectButton2.default, null),
+        _react2.default.createElement(_RedirectButton2.default, { interpretationId: interpretationId }),
         canManage && _react2.default.createElement(
             _react.Fragment,
             null,
@@ -83,6 +84,7 @@ var ActionButtonContainer = exports.ActionButtonContainer = function ActionButto
 ActionButtonContainer.propTypes = {
     classes: _propTypes2.default.object.isRequired,
     isFocused: _propTypes2.default.bool.isRequired,
+    interpretationId: _propTypes2.default.string.isRequired,
     currentUserLikesInterpretation: _propTypes2.default.bool.isRequired,
     canReply: _propTypes2.default.bool.isRequired,
     canManage: _propTypes2.default.bool.isRequired,
