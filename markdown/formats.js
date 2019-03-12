@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var whitespace = exports.whitespace = ' ';
 var link = 'http://';
-var linkPlaceholder = '<link-title>';
+var linkPlaceholder = '<link-url>';
 var bold = '*';
 var boldPlaceholder = 'bold text';
 var italic = '_';
@@ -19,7 +19,7 @@ var ITALIC_LENGTH = 1;
 var ITALIC_PLACEHOLDER_LENGTH = 11;
 var EMOTICON_LENGTH = 3;
 var LINK_LENGTH = 7;
-var LINK_PLACEHOLDER_LENGTH = 19;
+var LINK_PLACEHOLDER_LENGTH = 17;
 
 var insertLinkWithSpace = exports.insertLinkWithSpace = function insertLinkWithSpace(currentInput, cursorStart) {
     return {
