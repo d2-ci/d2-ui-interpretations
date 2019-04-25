@@ -115,9 +115,10 @@ var NewInterpretationField = exports.NewInterpretationField = function (_Compone
             _this.setState({ text: newValue });
         };
 
-        _this.setNativeInputVal = function (val) {
+        _this.setNativeInputVal = function (val, caretPos) {
             var node = _this.textarea.current;
             node.value = val;
+            node.setSelectionRange(caretPos, caretPos);
         };
 
         _this.onKeyDown = function (event) {
