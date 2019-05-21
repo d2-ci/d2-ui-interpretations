@@ -58,25 +58,25 @@ var getMentions = exports.getMentions = function () {
                                 username: user.userCredentials.username
                             };
                         });
-                        allUsersByUsername = (0, _fp.keyBy)("username", allUsers);
-                        interpretationMentions = (0, _fp.flatMap)(function (interpretation) {
-                            return (0, _fp.map)("username", interpretation.mentions);
+                        allUsersByUsername = (0, _keyBy2.default)("username", allUsers);
+                        interpretationMentions = (0, _flatMap2.default)(function (interpretation) {
+                            return (0, _map2.default)("username", interpretation.mentions);
                         }, interpretationsResponse.interpretations);
-                        commentMentions = (0, _fp.flatMap)(function (interpretation) {
-                            return (0, _fp.map)("username", (0, _fp.flatMap)("mentions", interpretation.comments));
+                        commentMentions = (0, _flatMap2.default)(function (interpretation) {
+                            return (0, _map2.default)("username", (0, _flatMap2.default)("mentions", interpretation.comments));
                         }, commentsResponse.interpretations);
-                        sortByFrequency = (0, _fp.flow)((0, _fp.groupBy)(function (value) {
+                        sortByFrequency = (0, _flow2.default)((0, _groupBy2.default)(function (value) {
                             return value;
-                        }), _fp.toPairs, (0, _fp.map)(function (_ref2) {
+                        }), _toPairs2.default, (0, _map2.default)(function (_ref2) {
                             var _ref3 = (0, _slicedToArray3.default)(_ref2, 2),
                                 value = _ref3[0],
                                 group = _ref3[1];
 
                             return { value: value, count: group.length };
-                        }), (0, _fp.orderBy)(["count", "value"], ["desc", "asc"]), (0, _fp.map)("value"));
-                        mostMentionedUsernames = (0, _fp.flow)((0, _fp.concat)(commentMentions), (0, _fp.without)([d2.currentUser.username]), sortByFrequency)(interpretationMentions);
-                        mostMentionedUsers = (0, _fp.compact)((0, _fp.at)(mostMentionedUsernames, allUsersByUsername));
-                        allUsersFiltered = (0, _fp.differenceBy)("id", allUsers, mostMentionedUsers).filter(function (user) {
+                        }), (0, _orderBy2.default)(["count", "value"], ["desc", "asc"]), (0, _map2.default)("value"));
+                        mostMentionedUsernames = (0, _flow2.default)((0, _concat2.default)(commentMentions), (0, _without2.default)([d2.currentUser.username]), sortByFrequency)(interpretationMentions);
+                        mostMentionedUsers = (0, _compact2.default)((0, _at2.default)(mostMentionedUsernames, allUsersByUsername));
+                        allUsersFiltered = (0, _differenceBy2.default)("id", allUsers, mostMentionedUsers).filter(function (user) {
                             return d2.currentUser.id !== user.id;
                         });
                         return _context.abrupt('return', { allUsers: allUsersFiltered, mostMentionedUsers: mostMentionedUsers });
@@ -96,7 +96,53 @@ var getMentions = exports.getMentions = function () {
 
 var _api = require('./api');
 
-var _fp = require('lodash/fp');
+var _keyBy = require('lodash/fp/keyBy');
+
+var _keyBy2 = _interopRequireDefault(_keyBy);
+
+var _map = require('lodash/fp/map');
+
+var _map2 = _interopRequireDefault(_map);
+
+var _flatMap = require('lodash/fp/flatMap');
+
+var _flatMap2 = _interopRequireDefault(_flatMap);
+
+var _flow = require('lodash/fp/flow');
+
+var _flow2 = _interopRequireDefault(_flow);
+
+var _groupBy = require('lodash/fp/groupBy');
+
+var _groupBy2 = _interopRequireDefault(_groupBy);
+
+var _without = require('lodash/fp/without');
+
+var _without2 = _interopRequireDefault(_without);
+
+var _concat = require('lodash/fp/concat');
+
+var _concat2 = _interopRequireDefault(_concat);
+
+var _orderBy = require('lodash/fp/orderBy');
+
+var _orderBy2 = _interopRequireDefault(_orderBy);
+
+var _toPairs = require('lodash/fp/toPairs');
+
+var _toPairs2 = _interopRequireDefault(_toPairs);
+
+var _at = require('lodash/fp/at');
+
+var _at2 = _interopRequireDefault(_at);
+
+var _differenceBy = require('lodash/fp/differenceBy');
+
+var _differenceBy2 = _interopRequireDefault(_differenceBy);
+
+var _compact = require('lodash/fp/compact');
+
+var _compact2 = _interopRequireDefault(_compact);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

@@ -28,7 +28,13 @@ var _createClass2 = require('babel-runtime/helpers/createClass');
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
-var _fp = require('lodash/fp');
+var _pick = require('lodash/fp/pick');
+
+var _pick2 = _interopRequireDefault(_pick);
+
+var _last = require('lodash/fp/last');
+
+var _last2 = _interopRequireDefault(_last);
 
 var _api = require('../api/api');
 
@@ -42,7 +48,7 @@ function getInterpretationIdFromResponse(response) {
     var location = response.headers.get('location');
 
     if (location) {
-        return (0, _fp.last)(location.split('/'));
+        return (0, _last2.default)(location.split('/'));
     } else {
         throw new Error("Could not get interpretation ID");
     }
@@ -87,7 +93,7 @@ var Interpretation = function () {
                                 response = _context.sent;
                                 interpretationId = getInterpretationIdFromResponse(response);
                                 sharingUrl = '/sharing?type=interpretation&id=' + interpretationId;
-                                sharingPayload = this.sharing ? { object: this.sharing } : { object: (0, _fp.pick)(Interpretation.sharingFields, this._parent) };
+                                sharingPayload = this.sharing ? { object: this.sharing } : { object: (0, _pick2.default)(Interpretation.sharingFields, this._parent) };
 
 
                                 this.sharing = null;
