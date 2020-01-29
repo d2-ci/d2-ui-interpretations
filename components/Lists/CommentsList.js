@@ -65,6 +65,10 @@ var _CommentsList = require('./styles/CommentsList.style');
 
 var _CommentsList2 = _interopRequireDefault(_CommentsList);
 
+var _DeleteDialog = require('../DeleteDialog/DeleteDialog');
+
+var _DeleteDialog2 = _interopRequireDefault(_DeleteDialog);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var commentsToShowOnInit = 5;
@@ -98,12 +102,12 @@ var CommentsList = exports.CommentsList = function (_React$Component) {
             _this.props.onCancel();
         };
 
-        _this.onOpenDeleteDialog = function () {
-            return _this.setState({ deleteDialogIsOpen: true });
+        _this.onOpenDeleteDialog = function (comment) {
+            return _this.setState({ deleteDialogIsOpen: true, commentToDelete: comment });
         };
 
         _this.onCloseDeleteDialog = function () {
-            return _this.setState({ deleteDialogIsOpen: false });
+            return _this.setState({ deleteDialogIsOpen: false, commentToDelete: null });
         };
 
         _this.getComments = function () {
@@ -134,10 +138,7 @@ var CommentsList = exports.CommentsList = function (_React$Component) {
                     locale: _this.context.locale,
                     onEdit: _this.onEdit,
                     onReply: _this.onReply,
-                    onDelete: _this.onOpenDeleteDialog,
-                    dialogIsOpen: _this.state.deleteDialogIsOpen,
-                    onDeleteConfirm: _this.onDeleteComment,
-                    onDeleteCancel: _this.onCloseDeleteDialog
+                    onDelete: _this.onOpenDeleteDialog
                 });
             });
         };
@@ -158,7 +159,8 @@ var CommentsList = exports.CommentsList = function (_React$Component) {
             listIsExpanded: !(_this.props.interpretation.comments.length > commentsToShowOnInit),
             commentToEdit: null,
             newComment: props.newComment,
-            deleteDialogIsOpen: false
+            deleteDialogIsOpen: false,
+            commentToDelete: null
         };
         return _this;
     }
@@ -187,10 +189,10 @@ var CommentsList = exports.CommentsList = function (_React$Component) {
         }
     }, {
         key: 'onDeleteComment',
-        value: function onDeleteComment(comment) {
+        value: function onDeleteComment() {
             var _this3 = this;
 
-            comment.delete(this.context.d2).then(function () {
+            this.state.commentToDelete.delete(this.context.d2).then(function () {
                 return _this3.props.onChange(_this3.props.interpretation);
             });
             this.onCloseDeleteDialog();
@@ -219,7 +221,13 @@ var CommentsList = exports.CommentsList = function (_React$Component) {
                 { className: this.props.classes.commentSection },
                 ViewMoreReplies,
                 Comments,
-                InputField
+                InputField,
+                this.state.deleteDialogIsOpen && _react2.default.createElement(_DeleteDialog2.default, {
+                    title: _d2I18n2.default.t('Delete comment'),
+                    text: _d2I18n2.default.t('Are you sure you want to delete this comment?'),
+                    onDelete: this.onDeleteComment,
+                    onCancel: this.onCloseDeleteDialog
+                })
             );
         }
     }]);

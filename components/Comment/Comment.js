@@ -15,10 +15,6 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _styles = require('@material-ui/core/styles');
 
-var _d2I18n = require('@dhis2/d2-i18n');
-
-var _d2I18n2 = _interopRequireDefault(_d2I18n);
-
 var _ActionButton = require('../Buttons/ActionButton');
 
 var _ActionButton2 = _interopRequireDefault(_ActionButton);
@@ -39,10 +35,6 @@ var _CardInfo = require('../Cards/CardInfo');
 
 var _CardInfo2 = _interopRequireDefault(_CardInfo);
 
-var _DeleteDialog = require('../DeleteDialog/DeleteDialog');
-
-var _DeleteDialog2 = _interopRequireDefault(_DeleteDialog);
-
 var _dateformatter = require('../../dateformats/dateformatter');
 
 var _Comment = require('./styles/Comment.style');
@@ -59,10 +51,7 @@ var Comment = exports.Comment = function Comment(_ref) {
         locale = _ref.locale,
         onEdit = _ref.onEdit,
         onReply = _ref.onReply,
-        onDelete = _ref.onDelete,
-        dialogIsOpen = _ref.dialogIsOpen,
-        onDeleteConfirm = _ref.onDeleteConfirm,
-        onDeleteCancel = _ref.onDeleteCancel;
+        onDelete = _ref.onDelete;
     return _react2.default.createElement(
         _react.Fragment,
         null,
@@ -89,7 +78,9 @@ var Comment = exports.Comment = function Comment(_ref) {
                 }),
                 _react2.default.createElement(_ActionButton2.default, {
                     iconType: 'delete',
-                    onClick: onDelete
+                    onClick: function onClick() {
+                        return onDelete(comment);
+                    }
                 })
             ) : canReply && _react2.default.createElement(_ActionButton2.default, {
                 iconType: 'reply',
@@ -97,15 +88,7 @@ var Comment = exports.Comment = function Comment(_ref) {
                     return onReply(comment);
                 }
             })
-        ),
-        dialogIsOpen && _react2.default.createElement(_DeleteDialog2.default, {
-            title: _d2I18n2.default.t('Delete comment'),
-            text: _d2I18n2.default.t('Are you sure you want to delete this comment?'),
-            onDelete: function onDelete() {
-                return onDeleteConfirm(comment);
-            },
-            onCancel: onDeleteCancel
-        })
+        )
     );
 };
 
@@ -116,10 +99,7 @@ Comment.propTypes = {
     locale: _propTypes2.default.string.isRequired,
     onEdit: _propTypes2.default.func.isRequired,
     onReply: _propTypes2.default.func.isRequired,
-    onDelete: _propTypes2.default.func.isRequired,
-    dialogIsOpen: _propTypes2.default.bool.isRequired,
-    onDeleteConfirm: _propTypes2.default.func.isRequired,
-    onDeleteCancel: _propTypes2.default.func.isRequired
+    onDelete: _propTypes2.default.func.isRequired
 };
 
 exports.default = (0, _styles.withStyles)(_Comment2.default)(Comment);
