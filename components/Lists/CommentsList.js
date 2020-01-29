@@ -192,9 +192,7 @@ var CommentsList = exports.CommentsList = function (_React$Component) {
         value: function onDeleteComment() {
             var _this3 = this;
 
-            var comment = this.state.commentToDelete;
-            console.log('comment to delete', comment);
-            comment.delete(this.context.d2).then(function () {
+            this.state.commentToDelete.delete(this.context.d2).then(function () {
                 return _this3.props.onChange(_this3.props.interpretation);
             });
             this.onCloseDeleteDialog();
@@ -214,8 +212,6 @@ var CommentsList = exports.CommentsList = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this4 = this;
-
             var ViewMoreReplies = this.renderViewMoreLink();
             var Comments = this.renderComments();
             var InputField = this.renderInputField();
@@ -229,9 +225,7 @@ var CommentsList = exports.CommentsList = function (_React$Component) {
                 this.state.deleteDialogIsOpen && _react2.default.createElement(_DeleteDialog2.default, {
                     title: _d2I18n2.default.t('Delete comment'),
                     text: _d2I18n2.default.t('Are you sure you want to delete this comment?'),
-                    onDelete: function onDelete() {
-                        return _this4.onDeleteComment(_this4.state.comment);
-                    },
+                    onDelete: this.onDeleteComment,
                     onCancel: this.onCloseDeleteDialog
                 })
             );
