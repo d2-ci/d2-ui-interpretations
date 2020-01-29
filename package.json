@@ -29,9 +29,9 @@
     "@dhis2/d2-i18n": "^1.0.3",
     "@dhis2/d2-i18n-extract": "^1.0.7",
     "@dhis2/d2-i18n-generate": "^1.1.1",
-    "@dhis2/d2-ui-mentions-wrapper": "6.5.1",
-    "@dhis2/d2-ui-rich-text": "6.5.1",
-    "@dhis2/d2-ui-sharing-dialog": "6.5.1",
+    "@dhis2/d2-ui-mentions-wrapper": "6.5.2",
+    "@dhis2/d2-ui-rich-text": "6.5.2",
+    "@dhis2/d2-ui-sharing-dialog": "6.5.2",
     "@material-ui/core": "^3.3.1",
     "@material-ui/icons": "^3.0.1",
     "babel-runtime": "^6.26.0",
@@ -53,6 +53,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "6.5.1",
+  "version": "6.5.2",
   "private": false
 }
