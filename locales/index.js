@@ -32,6 +32,8 @@ require('moment/locale/ur');
 
 require('moment/locale/vi');
 
+require('moment/locale/zh-cn');
+
 var _translations = require('./ar/translations.json');
 
 var _translations2 = _interopRequireDefault(_translations);
@@ -92,6 +94,10 @@ var _translations29 = require('./vi/translations.json');
 
 var _translations30 = _interopRequireDefault(_translations29);
 
+var _translations31 = require('./zh/translations.json');
+
+var _translations32 = _interopRequireDefault(_translations31);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var namespace = 'd2-ui-interpretations'; //------------------------------------------------------------------------------
@@ -120,6 +126,7 @@ _d2I18n2.default.addResources('sv', namespace, _translations24.default);
 _d2I18n2.default.addResources('uk', namespace, _translations26.default);
 _d2I18n2.default.addResources('ur', namespace, _translations28.default);
 _d2I18n2.default.addResources('vi', namespace, _translations30.default);
+_d2I18n2.default.addResources('zh', namespace, _translations32.default);
 
 _d2I18n2.default.setDefaultNamespace(namespace);
 _d2I18n2.default.changeLanguage('en');
