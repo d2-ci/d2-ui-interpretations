@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.itemTypeMap = exports.getLink = exports.getBaseUrl = exports.getId = exports.extractFavorite = exports.EVENT_CHART = exports.EVENT_REPORT = exports.REPORT_TABLE = exports.MAP = exports.CHART = undefined;
+exports.itemTypeMap = exports.getLink = exports.getBaseUrl = exports.getId = exports.extractFavorite = exports.VISUALIZATION = exports.EVENT_CHART = exports.EVENT_REPORT = exports.REPORT_TABLE = exports.MAP = exports.CHART = undefined;
 
 var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
 
@@ -26,6 +26,7 @@ var MAP = exports.MAP = 'MAP';
 var REPORT_TABLE = exports.REPORT_TABLE = 'REPORT_TABLE';
 var EVENT_REPORT = exports.EVENT_REPORT = 'EVENT_REPORT';
 var EVENT_CHART = exports.EVENT_CHART = 'EVENT_CHART';
+var VISUALIZATION = exports.VISUALIZATION = 'VISUALIZATION';
 
 var extractFavorite = exports.extractFavorite = function extractFavorite(item) {
     if (!(0, _isObject2.default)(item)) {
@@ -43,6 +44,8 @@ var extractFavorite = exports.extractFavorite = function extractFavorite(item) {
             return item.eventReport;
         case EVENT_CHART:
             return item.eventChart;
+        case VISUALIZATION:
+            return item.chart || item.reportTable;
         default:
             return item.reportTable || item.chart || item.map || item.eventReport || item.eventChart || {};
     }
@@ -105,4 +108,12 @@ var itemTypeMap = exports.itemTypeMap = (_itemTypeMap = {}, (0, _defineProperty3
     propName: 'eventChart',
     appName: _d2I18n2.default.t('Event Visualizer'),
     detailsTitle: _d2I18n2.default.t('Chart details')
+}), (0, _defineProperty3.default)(_itemTypeMap, VISUALIZATION, {
+    id: VISUALIZATION,
+    appUrl: function appUrl(modelId, interpretationId) {
+        return 'dhis-web-data-visualizer/#/' + modelId + '/interpretation/' + interpretationId;
+    },
+    propName: 'visualization',
+    appName: _d2I18n2.default.t('Visualizer'),
+    detailsTitle: _d2I18n2.default.t('Visualization details')
 }), _itemTypeMap);
