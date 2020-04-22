@@ -51,6 +51,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "sideEffects": [
+    "./src/locales/index.js",
+    "./src/locales/**/translations.json"
+  ],
   "version": "6.5.10",
   "private": false
 }
