@@ -69,20 +69,11 @@ var _InterpretationsCard = require('../Cards/InterpretationsCard');
 
 var _InterpretationsCard2 = _interopRequireDefault(_InterpretationsCard);
 
-var _locales = require('../../locales');
-
-var _locales2 = _interopRequireDefault(_locales);
-
 var _InterpretationsComponent = require('./styles/InterpretationsComponent.style');
 
 var _InterpretationsComponent2 = _interopRequireDefault(_InterpretationsComponent);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function configI18n(d2) {
-    var locale = d2.currentUser.userSettings.settings.keyUiLocale;
-    _locales2.default.changeLanguage(locale);
-};
 
 var InterpretationsComponent = exports.InterpretationsComponent = function (_React$Component) {
     (0, _inherits3.default)(InterpretationsComponent, _React$Component);
@@ -111,7 +102,6 @@ var InterpretationsComponent = exports.InterpretationsComponent = function (_Rea
     }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
-            configI18n(this.props.d2);
             this.loadModel(this.props);
         }
     }, {

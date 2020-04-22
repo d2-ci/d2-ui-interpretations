@@ -5,6 +5,7 @@
   "module": "./index.js",
   "license": "BSD-3-Clause",
   "peerDependencies": {
+    "@dhis2/d2-i18n": "^1.0.6",
     "d2": "^31.1.1",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0"
@@ -16,8 +17,8 @@
     "build": "npm run localize && babel src --copy-files --out-dir build --ignore spec.js",
     "lint": "eslint src/",
     "watch": "npm run build -- --watch",
-    "extract-pot": "d2-i18n-extract -p src/ -o i18n/",
-    "localize": "yarn extract-pot && d2-i18n-generate -n d2-ui-interpretations -p ./i18n/ -o ./src/locales/",
+    "extract-pot": "d2-app-scripts i18n extract",
+    "localize": "yarn extract-pot && d2-app-scripts i18n generate",
     "test-ci": "jest --config=../../jest.config.js packages/interpretations"
   },
   "husky": {
@@ -26,12 +27,9 @@
     }
   },
   "dependencies": {
-    "@dhis2/d2-i18n": "^1.0.3",
-    "@dhis2/d2-i18n-extract": "^1.0.7",
-    "@dhis2/d2-i18n-generate": "^1.1.1",
-    "@dhis2/d2-ui-mentions-wrapper": "6.5.11",
-    "@dhis2/d2-ui-rich-text": "6.5.11",
-    "@dhis2/d2-ui-sharing-dialog": "6.5.11",
+    "@dhis2/d2-ui-mentions-wrapper": "7.0.0",
+    "@dhis2/d2-ui-rich-text": "7.0.0",
+    "@dhis2/d2-ui-sharing-dialog": "7.0.0",
     "@material-ui/core": "^3.3.1",
     "@material-ui/icons": "^3.0.1",
     "babel-runtime": "^6.26.0",
@@ -53,6 +51,10 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "6.5.11",
+  "sideEffects": [
+    "./src/locales/index.js",
+    "./src/locales/**/translations.json"
+  ],
+  "version": "7.0.0",
   "private": false
 }

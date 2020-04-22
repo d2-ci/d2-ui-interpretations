@@ -1,10 +1,12 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _InterpretationsComponent = require('./components/InterpretationsComponent/InterpretationsComponent');
+require("./locales/");
+
+var _InterpretationsComponent = require("./components/InterpretationsComponent/InterpretationsComponent");
 
 var _InterpretationsComponent2 = _interopRequireDefault(_InterpretationsComponent);
 
