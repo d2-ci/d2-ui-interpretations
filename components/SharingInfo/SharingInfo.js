@@ -102,6 +102,7 @@ var SharingInfo = exports.SharingInfo = function (_Component) {
         key: 'render',
         value: function render() {
             var Info = this.concatSharingInfo();
+            var colon = ": ";
 
             return _react2.default.createElement(
                 'div',
@@ -110,7 +111,8 @@ var SharingInfo = exports.SharingInfo = function (_Component) {
                 _react2.default.createElement(
                     'span',
                     { className: this.props.classes.label },
-                    _d2I18n2.default.t('Shared with: '),
+                    _d2I18n2.default.t('Shared with'),
+                    colon,
                     Info,
                     _react2.default.createElement(_Link2.default, {
                         onClick: this.props.onClick,

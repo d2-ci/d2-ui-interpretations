@@ -22,12 +22,20 @@ var getSharingText = exports.getSharingText = function getSharingText(model) {
     var publicAccess = _d2I18n2.default.t('Public') + ': ' + accessLevel;
 
     var userCount = (model.userAccesses || []).length;
-    var userInfo = userCount > 2 ? _d2I18n2.default.t('{{userCount}} users', { userCount: userCount }) : (model.userAccesses || []).map(function (users) {
+    var userInfo = userCount > 2 ? _d2I18n2.default.t('{{count}} users', {
+        count: userCount,
+        defaultValue: '{{count}} user',
+        defaultValue_plural: '{{count}} users'
+    }) : (model.userAccesses || []).map(function (users) {
         return users.displayName;
     }).join(', ');
 
     var userGroupsCount = (model.userGroupAccesses || []).length;
-    var userGroupsInfo = userGroupsCount > 2 ? _d2I18n2.default.t('{{userGroupsCount}} user groups', { userGroupsCount: userGroupsCount }) : (model.userGroupAccesses || []).map(function (userGroup) {
+    var userGroupsInfo = userGroupsCount > 2 ? _d2I18n2.default.t('{{count}} user groups', {
+        count: userGroupsCount,
+        defaultValue: '{{count}} user group',
+        defaultValue_plural: '{{count}} user groups'
+    }) : (model.userGroupAccesses || []).map(function (userGroup) {
         return userGroup.displayName;
     }).join(', ');
 
