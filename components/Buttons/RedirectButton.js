@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.RedirectButton = undefined;
+exports.RedirectButton = exports.getAppName = undefined;
 
 var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
 
@@ -51,7 +51,7 @@ var _ActionButton4 = _interopRequireDefault(_ActionButton3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var getAppName = function getAppName(type) {
+var getAppName = exports.getAppName = function getAppName(type) {
     var appNameMap = {
         REPORT_TABLE: _d2I18n2.default.t('Pivot Tables'),
         CHART: _d2I18n2.default.t('Visualizer'),
