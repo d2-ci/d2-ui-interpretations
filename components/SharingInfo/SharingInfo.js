@@ -85,13 +85,15 @@ var SharingInfo = exports.SharingInfo = function (_Component) {
             };
 
             if (_this.checkPublicAccess()) {
-                displayNames = displayNames.concat(displayNames.length ? _d2I18n2.default.t(', public access') : _d2I18n2.default.t('public access'));
+                var publicAccess = _d2I18n2.default.t('public access');
+                displayNames = displayNames.concat(displayNames.length ? ', ' + publicAccess : publicAccess);
             };
 
+            var sentenceSeparator = '. ';
             if (displayNames.length) {
-                displayNames = displayNames.replace(/, ([^,]*)$/, ' and $1').concat('. ');
+                displayNames = displayNames.replace(/, ([^,]*)$/, ' and $1').concat(sentenceSeparator);
             } else {
-                displayNames = _d2I18n2.default.t('None. ');
+                displayNames = _d2I18n2.default.t('None').concat(sentenceSeparator);
             }
 
             return displayNames;
