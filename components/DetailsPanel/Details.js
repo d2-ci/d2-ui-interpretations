@@ -87,8 +87,6 @@ var _Details = require('./styles/Details.style');
 
 var _Details2 = _interopRequireDefault(_Details);
 
-var _redirect = require('../../api/redirect');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Details = exports.Details = function (_React$Component) {
@@ -126,7 +124,17 @@ var Details = exports.Details = function (_React$Component) {
                     }
                 }
             }, _callee, _this2);
-        })), _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+        })), _this.getCardTitle = function (type) {
+            var typeTitleMap = {
+                REPORT_TABLE: _d2I18n2.default.t('Table details'),
+                CHART: _d2I18n2.default.t('Chart details'),
+                MAP: _d2I18n2.default.t('Map details'),
+                EVENT_REPORT: _d2I18n2.default.t('Table details'),
+                EVENT_CHART: _d2I18n2.default.t('Chart details'),
+                VISUALIZATION: _d2I18n2.default.t('Visualization details')
+            };
+            return typeTitleMap[type];
+        }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
     }
 
     (0, _createClass3.default)(Details, [{
@@ -161,7 +169,7 @@ var Details = exports.Details = function (_React$Component) {
 
             return _react2.default.createElement(
                 _CollapsibleCard2.default,
-                { title: _redirect.itemTypeMap[this.props.type.toUpperCase()].detailsTitle },
+                { title: this.getCardTitle(this.props.type.toUpperCase()) },
                 SubscriptionButton,
                 _react2.default.createElement(
                     'div',

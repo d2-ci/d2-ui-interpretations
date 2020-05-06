@@ -75,8 +75,6 @@ var SharingInfo = exports.SharingInfo = function (_Component) {
             return (_this.props.interpretation.userGroupAccesses || []).map(function (item) {
                 return item.displayName;
             });
-        }, _this.checkExternalAccess = function () {
-            return _this.props.interpretation.externalAccess ? _d2I18n2.default.t('external access') : '';
         }, _this.checkPublicAccess = function () {
             return _this.props.interpretation.publicAccess === 'rw------' || _this.props.interpretation.publicAccess === 'r-------';
         }, _this.concatSharingInfo = function () {
@@ -87,13 +85,15 @@ var SharingInfo = exports.SharingInfo = function (_Component) {
             };
 
             if (_this.checkPublicAccess()) {
-                displayNames = displayNames.concat(displayNames.length ? _d2I18n2.default.t(', public access') : _d2I18n2.default.t('public access'));
+                var publicAccess = _d2I18n2.default.t('public access');
+                displayNames = displayNames.concat(displayNames.length ? ', ' + publicAccess : publicAccess);
             };
 
+            var sentenceSeparator = '. ';
             if (displayNames.length) {
-                displayNames = displayNames.replace(/, ([^,]*)$/, ' and $1').concat('. ');
+                displayNames = displayNames.replace(/, ([^,]*)$/, ' and $1').concat(sentenceSeparator);
             } else {
-                displayNames = _d2I18n2.default.t('None. ');
+                displayNames = _d2I18n2.default.t('None').concat(sentenceSeparator);
             }
 
             return displayNames;
@@ -104,6 +104,7 @@ var SharingInfo = exports.SharingInfo = function (_Component) {
         key: 'render',
         value: function render() {
             var Info = this.concatSharingInfo();
+            var colon = ": ";
 
             return _react2.default.createElement(
                 'div',
@@ -112,7 +113,8 @@ var SharingInfo = exports.SharingInfo = function (_Component) {
                 _react2.default.createElement(
                     'span',
                     { className: this.props.classes.label },
-                    _d2I18n2.default.t('Shared with: '),
+                    _d2I18n2.default.t('Shared with'),
+                    colon,
                     Info,
                     _react2.default.createElement(_Link2.default, {
                         onClick: this.props.onClick,

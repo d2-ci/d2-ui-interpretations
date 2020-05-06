@@ -11,10 +11,6 @@ var _defineProperty3 = _interopRequireDefault(_defineProperty2);
 
 var _itemTypeMap;
 
-var _d2I18n = require('@dhis2/d2-i18n');
-
-var _d2I18n2 = _interopRequireDefault(_d2I18n);
-
 var _isObject = require('lodash/isObject');
 
 var _isObject2 = _interopRequireDefault(_isObject);
@@ -73,47 +69,35 @@ var itemTypeMap = exports.itemTypeMap = (_itemTypeMap = {}, (0, _defineProperty3
     appUrl: function appUrl(modelId, interpretationId) {
         return 'dhis-web-pivot/?id=' + modelId + '&interpretationid=' + interpretationId;
     },
-    propName: 'reportTable',
-    appName: _d2I18n2.default.t('Pivot Tables'),
-    detailsTitle: _d2I18n2.default.t('Table details')
+    propName: 'reportTable'
 }), (0, _defineProperty3.default)(_itemTypeMap, CHART, {
     id: CHART,
     appUrl: function appUrl(modelId, interpretationId) {
         return 'dhis-web-data-visualizer/#/' + modelId + '/interpretation/' + interpretationId;
     },
-    propName: 'chart',
-    appName: _d2I18n2.default.t('Visualizer'),
-    detailsTitle: _d2I18n2.default.t('Chart details')
+    propName: 'chart'
 }), (0, _defineProperty3.default)(_itemTypeMap, MAP, {
     id: MAP,
     appUrl: function appUrl(modelId, interpretationId) {
         return 'dhis-web-maps/?id=' + modelId + '&interpretationid=' + interpretationId;
     },
-    propName: 'maps',
-    appName: _d2I18n2.default.t('Maps'),
-    detailsTitle: _d2I18n2.default.t('Map details')
+    propName: 'maps'
 }), (0, _defineProperty3.default)(_itemTypeMap, EVENT_REPORT, {
     id: EVENT_REPORT,
     appUrl: function appUrl(modelId, interpretationId) {
         return 'dhis-web-event-reports/?id=' + modelId + '&interpretationid=' + interpretationId;
     },
-    propName: 'eventReport',
-    appName: _d2I18n2.default.t('Event Reports'),
-    detailsTitle: _d2I18n2.default.t('Table details')
+    propName: 'eventReport'
 }), (0, _defineProperty3.default)(_itemTypeMap, EVENT_CHART, {
     id: EVENT_CHART,
     appUrl: function appUrl(modelId, interpretationId) {
         return 'dhis-web-event-visualizer/?id=' + modelId + '&interpretationid=' + interpretationId;
     },
-    propName: 'eventChart',
-    appName: _d2I18n2.default.t('Event Visualizer'),
-    detailsTitle: _d2I18n2.default.t('Chart details')
+    propName: 'eventChart'
 }), (0, _defineProperty3.default)(_itemTypeMap, VISUALIZATION, {
     id: VISUALIZATION,
     appUrl: function appUrl(modelId, interpretationId) {
         return 'dhis-web-data-visualizer/#/' + modelId + '/interpretation/' + interpretationId;
     },
-    propName: 'visualization',
-    appName: _d2I18n2.default.t('Visualizer'),
-    detailsTitle: _d2I18n2.default.t('Visualization details')
+    propName: 'visualization'
 }), _itemTypeMap);
