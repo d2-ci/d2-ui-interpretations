@@ -54,11 +54,13 @@ var InterpretationsList = exports.InterpretationsList = function Interpretations
 
     var listItems = isExpanded ? filteredItems : filteredItems.slice(0, interpretationsToShowOnInit);
 
+    var hideShowPreviousInterpretations = isExpanded ? _d2I18n2.default.t('Hide previous interpretations') : _d2I18n2.default.t('Show previous interpretations');
+
     return listItems.length ? _react2.default.createElement(
         _react.Fragment,
         null,
         filteredItems.length > interpretationsToShowOnInit && _react2.default.createElement(_Link2.default, {
-            label: (isExpanded ? _d2I18n2.default.t('Hide') : _d2I18n2.default.t('Show')) + ' previous interpretations',
+            label: hideShowPreviousInterpretations,
             onClick: toggleShowAllInterpretations
         }),
         listItems.map(function (item) {

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.RedirectButton = undefined;
+exports.RedirectButton = exports.getAppName = undefined;
 
 var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
 
@@ -51,6 +51,19 @@ var _ActionButton4 = _interopRequireDefault(_ActionButton3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var getAppName = exports.getAppName = function getAppName(type) {
+    var appNameMap = {
+        REPORT_TABLE: _d2I18n2.default.t('Pivot Tables'),
+        CHART: _d2I18n2.default.t('Visualizer'),
+        MAP: _d2I18n2.default.t('Maps'),
+        EVENT_REPORT: _d2I18n2.default.t('Event Reports'),
+        EVENT_CHART: _d2I18n2.default.t('Event Visualizer'),
+        VISUALIZATION: _d2I18n2.default.t('Visualizer')
+    };
+
+    return appNameMap[type];
+};
+
 var RedirectButton = exports.RedirectButton = function (_Component) {
     (0, _inherits3.default)(RedirectButton, _Component);
 
@@ -62,16 +75,25 @@ var RedirectButton = exports.RedirectButton = function (_Component) {
     (0, _createClass3.default)(RedirectButton, [{
         key: 'render',
         value: function render() {
-            return this.context.appName === 'dashboard' ? _react2.default.createElement(
+            var _context = this.context,
+                d2 = _context.d2,
+                appName = _context.appName,
+                item = _context.item;
+            var _props = this.props,
+                interpretationId = _props.interpretationId,
+                classes = _props.classes;
+
+
+            return appName === 'dashboard' ? _react2.default.createElement(
                 'a',
                 {
-                    href: (0, _redirect.getLink)(this.context.item, this.context.d2, this.props.interpretationId),
-                    className: this.props.classes.iconContainer,
-                    title: _d2I18n2.default.t('View in ' + _redirect.itemTypeMap[this.context.item.type].appName + ' app')
+                    href: (0, _redirect.getLink)(item, d2, interpretationId),
+                    className: classes.iconContainer,
+                    title: _d2I18n2.default.t('View in {{appName}} app', { appName: getAppName(item.type) })
                 },
                 _react2.default.createElement(_ActionButton2.default, {
                     iconType: 'openApp',
-                    tooltip: _d2I18n2.default.t('View in ' + _redirect.itemTypeMap[this.context.item.type].appName + ' app')
+                    tooltip: _d2I18n2.default.t('View in {{appName}} app', { appName: getAppName(item.type) })
                 })
             ) : null;
         }

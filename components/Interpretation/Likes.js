@@ -130,6 +130,12 @@ var Likes = exports.Likes = function (_Component) {
 
             var Tooltip = this.state.tooltipIsOpen && this.renderTooltip();
 
+            var likes = _d2I18n2.default.t('{{count}} likes', {
+                count: likedBy.length,
+                defaultValue: '{{count}} like',
+                defaultValue_plural: '{{count}} likes'
+            });
+
             return !!likedBy.length && _react2.default.createElement(
                 _react.Fragment,
                 null,
@@ -142,9 +148,7 @@ var Likes = exports.Likes = function (_Component) {
                         onMouseLeave: this.hideTooltip
                     },
                     Tooltip,
-                    likedBy.length,
-                    ' ',
-                    likedBy.length > 1 ? _d2I18n2.default.t('likes') : _d2I18n2.default.t('like')
+                    likes
                 )
             );
         }

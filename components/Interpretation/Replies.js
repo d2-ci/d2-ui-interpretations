@@ -145,6 +145,12 @@ var Replies = exports.Replies = function (_Component) {
 
             var Tooltip = this.state.tooltipIsOpen && this.renderTooltip();
 
+            var replies = _d2I18n2.default.t('{{count}} replies', {
+                count: repliedBy.length,
+                defaultValue: '{{count}} reply',
+                defaultValue_plural: '{{count}} replies'
+            });
+
             return !!repliedBy.length && _react2.default.createElement(
                 _react.Fragment,
                 null,
@@ -157,7 +163,7 @@ var Replies = exports.Replies = function (_Component) {
                         onMouseLeave: this.hideTooltip
                     },
                     Tooltip,
-                    repliedBy.length + ' ' + (repliedBy.length > 1 ? _d2I18n2.default.t('replies') : _d2I18n2.default.t('reply'))
+                    replies
                 )
             );
         }

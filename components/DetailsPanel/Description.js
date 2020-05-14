@@ -35,24 +35,32 @@ var Description = exports.Description = function Description(_ref) {
     var description = void 0;
 
     if (!displayDescription) {
-        description = _d2I18n2.default.t('_No description_');
+        description = _d2I18n2.default.t('No description');
     } else if (displayDescription.length < descriptionMaxLength || isToggled) {
         description = displayDescription;
     } else {
         description = displayDescription.substring(0, descriptionMaxLength) + ' ... ';
     }
 
+    var showMoreLessLabel = isToggled ? _d2I18n2.default.t('Show less') : _d2I18n2.default.t('Show more');
+
+    var DescriptionElement = displayDescription ? _react2.default.createElement(
+        _d2UiRichText.Parser,
+        null,
+        description
+    ) : _react2.default.createElement(
+        'p',
+        { style: { fontStyle: 'italic' } },
+        description
+    );
+
     return _react2.default.createElement(
         _react.Fragment,
         null,
-        _react2.default.createElement(
-            _d2UiRichText.Parser,
-            null,
-            description
-        ),
+        DescriptionElement,
         displayDescription.length > descriptionMaxLength && _react2.default.createElement(_Link2.default, {
             onClick: onToggleDescription,
-            label: '[' + _d2I18n2.default.t('Show ') + ' ' + (isToggled ? _d2I18n2.default.t('less') : _d2I18n2.default.t('more')) + ']'
+            label: showMoreLessLabel
         })
     );
 };
