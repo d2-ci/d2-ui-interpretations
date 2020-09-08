@@ -202,7 +202,7 @@ var NewCommentField = exports.NewCommentField = function (_React$Component) {
 
             return _react2.default.createElement(
                 _WithAvatar2.default,
-                { className: this.props.classes.newReply, firstName: this.context.d2.currentUser.firstName, surname: this.context.d2.currentUser.surname },
+                { className: this.props.classes.newReply, displayName: this.context.d2.currentUser.displayName },
                 _react2.default.createElement(
                     _d2UiMentionsWrapper2.default,
                     { d2: this.context.d2, onUserSelect: this.onUserSelect },

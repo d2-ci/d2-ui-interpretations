@@ -35,9 +35,9 @@ var _redirect = require('./redirect');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var interpretationsFields = ['id', 'user[id,firstName,surname,displayName,userCredentials[username]]', 'created', 'lastUpdated', 'likes', 'likedBy[id,displayName]', 'text', 'publicAccess', 'externalAccess', 'userAccesses', 'userGroupAccesses', 'comments[id,text,created,lastUpdated,user[id,firstName,surname,displayName,userCredentials[username]]]'];
+var interpretationsFields = ['id', 'user[id,displayName,userCredentials[username]]', 'created', 'lastUpdated', 'likes', 'likedBy[id,displayName]', 'text', 'publicAccess', 'externalAccess', 'userAccesses', 'userGroupAccesses', 'comments[id,text,created,lastUpdated,user[id,displayName,userCredentials[username]]]'];
 
-var favoriteFields = ['id', 'name', 'href', 'subscribed', 'user[id,firstName,surname,displayName]', 'displayName', 'description', 'displayDescription', 'created', 'lastUpdated', 'access', 'publicAccess', 'externalAccess', 'userAccesses', 'userGroupAccesses', 'interpretations[' + interpretationsFields.join(',') + ']'];
+var favoriteFields = ['id', 'name', 'href', 'subscribed', 'user[id,displayName]', 'displayName', 'description', 'displayDescription', 'created', 'lastUpdated', 'access', 'publicAccess', 'externalAccess', 'userAccesses', 'userGroupAccesses', 'interpretations[' + interpretationsFields.join(',') + ']'];
 
 var getFavoriteWithInterpretations = exports.getFavoriteWithInterpretations = function getFavoriteWithInterpretations(d2, type, id) {
     var propName = _redirect.itemTypeMap[type.toUpperCase()].propName;

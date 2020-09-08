@@ -178,8 +178,7 @@ var Interpretation = exports.Interpretation = function (_React$Component) {
                     _WithAvatar2.default,
                     {
                         className: extended ? classes.expanded : classes.compact,
-                        firstName: interpretation.user.firstName,
-                        surname: interpretation.user.surname,
+                        displayName: interpretation.user.displayName,
                         onClick: !extended ? _this.onView : null
                     },
                     _react2.default.createElement(_CardHeader2.default, { userName: interpretation.user.displayName }),

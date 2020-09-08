@@ -297,7 +297,7 @@ var NewInterpretationField = exports.NewInterpretationField = function (_Compone
 
             return _react2.default.createElement(
                 _WithAvatar2.default,
-                { className: this.props.classes.newInterpretation, firstName: this.context.d2.currentUser.firstName, surname: this.context.d2.currentUser.surname },
+                { className: this.props.classes.newInterpretation, displayName: this.context.d2.currentUser.displayName },
                 _react2.default.createElement(
                     _d2UiMentionsWrapper2.default,
                     { d2: this.context.d2, onUserSelect: this.onUserSelect },

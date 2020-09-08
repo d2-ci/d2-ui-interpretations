@@ -57,7 +57,7 @@ var Comment = exports.Comment = function Comment(_ref) {
         null,
         _react2.default.createElement(
             _WithAvatar2.default,
-            { className: classes.comment, key: comment.id, firstName: comment.user.firstName, surname: comment.user.surname },
+            { className: classes.comment, key: comment.id, displayName: comment.user.displayName },
             _react2.default.createElement(_CardHeader2.default, { userName: comment.user.displayName }),
             _react2.default.createElement(_CardText2.default, { text: comment.text }),
             _react2.default.createElement(_CardInfo2.default, { createdDate: (0, _dateformatter.formatDate)(comment.created, locale) }),

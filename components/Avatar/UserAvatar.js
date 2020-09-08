@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.UserAvatar = undefined;
 
 var _react = require('react');
 
@@ -24,12 +25,17 @@ var _Avatar4 = _interopRequireDefault(_Avatar3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var UserAvatar = function UserAvatar(_ref) {
+var UserAvatar = exports.UserAvatar = function UserAvatar(_ref) {
     var classes = _ref.classes,
-        firstName = _ref.firstName,
-        surname = _ref.surname;
+        displayName = _ref.displayName;
 
-    var initials = firstName.charAt(0).concat(surname.charAt(0));
+    var nameParts = displayName ? displayName.split(' ') : ['USER'];
+
+    var initials = nameParts.shift().charAt(0);
+
+    if (nameParts.length) {
+        initials += nameParts.pop().charAt(0);
+    }
 
     return _react2.default.createElement(
         _Avatar2.default,
@@ -40,8 +46,7 @@ var UserAvatar = function UserAvatar(_ref) {
 
 UserAvatar.propTypes = {
     classes: _propTypes2.default.object.isRequired,
-    firstName: _propTypes2.default.string.isRequired,
-    surname: _propTypes2.default.string.isRequired
+    displayName: _propTypes2.default.string.isRequired
 };
 
 exports.default = (0, _styles.withStyles)(_Avatar4.default)(UserAvatar);
